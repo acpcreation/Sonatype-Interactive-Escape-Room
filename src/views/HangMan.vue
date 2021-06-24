@@ -19,7 +19,7 @@
     <p>Characters Guessed</p>
     <p class="guessedLetters">{{guessedLetters.toString().replaceAll(',',', ')}}</p>
 
-
+    <p class="successMessage">{{successMessage}}</p>
 
   </div>
 </template>
@@ -40,12 +40,13 @@ export default {
       tableContents:[
         ["?","","","","","","","","","","","","","?"],
         ["","","H","I","D","D","E","N","","","","","",""],
-        ["","","","","M","E","S","S","A","G","E","","",""],
+        ["","","","M","E","S","S","A","G","E","","","",""],
         ["?","","","","","","","","","","","","","?"]
       ],
 
       guessedLetters:[],
-      uniqueCharacters:[]
+      uniqueCharacters:[],
+      successMessage:""
     }
   },
 
@@ -91,9 +92,25 @@ export default {
         //Check if it's a letter?
         if(!this.guessedLetters.includes(key) && key.length==1){
           this.guessedLetters.push(key)
+          this.checkIfComplete();
         }
       });
+    },
+
+    checkIfComplete: function(){
+      let complete = true;
+      for(let i in this.uniqueCharacters){
+        if(!this.guessedLetters.includes(this.uniqueCharacters[i])){
+          complete = false;
+          break;
+        }
+      }
+
+      if(complete == true){
+        this.successMessage = "HINT!"
+      }
     }
+
 
 
 

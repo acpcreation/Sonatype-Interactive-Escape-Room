@@ -14,6 +14,8 @@
         <img class="decoderPage"    @click="openPage('Decoder')" src="../../public/img/book.png"/>
         <img class="priceQuotePage" @click="openPage('PriceQuotes')" src="../../public/img/abacus.jpg"/>
         <img class="hangManPage"    @click="openPage('HangMan')" src="../../public/img/hangman.png"/>
+        <img class="familyFeudPage"    @click="openPage('FamilyFeud')" src="../../public/img/familyfeud.png"/>
+
       </div>
 
     <Passcode v-if="passcode" @closePasscode="passcode=!passcode"/>
@@ -78,7 +80,7 @@ export default {
 }
 
 .mazePage{
-  top:194px;
+  top:394px;
   left: -98px;
   width: 85px;
 }
@@ -91,9 +93,11 @@ export default {
 }
 
 .clueFinderPage{
-  top:75px;
-  left: 50px;
+  top:90px;
+  left: 70px;
   width: 150px;
+  transform: rotate(5deg);
+
 }
 
 .vrExplorerPage{
@@ -106,6 +110,7 @@ export default {
   top:490px;
   left: 190px;
   width: 70px;
+  opacity: .9;
 }
 
 .priceQuotePage{
@@ -113,6 +118,7 @@ export default {
   left: 110px;
   width: 100px;
   transform: rotate(18deg);
+  opacity: .95;
 }
 
 .hangManPage{
@@ -120,6 +126,16 @@ export default {
   left: 430px;
   width: 150px;
 }
+
+.familyFeudPage{
+  top: 60px;
+  left: -760px;
+  width: 150px;
+  border-radius: 8px;
+  opacity: .9;
+  transform: rotate(-15deg);
+}
+
 
 @media (max-width: 1200px) {
   .buttonImages{

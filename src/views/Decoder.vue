@@ -156,7 +156,7 @@ export default {
 
 .codedPaper{
   width: 50vw;
-  border-radius: 6px;;
+  border-radius: 6px;
 }
 
 .decodedMessage{

@@ -7,9 +7,12 @@ The challenges and content are designed to train Sonatype employees on the 2021 
 
 Copyright Sonatype - 2021
 
-Contributors:
+Code Contributors:
 - Alexander Plattel
+
+Content Contributors:
 - Dana Ward
+- Brent Kostak
 ```
 
 ## Project setup

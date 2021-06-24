@@ -7,7 +7,7 @@ import ClueFinder from './views/ClueFinder.vue'
 import VRExplorer from './views/VRExplorer.vue'
 import Decoder from './views/Decoder.vue'
 import PriceQuotes from './views/PriceQuotes.vue'
-import Jeopardy from './views/Jeopardy.vue'
+import FamilyFeud from './views/FamilyFeud.vue'
 import HangMan from './views/HangMan.vue'
 
 
@@ -52,14 +52,14 @@ export default new Router({
       component: PriceQuotes
     },
     {
-      path: '/Jeopardy',
-      name: 'Jeopardy',
-      component: Jeopardy
-    },
-    {
       path: '/HangMan',
       name: 'HangMan',
       component: HangMan
+    },
+    {
+      path: '/FamilyFeud',
+      name: 'FamilyFeud',
+      component: FamilyFeud
     },
     
     
