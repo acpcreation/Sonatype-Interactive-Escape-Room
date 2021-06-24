@@ -2,24 +2,21 @@
   <div class="main">
     <img class="logo" src="../../public/img/sonatype_logo.png"/>
 
-    <div class="centerItems">  
       <!-- https://www.vecteezy.com/vector-art/420220-modern-office-setup-background-vector-flat-illustration -->
-      <img class="backgroundImage" src="../../public/img/background.png"/>
-    </div>
+      <!-- <img class="backgroundImage" src="../../public/img/background.png"/> -->
+    
+      <div class="buttonImages">
+        <img class="passcodePage"   @click="passcode=!passcode" src="../../public/img/passcode.png"/>
+        <img class="mazePage"       @click="openPage('RememberThePath')" src="../../public/img/maze.png"/>
+        <img class="calculatorPage" @click="openPage('Calculator')" src="../../public/img/calculator.png"/>
+        <img class="clueFinderPage" @click="openPage('ClueFinder')" src="../../public/img/map.jpeg"/>
+        <img class="vrExplorerPage" @click="openPage('VRExplorer')" src="../../public/img/vrheadset.png"/>
+        <img class="decoderPage"    @click="openPage('Decoder')" src="../../public/img/book.png"/>
+        <img class="priceQuotePage" @click="openPage('PriceQuotes')" src="../../public/img/abacus.jpg"/>
+        <img class="hangManPage"    @click="openPage('HangMan')" src="../../public/img/hangman.png"/>
+      </div>
 
     <Passcode v-if="passcode" @closePasscode="passcode=!passcode"/>
-    
-    <div class="buttonImages">
-      <img class="passcodePage"   @click="passcode=!passcode" src="../../public/img/passcode.png"/>
-      <img class="mazePage"       @click="openPage('RememberThePath')" src="../../public/img/maze.png"/>
-      <img class="calculatorPage" @click="openPage('Calculator')" src="../../public/img/calculator.png"/>
-      <img class="clueFinderPage" @click="openPage('ClueFinder')" src="../../public/img/map.jpeg"/>
-      <img class="vrExplorerPage" @click="openPage('VRExplorer')" src="../../public/img/vrheadset.png"/>
-      <img class="decoderPage"    @click="openPage('Decoder')" src="../../public/img/book.png"/>
-      <img class="priceQuotePage" @click="openPage('PriceQuotes')" src="../../public/img/abacus.jpg"/>
-
-    </div>
-
     
   </div>
 </template>
@@ -51,58 +48,83 @@ export default {
 <style scoped>
 .main{
   padding-top: 10px;
+  /* overflow-x:scroll; */
 }
 
-.backgroundImage{
+/* .backgroundImage{
   width: 90%;
-}
+} */
 
+
+.buttonImages{
+  height:800px;
+  width: 1500px ;
+  margin-bottom:-200px;
+  background-image:url('../../public/img/background.png'); 
+  background-repeat: no-repeat;
+  background-size: 1500px;
+  margin:5px auto;
+}
 
 .buttonImages img{
-    position: fixed;
+    position: relative;
     cursor: pointer;
 }
 
 .passcodePage{
-  top:50vh;
-  left: 50vw;
-  width: 160px;
+  top:435px;
+  left: 445px;
+  width: 200px;
 }
 
 .mazePage{
-  top:20vh;
-  left: 20vw;
-  width: 100px;
+  top:194px;
+  left: -98px;
+  width: 85px;
 }
 
 .calculatorPage{
-  top:40vh;
-  left: 66vw;
+  top:510px;
+  left: 900px;
   width: 60px;
+  transform: rotate(-70deg);
 }
 
 .clueFinderPage{
-  top:72vh;
-  left: 14vw;
+  top:75px;
+  left: 50px;
   width: 150px;
 }
 
 .vrExplorerPage{
-  top:20vh;
-  left: 80vw;
+  top:320px;
+  left: 538px;
   width: 70px;
 }
 
 .decoderPage{
-  top:71vh;
-  left: 80vw;
+  top:490px;
+  left: 190px;
   width: 70px;
 }
 
 .priceQuotePage{
-  top: 30vh;
-  left: 40vw;
+  top: 180px;
+  left: 110px;
   width: 100px;
+  transform: rotate(18deg);
+}
+
+.hangManPage{
+  top: 30px;
+  left: 430px;
+  width: 150px;
+}
+
+@media (max-width: 1200px) {
+  .buttonImages{
+    transform: scale(0.8);
+  }
 }
 
 

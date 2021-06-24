@@ -6,6 +6,10 @@
     
     <p class="successMessage">{{completeMessage}}</p>
 
+    <ExchangeRates v-if="exchangeRates"/>
+    <b-button class="exchangeRateButton" variant="warning" @click="exchangeRates= !exchangeRates">Exchange Rates</b-button>
+
+
     <b-card no-body class="overflow-hidden cards" v-for="i in prices" :key="i.id">
       <b-row no-gutters>
         <b-col md="6">
@@ -38,17 +42,21 @@
       </b-row>
     </b-card>
 
+  
   </div>
 </template>
 
 <script>
+import ExchangeRates from '@/components/ExchangeRates.vue'
+
+
 export default {
   name: 'PriceQuotes',
   props: {
     
   },
   components: {
-
+    ExchangeRates
   },
   computed: {
     
@@ -64,7 +72,8 @@ export default {
 
       ],
 
-      completeMessage: ""
+      completeMessage: "",
+      exchangeRates: false
     }
   },
 
@@ -78,7 +87,7 @@ export default {
     openPage: function(e) {
       this.$router.push("/"+e);
     },
-    
+
     confirmPrice: function(i) {
       let price = this.prices[i];
       if(price.input == price.answer){
@@ -135,6 +144,7 @@ export default {
 .main{
   text-align: center;
   padding: 2vw;
+  min-height:120vh;
 }
 
 .cards{
@@ -163,6 +173,13 @@ export default {
   /* cursor: pointer; */
   color:white;
   text-align: center;
+}
+
+
+.exchangeRateButton{
+  position: absolute;
+  top: 20px;
+  right:20px;
 }
 
 

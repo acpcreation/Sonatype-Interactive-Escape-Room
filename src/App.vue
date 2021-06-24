@@ -19,7 +19,7 @@ export default {
   },
   data(){
     return{
-      welcome:true,
+      welcome:false,
       audit: false
     }
   },

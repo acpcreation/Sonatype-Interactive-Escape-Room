@@ -1,8 +1,9 @@
-# vue_practice
+# Sonatype - Accelerate 2021 Escape Room
 
-## Project setup
+## Project Overview
 ```
-This is a Vue.js project which simulates a digital escape room. The challenges and content are designed to train Sonatype employees on the 2021 Sonatype product portfolio, buyer personas, competitor advantages and more, all in a creative interactive environment. 
+This is a Vue.js project which simulates a digital escape room. 
+The challenges and content are designed to train Sonatype employees on the 2021 Sonatype product portfolio, buyer personas, competitor advantages and more, all in a creative interactive environment. 
 
 Copyright Sonatype - 2021
 

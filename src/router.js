@@ -8,6 +8,7 @@ import VRExplorer from './views/VRExplorer.vue'
 import Decoder from './views/Decoder.vue'
 import PriceQuotes from './views/PriceQuotes.vue'
 import Jeopardy from './views/Jeopardy.vue'
+import HangMan from './views/HangMan.vue'
 
 
 Vue.use(Router)
@@ -54,6 +55,11 @@ export default new Router({
       path: '/Jeopardy',
       name: 'Jeopardy',
       component: Jeopardy
+    },
+    {
+      path: '/HangMan',
+      name: 'HangMan',
+      component: HangMan
     },
     
     
