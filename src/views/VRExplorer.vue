@@ -2,15 +2,13 @@
   <div class="main">
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <h3>VR Explorer</h3>
-    <p>Take a look around! In this challenge you need to count the quantity of each shape and put them in order from fewest to most.</p>
+    <p>Take a look around! In this challenge you need to find..</p>
     <VRShapesView />
-    <ReorderList :items="shapes"/>
   </div>
 </template>
 
 <script>
 import VRShapesView from '@/components/VRShapesView.vue'
-import ReorderList from '@/components/ReorderList.vue'
 
 export default {
   name: 'VRExplorer',
@@ -19,7 +17,7 @@ export default {
   },
   components: {
     VRShapesView,
-    ReorderList
+    
   },
 
   computed: {

@@ -4,7 +4,15 @@
     <h1>Family Feud</h1>
     <p>In this challenge you need to...</p>
 
+    <!-- ADD:
+          - Flipping Cards
+          - Noise
+          - Lightbulb dot grid in background
+          - Multiple rounds
+          - Enter button to submit answers
+     -->
 
+    
     <p class="question">{{currentQuestion.question}}</p>
     <div class="flexView">
       <div class="answerOptions" v-for="i in 8" :key="i">
@@ -44,7 +52,7 @@ export default {
   data(){
     return{
       questions:[
-        {question:"Family Feud", answers:["snyk","challenge","your","means","question","this","mind","guy"]}
+        {question:"Insert Question Here", answers:["snyk","challenge","your","means","question","this"]}
       ],
       currentQuestion:{},
       questionIndex: 0,
@@ -118,13 +126,12 @@ export default {
   width:300px;
   background-image: radial-gradient(rgb(0, 171, 214),rgb(13, 31, 194)); 
   font-weight: bold;
-  border: solid 4px rgb(80, 80, 80);
+  border: solid 3px rgb(172, 172, 172);
   text-transform:uppercase;
   margin:2px;
   padding-top:4px;
-  /* cursor:pointer; */
   height:55px;
-  perspective: 1000px;
+  border-radius: 2px;
 }
 /* 
 .flip{
@@ -147,11 +154,9 @@ export default {
 .question{
   margin-top: 25px;
   font-size: 30px;
-  color:gold;
+  color:rgb(255, 208, 0);
   font-weight:bold;
-  text-transform:uppercase;
-  letter-spacing: 5px;
-  font-size: 60px;
+  font-size: 30px;
 }
 
 

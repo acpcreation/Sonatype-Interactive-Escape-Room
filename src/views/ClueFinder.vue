@@ -1,12 +1,14 @@
 <template>
   <div class="main">
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
-    <h3>Clue Finder</h3>
-    <p>Find all the hidden clues to decode the message.</p>
+    <div class="fixItems">
+      <h3>Clue Finder</h3>
+      <p>Find all the hidden clues to decode the message.</p>
+    </div>
 
     <!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_image_magnifier_glass -->
     <div id="magnifier" :style="position"></div>
-    <img id="backgroundImage" src="../../public/img/antiqueStore.jpeg" />
+    <img id="backgroundMagnifyImage" src="../../public/img/antiqueStore.jpeg" />
     <!-- @mouseover="hover = true" @mouseleave="hover = false" -->
 
   </div>
@@ -33,8 +35,7 @@ export default {
 
   mounted() {
     window.addEventListener('mousemove',this.mouseMoving);
-
-
+    console.log(window.screen.width)
   },
 
   methods: {
@@ -47,20 +48,23 @@ export default {
       let zoom = 3;
       let x = e.pageX-halfWidth;
       let y = e.pageY-halfWidth;
+      // let screenWidth = window.screen.width;
+      //Large: 1920 => -180
+      //Medium: 1536 => 220
       
-      if(x>10 && y>10){
-        let bp = "-"+((x * zoom) - 20) + "px -" +((y * zoom)-80)+"px";
+      // console.log(x+", "+y)
+      if(x>-35 && y>-40){
+        let bp = "-"+((x * zoom) +220) + "px -" +((y * zoom) +20)+"px";
         this.position = "left:"+x+"px; top:"+y+"px; background-position:"+bp;
       }else{
         this.position = "visibility:hidden;"
       }
-
     }
 
 
 
-
   },
+
   destroyed: function() {
     window.removeEventListener('mousemove', this.mouseMoving);
   }
@@ -72,7 +76,18 @@ export default {
 <style scoped>
 .main{
   text-align: center;
-  padding: 10px;;
+  padding: 0px;
+  margin-bottom: -100px;
+}
+
+.fixItems{
+  position: absolute;
+  top: 10px;
+  right:10px;
+  padding:5px 10px;
+  background: rgba(0, 0, 0, 0.637);
+  border-radius: 10px;
+
 }
 
 .mousePosition{
@@ -94,12 +109,13 @@ export default {
   height: 200px;
   background-image: url('../../public/img/antiqueStore.jpeg');
   background-repeat: no-repeat;
-  background-size: 1500*3;
+  /* background-size: 1500px*3; */
+  background-size: 100vw *3
 }
 
-#backgroundImage{
-  width: 1500px;
-
+#backgroundMagnifyImage{
+  /* width: 1500px; */
+  width: 100vw; 
 }
 
 

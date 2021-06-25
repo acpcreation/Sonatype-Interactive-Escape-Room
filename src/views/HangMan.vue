@@ -2,7 +2,9 @@
   <div class="main">
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <h1>Hang-Man</h1>
-    <p>In this challenge you need to...</p>
+    <p>In this challenge you need to guess letters on the keyboard in order to reveal the hidden phrase. </p>
+
+    <p class="questionDisplay">Round {{roundIndex+1}}</p>
 
     <div class="centerItems">
       <table>
@@ -20,7 +22,7 @@
     <p class="guessedLetters">{{guessedLetters.toString().replaceAll(',',', ')}}</p>
 
     <p class="successMessage">{{successMessage}}</p>
-
+    <b-button variant="outline-warning" @click="newRound()" v-if="successMessage.length >1 && roundIndex < rounds.length-1">New Round</b-button>
   </div>
 </template>
 
@@ -37,30 +39,33 @@ export default {
 
   data(){
     return{
-      tableContents:[
-        ["?","","","","","","","","","","","","","?"],
+      tableContents:[],
+
+      rounds:[
+        [["?","","","","","","","","","","","","","?"],
         ["","","H","I","D","D","E","N","","","","","",""],
         ["","","","M","E","S","S","A","G","E","","","",""],
-        ["?","","","","","","","","","","","","","?"]
+        ["?","","","","","","","","","","","","","?"]],
+
+        [["?","","","","","","","","","","","","","?"],
+        ["","","N","E","X","T","","R","O","U","N","D","",""],
+        ["","","","T","O","","W","I","N","","I","T","",""],
+        ["?","","","","","","","","","","","","","?"]],
       ],
 
       guessedLetters:[],
       uniqueCharacters:[],
+      roundIndex: 0,
+      hints:["Hint 1", "Hint 2"],
       successMessage:""
     }
   },
 
   mounted() {
-    this.addCharacterListeners()
+    this.tableContents = this.rounds[this.roundIndex];
 
-    for(let i in this.tableContents){
-      for(let j in this.tableContents[i]){
-        let letter = this.tableContents[i][j];
-        if(letter != "" && letter != "?" && !this.uniqueCharacters.includes(letter)){
-          this.uniqueCharacters.push(letter)
-        }
-      }
-    }
+    this.addCharacterListeners();
+    this.getUniqueLetters();
 
     // console.log(this.uniqueCharacters)
   },
@@ -107,10 +112,29 @@ export default {
       }
 
       if(complete == true){
-        this.successMessage = "HINT!"
+        this.successMessage = this.hints[this.roundIndex];
       }
-    }
+    },
 
+    getUniqueLetters: function(){
+      for(let i in this.tableContents){
+        for(let j in this.tableContents[i]){
+          let letter = this.tableContents[i][j];
+          if(letter != "" && letter != "?" && !this.uniqueCharacters.includes(letter)){
+            this.uniqueCharacters.push(letter)
+          }
+        }
+      }
+    },
+
+    newRound: function(){
+      this.roundIndex++;
+      this.guessedLetters = []
+      this.uniqueCharacters = [];
+      this.successMessage = "";
+      this.tableContents = this.rounds[this.roundIndex];
+      this.getUniqueLetters();
+    }
 
 
 
@@ -126,14 +150,21 @@ export default {
   padding: 2vw;
 }
 
+.questionDisplay{
+  margin:30px auto;
+  font-weight: bold;
+  width: 50vw;
+  padding: 5px 40px;
+  border-top: solid 2px white;
+  border-bottom: solid 2px white;
+  background-image: linear-gradient(to left, transparent,rgb(80, 6, 179), rgb(80, 6, 179), rgb(80, 6, 179), rgb(80, 6, 179), transparent); 
+
+}
+
 table{
   border: solid 6px rgb(0, 110, 255);
   margin-bottom: 40px;
   /* border-radius: 10px; */
-}
-
-tr{
-
 }
 
 td{
@@ -163,6 +194,10 @@ td{
 .makeEmpty{
   background: none !important;
 }
+
+
+
+
 
 
 

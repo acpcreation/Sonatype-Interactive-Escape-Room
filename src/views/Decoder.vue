@@ -47,11 +47,11 @@ export default {
   data(){
     return{
       library:[
-        {title: "Anchient Egyptian Hieroglyphs", color:"rgb(143, 106, 25)", content:"Bird: fly, Cat: crawl, Fish: swim"}, 
-        {title: "The Languages of Eastern Asia", color:"rgb(139, 25, 25)", content:""}, 
-        {title: "Common Use of Sand Script",     color:"rgb(46, 46, 105)", content:""}, 
-        {title: "Beginners Guide to Morse Code", color:"rgb(31, 82, 33)", content:this.morseCodeContent()},
-        {title: "American Sign Language", color:"rgb(133, 77, 107)", content:""},
+        {title: "Anchient Egyptian Hieroglyphs", color:"rgb(143, 106,25)", style:"font-family:hieroglyphics;font-size:50px;", content:""}, 
+        {title: "The Languages of Eastern Asia", color:"rgb(139, 25, 25)", style:"font-family:mandarin;", content:this.mandarinContent()}, //https://fonts.google.com/specimen/Long+Cang?subset=chinese-simplified
+        {title: "Common Tongue of Russian",      color:"rgb(46, 46, 105)", style:"font-family:russian;", content:""}, 
+        {title: "Beginners Guide to Morse Code", color:"rgb(31, 82,  33)", style:"font-size:60px;font-weight:bold;", content:this.morseCodeContent()},
+        {title: "American Sign Language",        color:"rgb(133, 77,107)", style:"font-family:sign-language;font-size:100px;", content:""}, //https://www.lifeprint.com/asl101/pages-layout/gallaudettruetypefont.htm
         // {title: "Book", color:"rgb(133, 77, 107)", content:""}, 
       ],
 
@@ -81,34 +81,70 @@ export default {
     },
 
     morseCodeContent: function(){
-      let morse = "A = ._ ,"+
-      "B = _... ,"+
-      "C = _._. ,"+
-      "D = _.. ,"+
-      "E = . ,"+
-      "F = .._. ,"+
-      "G = __. ,"+
-      "H = .... ,"+
-      "I = .. ,"+
-      "J = .___ ,"+
-      "K = _._ ,"+
-      "L = ._.. ,"+
-      "M = __ ,"+
-      "N = _. ,"+
-      "O = ___ ,"+
-      "P = .__. ,"+
-      "Q = __._ ,"+
-      "R = ._. ,"+
-      "S = ... ,"+
-      "T = _ ,"+
-      "U = .._ ,"+
-      "V = ..._ ,"+
-      "W = .__ ,"+
-      "X = _.._ ,"+
-      "Y = _.__ ,"+
-      "Z = __.."; 
+      let morse = [
+        "._",
+        "_...",
+        "_._.",
+        "_..",
+        ".",
+        ".._. ",
+        "__.",
+        " ....",
+        "..",
+        ".___",
+        "_._",
+        "._..",
+        "__",
+        "_.",
+        "___",
+        ".__.",
+        "__._",
+        "._.",
+        "...",
+        "_",
+        ".._",
+        "..._",
+        ".__",
+        "_.._",
+        "_.__",
+        "__.."
+      ]; 
       return morse;
+    },
+
+    mandarinContent: function(){
+      let mandarin = [
+          "三", 
+          "四",
+          "五",
+          "六",
+          "七",
+          "八",
+          "九",
+          "百",
+          "千",
+          "万",
+          "上",
+          "中",
+          "左",
+          "右",
+          "大",
+          "小",
+          "春",
+          "夏",
+          "秋",
+          "冬",
+          "东",
+          "忠",
+          "孝",
+          "兄",
+          "贝",
+          "先"]
+      return mandarin;
     }
+
+
+
 
 
 

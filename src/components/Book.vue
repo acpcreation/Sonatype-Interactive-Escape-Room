@@ -7,10 +7,10 @@
       <div class="page">
         <div class="page">
           <div class="page">
-            <h3>{{content.title}}</h3>
+            <h2>{{content.title}}</h2>
             <hr>
             <div class="scrollContainer">
-              <p v-for="i in content.content" :key="i" >{{i}}</p>
+              <p v-for="(i, index) in content.content" :key="i" >{{letters[index]}} = <b :style="content.style">{{i}}</b></p>
             </div>
 
           </div>
@@ -28,12 +28,18 @@ export default {
   },
   data(){
     return{
-      
+      letters:"A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z"
     }
   },
 
   mounted() {
-    this.content.content = this.content.content.split(',');
+    this.letters = this.letters.split(',');
+    if(this.content.content.length >1){
+      this.content.content = this.content.content.split(',');
+    }else{
+      this.content.content = this.letters;
+    }
+    
 
   },
 
@@ -61,6 +67,7 @@ export default {
   right:0;
   background-color: rgba(255, 255, 255, 0.8);
   z-index: 100;
+  font-family:'Times New Roman', Times, serif;
 }
 
 .backCenter{
@@ -91,10 +98,9 @@ export default {
   height: 100%;
   background-color:rgb(255, 243, 230);
   padding:8px;
-  
 }
 
-h3{
+h2{
   margin-top: 15px;
   margin-bottom:10px;
   color:black;
@@ -105,6 +111,11 @@ p{
   font-size:30px;
   font-weight: bold;
   letter-spacing: 3px;
+  height: 60px;
+}
+
+b{
+  font-weight: 100;
 }
 
 .bookMark{

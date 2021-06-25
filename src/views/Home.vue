@@ -14,7 +14,7 @@
         <img class="decoderPage"    @click="openPage('Decoder')" src="../../public/img/book.png"/>
         <img class="priceQuotePage" @click="openPage('PriceQuotes')" src="../../public/img/abacus.jpg"/>
         <img class="hangManPage"    @click="openPage('HangMan')" src="../../public/img/hangman.png"/>
-        <img class="familyFeudPage"    @click="openPage('FamilyFeud')" src="../../public/img/familyfeud.png"/>
+        <img class="familyFeudPage" @click="openPage('FamilyFeud')" src="../../public/img/familyfeud.png"/>
 
       </div>
 
@@ -96,8 +96,7 @@ export default {
   top:90px;
   left: 70px;
   width: 150px;
-  transform: rotate(5deg);
-
+  transform: rotate(-5deg);
 }
 
 .vrExplorerPage{
@@ -110,6 +109,7 @@ export default {
   top:490px;
   left: 190px;
   width: 70px;
+  transform: rotate(8deg);
   opacity: .9;
 }
 
@@ -123,7 +123,7 @@ export default {
 
 .hangManPage{
   top: 30px;
-  left: 430px;
+  left: 440px;
   width: 150px;
 }
 
@@ -133,12 +133,11 @@ export default {
   width: 150px;
   border-radius: 8px;
   opacity: .9;
-  transform: rotate(-15deg);
 }
 
 
 @media (max-width: 1200px) {
-  .buttonImages{
+  .main{
     transform: scale(0.8);
   }
 }
