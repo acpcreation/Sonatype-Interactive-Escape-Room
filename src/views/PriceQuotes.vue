@@ -68,7 +68,7 @@ export default {
         {id:1, users:"10 users",  products:["Repository Manager"], currency:"Venezuelan Bolívar", input:"", answer:""},
         {id:2, users:"75 users",  products:["Firewall"], currency:"", input:"", answer:""},
         {id:3, users:"15 nodes",  products:["Container"], currency:"", input:"", answer:""},
-        {id:4, users:"25 users and 5 nodes", products:["Lifecycle", "Repository Manager", "Firewall", "Container", "IaC", "ADP", "ALP"], currency:"", input:"", answer:"100"},
+        {id:4, users:"25 users and 5 nodes", products:["Lifecycle", "Repository Manager", "Firewall", "Container", "Lift", "IaC", "ADP", "ALP"], currency:"", input:"", answer:"100"},
 
       ],
 
@@ -102,12 +102,13 @@ export default {
     pillColors: function(e){
       let colors = {
         Lifecycle: '#479FDC', //Blue
-        Firewall: '#A830C2', //Purple
+        Firewall: '#8c30c2', //Purple
         RepositoryManager: '#4DBB73', //Green
         Container: '#EC646D', //Pink,
-        IaC: '#F3BF4C',
+        Lift: '#f7d127',
+        IaC: '#999999',
         ADP: '#0F1C4D',
-        ALP: '#E48F33'
+        ALP: '#faa200'
       };
       let color = colors[e.replace(' ','')]
       return color;
@@ -182,7 +183,9 @@ export default {
   right:20px;
 }
 
-
+p{
+  color: #999999;
+}
 
 
 

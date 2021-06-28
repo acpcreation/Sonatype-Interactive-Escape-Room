@@ -15,6 +15,8 @@
         <img class="priceQuotePage" @click="openPage('PriceQuotes')" src="../../public/img/abacus.jpg"/>
         <img class="hangManPage"    @click="openPage('HangMan')" src="../../public/img/hangman.png"/>
         <img class="familyFeudPage" @click="openPage('FamilyFeud')" src="../../public/img/familyfeud.png"/>
+        <img class="cafeteriaPage" @click="openPage('Cafeteria')" src="../../public/img/cafeteria.png"/>
+
 
       </div>
 
@@ -133,6 +135,12 @@ export default {
   width: 150px;
   border-radius: 8px;
   opacity: .9;
+}
+
+.cafeteriaPage{
+  top: 620px;
+  left: -900px;
+  width: 250px;
 }
 
 

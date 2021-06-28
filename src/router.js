@@ -9,6 +9,9 @@ import Decoder from './views/Decoder.vue'
 import PriceQuotes from './views/PriceQuotes.vue'
 import FamilyFeud from './views/FamilyFeud.vue'
 import HangMan from './views/HangMan.vue'
+import Cafeteria from './views/Cafeteria.vue'
+
+
 
 
 Vue.use(Router)
@@ -60,6 +63,11 @@ export default new Router({
       path: '/FamilyFeud',
       name: 'FamilyFeud',
       component: FamilyFeud
+    },
+    {
+      path: '/Cafeteria',
+      name: 'Cafeteria',
+      component: Cafeteria
     },
     
     
