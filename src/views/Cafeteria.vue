@@ -2,7 +2,7 @@
   <div class="main">
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <h3>Cafeteria Cook</h3>
-    <p>Customers will make orders and it is your job to select the correct products to fulfill the order.</p>
+    <p>Customers will make orders and it is your job to select the correct products to fulfill the order. Careful not to click a wrong item!</p>
 
     <p class="successMessage">{{successMessage}}</p>
 
@@ -26,8 +26,6 @@
         </div>
         <img class="accelerateOrder" src="../../public/img/accelerateOrder.png"/>
       </div>
-     
-
     </div>
 
     <div class="servingContainer" :style="disableClickArea">
@@ -38,7 +36,6 @@
         @click="addItem(i)">
         {{i}}
       </span>
-
     </div>
 
   </div>
@@ -71,9 +68,7 @@ export default {
   },
 
   mounted() {
-    
-
-
+  
   },
 
   methods: {
@@ -141,7 +136,6 @@ export default {
         let item = this.orders.splice(this.currentOrder,1)
         this.orders.push(item[0]);
       }
-      
     },
 
 
@@ -158,6 +152,10 @@ export default {
 .main{
   text-align: center;
   padding-top: 2vw;
+  height: 100vh;
+  margin-bottom:-200px;
+  background-image: linear-gradient(to bottom, rgba(22, 22, 22, 0.92),rgba(0, 0, 0, 0.92)), 
+                    url('../../public/img/background.png');
 }
 
 .order{
@@ -171,7 +169,9 @@ export default {
 .sideBySide{
   display: flex;
   align-items: flex-start;
-  margin:20px;
+  flex-wrap: nowrap;
+  /* justify-content: center; */
+  margin-top:40px;
 }
 
 .sideBySide .icon{
@@ -180,17 +180,17 @@ export default {
 
 .plate{
   margin:20px auto;
-  width: 45vw;
-  height: 45vw;
+  width: 32vw;
+  height: 32vw;
   background-color: rgb(247, 243, 226);
   border-radius: 50%;
   border: solid gray 2px;
 }
 
 .pillContainer{
-  margin: 5vw auto;
-  width: 34vw;
-  height: 34vw;
+  margin: 3.8vw auto;
+  width: 24vw;
+  height: 24vw;
   border-radius: 50%; 
   border: solid gray 2px;
   padding: 2vw;
@@ -211,11 +211,16 @@ export default {
 }
 
 .servingContainer{
-  margin: 40px 10vw 10px 10vw;
+  position: fixed;
+  bottom: 20px;
+  left: 20%;
+  /* margin: 0px auto; */
   background: gray;
   border-radius: 6px;
   height: 60px;
   padding-top: 15px;
+  padding-left: 15px;
+  padding-right:15px;
 }
 
 .servingContainer .pill{
@@ -224,6 +229,7 @@ export default {
 
 .accelerateOrder{
   width: 200px;
+  margin-right: 15vw;
 }
 
 

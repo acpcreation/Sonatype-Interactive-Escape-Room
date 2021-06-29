@@ -3,7 +3,7 @@
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <h3>VR Explorer</h3>
     <p>Take a look around! In this challenge you need to find..</p>
-    <VRShapesView />
+    <VRShapesView @openInfo="openInfo($event)"/>
   </div>
 </template>
 
@@ -25,7 +25,14 @@ export default {
   },
   data(){
     return{
-      shapes:["Cube","Sphere","Cone","Dodecahedron","Icosahedron","Torus"]
+      content:[
+        {title:"", description:"", threats:[""]},
+        {title:"", description:"", threats:[""]},
+        {title:"", description:"", threats:[""]},
+        {title:"", description:"", threats:[""]},
+        {title:"", description:"", threats:[""]},
+      ],
+
     }
   },
 
@@ -39,7 +46,10 @@ export default {
     openPage: function(e) {
       this.$router.push("/"+e);
     },
-
+    
+    openInfo: function(e) {
+      alert(e)
+    },
    
 
 
