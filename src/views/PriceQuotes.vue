@@ -2,7 +2,7 @@
   <div class="main">
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <h1>Price Quotes</h1>
-    <p>Determine the correct price for Sonatype's products in the different currencies</p>
+    <p>Determine the correct price for Sonatype's products in the different currencies.</p>
     
     <p class="successMessage">{{completeMessage}}</p>
 
@@ -15,7 +15,7 @@
         <b-col md="6">
           <b-card-body :title="'Price in '+i.currency">
             <b-card-text>
-              What would be the price in {{i.currency}} for {{i.products.toString().replaceAll(',',', ')}} with <b>{{i.users}}</b>? 
+              What would be the price in <b>{{i.currency}}</b> for <b>{{i.products.toString().replaceAll(',',', ')}}</b> with <b>{{i.users}}?</b> Round to the nearest dollar.
             </b-card-text>
 
             <div class="pillContainer">
@@ -64,14 +64,17 @@ export default {
   data(){
     return{
       prices:[
-        {id:0, users:"100 users", products:["Lifecycle", "ADP"], currency:"Japanese Yen", input:"", answer:"100"},
-        {id:1, users:"10 users",  products:["Repository Manager"], currency:"Venezuelan Bolívar", input:"", answer:""},
-        {id:2, users:"75 users",  products:["Firewall"], currency:"", input:"", answer:""},
-        {id:3, users:"15 nodes",  products:["Container"], currency:"", input:"", answer:""},
-        {id:4, users:"25 users and 5 nodes", products:["Lifecycle", "Repository Manager", "Firewall", "Container", "Lift", "IaC", "ADP", "ALP"], currency:"", input:"", answer:"100"},
-
+        {id:0, users:"250 users", products:["Lifecycle", "Repository Manager", "Firewall", "and a Nexus Foundation Workshop"], currency:"Japanese Yen", input:"", answer:"21632075"},
+        {id:1, users:"250 users",  products:["Repository Manager", "Lifecycle Foundation", "and it is a leveraged deal with Optiv and Carahsoft as distributor"], currency:"Bitcoin", input:"", answer:""},
+        {id:2, users:"10 users and 3 applications",  products:["Repository Manager", "Auditor"], currency:"Euro", input:"", answer:"3570"},
+        {id:3, users:"150 users",  products:["Firewall","Lifecycle"], currency:"", input:"", answer:""},
+        {id:4, users:"100 users", products:["Repository Manager", "Firewall", "Lifecycle", "and it is an inbound partner deal with Orasi"], currency:"Zambian Kwacha", input:"", answer:"100"},
+        {id:5, users:"500 users", products:["Repository Manager","Firewall","Lifecycle", "and it is a partner leveraged 9th BIT for a 3 year deal"], currency:"Japanese Yen", input:"", answer:"100"},
+        {id:6, users:"300 nodes", products:["Container"], currency:"Japanese Yen", input:"", answer:"100"},
+        {id:7, users:"30 users", products:["Lifecycle", "Firewall", "Repository Manager","Small IQ", "Nexus Container"," and a Nexus LC/FW Policy Workshop"], currency:"Japanese Yen", input:"", answer:"100"},
+        {id:8, users:"200 users", products:["Lifecycle", "IAC", "and it is a Zivra leveraged deal"], currency:"Japanese Yen", input:"", answer:"100"},
+        {id:9, users:"100 users", products:["Lifecycle", "ADP", "IAC"], currency:"Japanese Yen", input:"", answer:"100"},
       ],
-
       completeMessage: "",
       exchangeRates: false
     }
@@ -108,7 +111,9 @@ export default {
         Lift: '#f7d127',
         IaC: '#999999',
         ADP: '#0F1C4D',
-        ALP: '#faa200'
+        ALP: '#faa200',
+        LifecycleFoundation: '#FF5733', //red
+        Auditor: '#10FDB9' //Teal
       };
       let color = colors[e.replace(' ','')]
       return color;
@@ -150,7 +155,7 @@ export default {
 
 .cards{
   width: 80vw;
-  max-height:300px;
+  max-height:400px;
   margin: 30px auto;
   border-radius: 12px;
   text-align:left;
