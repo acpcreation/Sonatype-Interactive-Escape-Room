@@ -13,7 +13,7 @@ export default {
 
   data(){
     return{
-      currencies:["100 Yen", "200,000 Bolivar"]
+      currencies:["110.6 Yen", "0.000029 Bitcoin", "22.65 Zambian Kwacha", "0.85 Euro"]
     }
   },
 
