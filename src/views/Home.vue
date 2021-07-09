@@ -1,11 +1,14 @@
 <template>
   <div class="main">
     <img class="logo" src="../../public/img/sonatype_logo.png"/>
+    <b-icon class="settingsButton" icon="gear-fill" font-scale="2" variant="dark" @click="settings = !settings"></b-icon>
+    <Settings v-if="settings" @closeSettings="settings = !settings"/>
+
 
       <!-- https://www.vecteezy.com/vector-art/420220-modern-office-setup-background-vector-flat-illustration -->
       <!-- <img class="backgroundImage" src="../../public/img/background.png"/> -->
     
-      <div class="buttonImages">
+      <div class="buttonImages" @click="settings = !settings">
         <img class="passcodePage"   @click="passcode=!passcode" src="../../public/img/passcode.png"/>
         <img class="mazePage"       @click="openPage('RememberThePath')" src="../../public/img/maze.png"/>
         <img class="calculatorPage" @click="openPage('Calculator')" src="../../public/img/calculator.png"/>
@@ -16,11 +19,9 @@
         <img class="hangManPage"    @click="openPage('HangMan')" src="../../public/img/hangman.png"/>
         <img class="familyFeudPage" @click="openPage('FamilyFeud')" src="../../public/img/familyfeud.png"/>
         <img class="cafeteriaPage" @click="openPage('Cafeteria')" src="../../public/img/cafeteria.png"/>
-
-
       </div>
 
-    <Passcode v-if="passcode" @closePasscode="passcode=!passcode"/>
+    <Passcode v-if="passcode" @closePasscode="passcode = !passcode"/>
     
   </div>
 </template>
@@ -28,16 +29,19 @@
 <script>
 
 import Passcode from '@/components/Passcode.vue'
+import Settings from '@/components/Settings.vue'
 
 export default {
   name: 'Home',
   components: {
     Passcode,
+    Settings
   },
   data(){
     return{
       welcome:true,
       passcode:false,
+      settings: false
     }
   },
   methods:{
@@ -58,6 +62,13 @@ export default {
 /* .backgroundImage{
   width: 90%;
 } */
+
+.settingsButton{
+  position: absolute;
+  top:11px;
+  right: 11px;
+  cursor: pointer;
+}
 
 
 .buttonImages{

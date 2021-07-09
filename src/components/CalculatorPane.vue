@@ -61,17 +61,17 @@ export default {
 <style scoped>
 
 .calculationPane{
-  width: 20vw;
-  min-width:340px;
+  width: 280px;
   background-color: white;
-  border-radius: 8px;
-  padding: 15px 10px;
+  border-radius: 10px;
+  padding: 15px 0px;
   margin:25px;
 }
 
 h3{
   color:black;
-  margin-bottom:20px;
+  margin-bottom:15px;
+  font-size: 24px;
 }
 
 p{

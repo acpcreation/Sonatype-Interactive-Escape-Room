@@ -8,6 +8,18 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.config.productionTip = false
 
+Vue.config.ignoredElements = [
+  'a-scene',
+  'a-entity',
+  'a-camera',
+  'a-cursor',
+  'a-box',
+  'a-sky',
+  'a-sphere',
+  'a-cylinder',
+  'a-plane'
+];
+
 // Install BootstrapVue
 Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin

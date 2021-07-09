@@ -3,7 +3,7 @@
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <!-- Mandarin, Hieroglyphics, Morse Code, Russian, Arabic  -->
     <h3>Decoder</h3>
-    <p v-if="selectedBook == null">Discover the hidden meaning of the text</p>
+    <p v-if="selectedBook == null" class="challengeDescription">Discover the hidden meaning of the text</p>
 
     <div class="centerItems">
       <img class="codedPaper" src="../../public/img/codedPaper.jpeg" />

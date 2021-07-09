@@ -3,9 +3,9 @@
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
 
     <h1>Follow The Path</h1>
-    <p>In this challenge you need to guess the path from the start to the end in order to unlock the hint. Be careful not to guess the wrong space! If you do you will need to answer a question to continue.</p>
+    <p class="challengeDescription">In this challenge you need to guess the path from the start to the end in order to unlock the hint. Be careful not to guess the wrong space! If you do you will need to cerrectly answer a question to continue.</p>
 
-    <div class="tableView">
+    <div class="tableContainer">
       <p class="start">Start</p>
       <table id="pathTable" v-if="tableLoad">
         <tr v-for="(i, indexi) in path" :key="indexi">
@@ -23,7 +23,28 @@
     <p class="successMessage">{{successMessage}}</p>
     <br>
 
-    <b-modal id="hintModal" title="Oops! You didn't guess the right space." class="modal" ok-title="Restart" ok-variant="warning" @ok="resetPath()" ok-only>
+
+     <div class="overlay centerItems" v-if="displayHint">
+      <div class="frame">
+        <h4>Oops! You didn't guess the right space, answer this question to give it another try, or reset the board.</h4>
+        <hr>
+        <p>{{hints[hintIndex].hint}}</p>
+        <b-input-group class="inputGroup">
+          <b-form-input type="text" v-model="hintAnswerSubmission" placeholder="Answer.."></b-form-input>
+          <template #append>
+            <b-button variant="primary" @click="submitAnswer()">Submit</b-button>
+          </template>
+        </b-input-group>
+
+        <br>
+        <p v-if="hintCorrectOrIncorrect == 'correct'" style="color:green;">Correct!</p>
+        <p v-if="hintCorrectOrIncorrect == 'incorrect'" style="color:red;">Sorry, Incorrect!</p>
+
+        <b-button variant="warning" @click="resetPath()">Reset</b-button>
+      </div>
+    </div>
+
+    <!-- <b-modal id="hintModal" title="Oops! You didn't guess the right space." class="modal" ok-title="Restart" ok-variant="warning" @ok="resetPath()" ok-only>
       <h4>Answer this question to give it another try, or reset the board:</h4>
 
       <div class="modalContents">
@@ -39,7 +60,7 @@
         <p v-if="hintCorrectOrIncorrect == 'correct'" style="color:green;">Correct!</p>
         <p v-if="hintCorrectOrIncorrect == 'incorrect'" style="color:red;">Sorry, Incorrect!</p>
       </div>
-    </b-modal>
+    </b-modal> -->
 
   </div>
 </template>
@@ -69,6 +90,7 @@ export default {
       tableLoad: true,
       successMessage:"",
 
+      displayHint: false,
       hintDone: false,
       hintIndex:0,
       hintAnswerSubmission:"",
@@ -112,24 +134,31 @@ export default {
         }
 
       }else{
-        this.$bvModal.show("hintModal");  
+        this.displayHint = true;
+        // this.$bvModal.show("hintModal");  
       }
     },
 
     submitAnswer: function(){
+      let reset = false;
       if( this.hintAnswerSubmission.length>2 && 
           this.hintDone == false &&
           this.hints[this.hintIndex].answer.includes(this.hintAnswerSubmission)){
         this.hintDone = true;
         this.hintCorrectOrIncorrect = "correct";
       }else{
-        this.resetPath();
+        reset = true;
         this.hintCorrectOrIncorrect = "incorrect";
       }
 
       let that = this;
       setTimeout(function(){
-        that.$bvModal.hide("hintModal"); 
+        // that.$bvModal.hide("hintModal"); 
+        that.displayHint = false;
+        if(reset == true){
+          that.resetPath();
+        }
+
         that.hintCorrectOrIncorrect = "";
         that.hintAnswerSubmission = ""
         if(that.hintIndex < that.hints.length-1){
@@ -143,6 +172,8 @@ export default {
 
 
     resetPath: function(){
+      document.getElementById("pathTable").setAttribute("style", "background-color: red;");
+      this.displayHint = false;
       this.nextStep = 1;
       this.path = [
         ["done",0,0,0,0,0,0,0],
@@ -156,6 +187,10 @@ export default {
       ];
       this.tableLoad = false;
       this.tableLoad = true;
+
+      setTimeout(function(){
+        document.getElementById("pathTable").setAttribute("style", "background-color: white;");
+      }, 300);
     }
 
 
@@ -177,6 +212,7 @@ export default {
 table{
   background-color: white;
   margin:0;
+  transition: background-color .3s ease-out;
 }
 
 td, th{
@@ -200,7 +236,7 @@ td{
   margin-right: 4px;
 }
 
-.tableView{
+.tableContainer{
   width: 400px;
   margin-top: 2vw;
   margin-left:auto;
@@ -212,13 +248,31 @@ td{
   margin-left: 15px;
 }
 
-.modalContents{
-  padding:10px;
+.overlay{
+  position:fixed;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  background-color: rgba(22, 22, 22, 0.80);
+  z-index: 100;
 }
 
+.frame{
+  width:40vw;
+  margin-top: 20vh;
+  background-color:white; 
+  border-radius: 10px;
+  text-align: center;  
+  padding: 20px;
+}
+
+.frame p{
+  color: black;
+}
 
 @media (min-width: 800px) {
-  .tableView{
+  .tableContainer{
     margin-top: 150px;
     transform: scale(1.5);
   }

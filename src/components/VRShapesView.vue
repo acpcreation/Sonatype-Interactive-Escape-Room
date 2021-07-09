@@ -1,11 +1,24 @@
 <template>
   <a-scene class="vr">
+    <a-camera>
+      <a-cursor color="white"/>
+    </a-camera>
+
+    <!-- <a-entity 
+    v-for="i in connections" 
+            :key="'line'+i.id" 
+          :line="i.connection"
+          style="z-index:0px !important;"></a-entity> -->
+
     <a-box  v-for="i in boxes" 
             :key="'box'+i.id" 
             :name="'box'+i.id" 
             :position="i.position" 
             :rotation="i.rotation" 
-            :color="i.color"></a-box>
+            :color="i.color"
+            @click="openInfo(i.id)"
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 4500; easing:linear;"></a-box>
+    
     
     <!-- @click="openInfo(i.id)" -->
     
@@ -40,8 +53,8 @@
 <script>
 export default {
   name: 'VRShapesView',
-  props: {
-    
+  components: {
+
   },
   computed: {
    
@@ -50,10 +63,10 @@ export default {
     return{
       boxes:[
         {id:0, position:"-4 -3 5", rotation:"0 45 0", color:this.randomColor(), animation:""},
-        {id:1, position:"-5 1 -5", rotation:"0 45 0", color:this.randomColor(), animation:""},
+        {id:1, position:"-10 -.5 1", rotation:"0 45 0", color:this.randomColor(), animation:""},
         {id:2, position:"4 5 -4", rotation:"0 45 0", color:this.randomColor(), animation:""},
         {id:3, position:"5 0 9", rotation:"0 45 0", color:this.randomColor(), animation:""},
-        {id:4, position:"0 3 -4.5", rotation:"0 45 0", color:this.randomColor(), animation:""},
+        {id:4, position:"-5.5 3 -6", rotation:"0 45 0", color:this.randomColor(), animation:""},
         {id:5, position:"-2 -4 -5", rotation:"0 45 0", color:this.randomColor(), animation:""},
         {id:6, position:"3 -8 -8", rotation:"0 45 0", color:this.randomColor(), animation:""},
         {id:7, position:"7 -1 -9", rotation:"0 45 0", color:this.randomColor(), animation:""},
@@ -68,11 +81,14 @@ export default {
         {id:1, position:"1 0.75 -3", radius:"1", height:"2", color:this.randomColor(), animation:""}
       ],
 
+      connections:[]
+
       
     }
   },
 
   mounted: function(){
+    this.mapConnections()
   },
 
   methods:{
@@ -85,6 +101,35 @@ export default {
 
     openInfo: function(id){
       this.$emit("openInfo", id)
+    },
+
+    mapConnections:function(){
+      let conn;
+      let array = this.boxes;
+      for(let i=0;i<array.length;i++){
+        let j=i; 
+        if(i< array.length-1){
+          j += 1;
+        }else{
+          j = 0;
+        }
+
+        conn = {
+          id: i,
+          connection:'start:'+array[i].position+'; end:'+ array[j].position+'; color: white'
+        };
+        this.connections.push(conn);
+
+        conn = {
+          id: i+100,
+          connection:'start:'+array[i].position+'; end:'+ array[Math.floor(Math.random() * array.length)].position+'; color: white'
+        };
+        this.connections.push(conn);
+      }
+
+
+      // console.log(this.connections)
+      
     }
 
 

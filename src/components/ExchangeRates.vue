@@ -29,7 +29,8 @@ export default {
                   "96 Argentine Peso",
                   "3.28 Israeli New Shekel",
                   "900 North Korean Won",
-                  "21.06 Surinamese Dollar"]
+                  "21.06 Surinamese Dollar",
+                  "0.001425 Lumber Prices"]
     }
   },
 

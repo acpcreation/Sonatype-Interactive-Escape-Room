@@ -2,7 +2,7 @@
   <div class="main">
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <h3>Cafeteria Cook</h3>
-    <p>Customers will make orders and it is your job to select the correct products to fulfill the order. Careful not to click a wrong item!</p>
+    <p class="challengeDescription">Customers will make orders and it is your job to select the correct products to fulfill the order. Careful not to click a wrong item!</p>
 
     <p class="successMessage">{{successMessage}}</p>
 

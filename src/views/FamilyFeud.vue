@@ -2,7 +2,7 @@
   <div class="main">
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <h1>Family Feud</h1>
-    <p>In this challenge you need to...</p>
+    <p class="challengeDescription">In this challenge you need to...</p>
 
     <!-- ADD:
           - Flipping Cards

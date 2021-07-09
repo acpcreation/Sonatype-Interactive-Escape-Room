@@ -2,9 +2,9 @@
   <div class="main">
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <h1>Hang-Man</h1>
-    <p>In this challenge you need to guess letters on the keyboard in order to reveal the hidden phrase. </p>
+    <p class="challengeDescription">In this challenge you need to guess letters on the keyboard in order to reveal the hidden phrase. </p>
 
-    <p class="questionDisplay">Round {{roundIndex+1}}</p>
+    <p class="questionDisplay">{{roundQuestions[roundIndex]}}</p>
 
     <div class="centerItems">
       <table>
@@ -21,7 +21,7 @@
     <p>Characters Guessed</p>
     <p class="guessedLetters">{{guessedLetters.toString().replaceAll(',',', ')}}</p>
 
-    <p class="successMessage">{{successMessage}}</p>
+    <p class="successMessage">{{successMessage.toString().replaceAll(',', ', ')}}</p>
     <b-button variant="outline-warning" @click="newRound()" v-if="successMessage.length >1 && roundIndex < rounds.length-1">New Round</b-button>
   </div>
 </template>
@@ -43,20 +43,57 @@ export default {
 
       rounds:[
         [["?","","","","","","","","","","","","","?"],
-        ["","","H","I","D","D","E","N","","","","","",""],
-        ["","","","M","E","S","S","A","G","E","","","",""],
+        ["","","P","R","I","M","A","R","I","L","Y","","",""],
+        ["","W","H","I","T","E","S","O","U","R","C","E","",""],
         ["?","","","","","","","","","","","","","?"]],
 
         [["?","","","","","","","","","","","","","?"],
-        ["","","N","E","X","T","","R","O","U","N","D","",""],
-        ["","","","T","O","","W","I","N","","I","T","",""],
+        ["","J","F","R","O","G","","S","N","Y","K","","",""],
+        ["","W","H","I","T","E","S","O","U","R","C","E","",""],
         ["?","","","","","","","","","","","","","?"]],
+        
+        [["?","","","","","","","","","","","","","?"],
+        ["","S","N","Y","K","","A","N","D","","","","",""],
+        ["","","","","J","F","R","O","G","","","","",""],
+        ["?","","","","","","","","","","","","","?"]],
+        
+        [["?","","","","S","N","Y","K","","","","","","?"],
+        ["","","","P","A","R","T","N","E","R","S","","",""],
+        ["","","W","I","T","H","","R","A","P","I","D","",""],
+        ["?","","","","","","","","","","","","","?"]],
+        
+        [["?","","","","","","","","","","","","","?"],
+        ["","","C","H","E","C","K","M","A","R","X","","",""],
+        ["","","B","L","A","C","K","","D","U","C","K","",""],
+        ["?","","","","","","","","","","","","","?"]],
+
+        [["?","","","","S","N","Y","K","","","","","","?"],
+        ["","","","C","A","N","","S","C","A","N","","",""],
+        ["","","","T","E","R","R","A","F","O","R","M","",""],
+        ["?","","","","","","","","","","","","","?"]]
+      ],
+
+      roundQuestions:[
+        "Preferred for shops using C/C++; recently acquired Diffend, is popular in mid-market.",
+        "Most often lose to this competitor on price; if a customer has a limited budget, they are likely evaluating this company as well.",
+        "Prospects can access their SaaS platform for free, and run an evaluation without ever speaking to a company representative.",
+        "Acquired DeepCode and partners with Rapid7 for a combined SAST/SCA/DAST and RASP solution. ",
+        "Leads with security first, typically lower ACV deals; can provide visibility into application status across SAST, IAST and SCA.",
+        "The only one of our main competitors who offer IaC as a separate SKU; scans Terraform modules and Kubernetes YAML, JSON, and Helm charts.",
+      ],
+
+      hints:[
+        "Hint 1", 
+        "Hint 2", 
+        "Hint 3", 
+        "Hint 4", 
+        "Hint 5", 
+        "Hint 6"
       ],
 
       guessedLetters:[],
       uniqueCharacters:[],
       roundIndex: 0,
-      hints:["Hint 1", "Hint 2"],
       successMessage:""
     }
   },
@@ -66,6 +103,7 @@ export default {
     let progress = this.$store.getters.getProgress;
     if(progress[this.$route.name] == true){
       this.successMessage = this.hints.toString();
+      this.roundIndex = this.hints.length-1;
     }
 
     this.tableContents = this.rounds[this.roundIndex];
@@ -119,7 +157,11 @@ export default {
 
       if(complete == true){
         this.successMessage = this.hints[this.roundIndex];
-        this.$store.commit('updateProgress', this.$route.name);
+
+        if(this.roundIndex == this.hints.length-1){
+          this.$store.commit('updateProgress', this.$route.name);
+          this.successMessage = this.hints.toString();
+        }
 
       }
     },

@@ -2,7 +2,7 @@
   <div id="app">
     <router-view/>
 
-    <Welcome v-if="welcome" @closeWelcome="welcome=!welcome"/>
+    <Welcome v-if="welcome" @closeWelcome="welcomeVideo"/>
     <Audit v-if="audit" @closeAudit="audit=!audit"/>
   </div>
 </template>
@@ -33,13 +33,20 @@ export default {
     // this.$store.commit('updateProgress', this.$route.name); 
     // let stuff = this.$store.getters.getProgress;
 
-
     window.addEventListener('keydown', (e) => {
       if (e.key == '|') {
         this.audit = true;
       }
     });
+
+    this.$root.$on('WelcomeVideo', this.welcomeVideo);
   },
+
+  methods:{
+    welcomeVideo: function(){
+      this.welcome = !this.welcome;
+    },
+  }
 }
 </script>
 
@@ -116,6 +123,10 @@ hr{
 .successMessage{
   color: rgb(77, 248, 77) !important;
   margin:20px !important;
+}
+
+.challengeDescription{
+  padding:0px 15vw;
 }
 
 
