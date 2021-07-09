@@ -88,8 +88,8 @@ export default {
 }
 
 .calculatorPage{
-  top:510px;
-  left: 900px;
+  top:600px;
+  left: 0px;
   width: 60px;
   transform: rotate(-70deg);
 }
@@ -138,9 +138,9 @@ export default {
 }
 
 .cafeteriaPage{
-  top: 620px;
-  left: -900px;
-  width: 250px;
+  top: 520px;
+  left: 40px;
+  width: 220px;
 }
 
 

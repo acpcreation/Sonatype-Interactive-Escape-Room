@@ -9,10 +9,12 @@ Copyright Sonatype - 2021
 
 Code Contributors:
 - Alexander Plattel
+- Austin Becker
 
 Content Contributors:
 - Dana Ward
 - Brent Kostak
+- Kadi Grigg
 ```
 
 ## Project setup

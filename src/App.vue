@@ -24,6 +24,16 @@ export default {
     }
   },
   created() {
+    let progress = localStorage.getItem("progress");
+    if(progress != null){
+      console.log(JSON.parse(progress))
+      this.$store.commit('resetProgress', JSON.parse(progress)); 
+    }
+
+    // this.$store.commit('updateProgress', this.$route.name); 
+    // let stuff = this.$store.getters.getProgress;
+
+
     window.addEventListener('keydown', (e) => {
       if (e.key == '|') {
         this.audit = true;

@@ -62,7 +62,11 @@ export default {
   },
 
   mounted() {
-    
+    //Check save state
+    let progress = this.$store.getters.getProgress;
+    if(progress[this.$route.name] == true){
+      this.successfulDecyption();
+    }
 
 
   },
@@ -78,6 +82,7 @@ export default {
 
     successfulDecyption: function() {
       this.successMessage = 'Hooray!';
+      this.$store.commit('updateProgress', this.$route.name);
     },
 
     morseCodeContent: function(){

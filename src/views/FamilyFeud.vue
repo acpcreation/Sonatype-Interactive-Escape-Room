@@ -66,6 +66,14 @@ export default {
     this.currentQuestion = this.questions[this.questionIndex];
   },
 
+  mounted() {
+    //Check save state
+    let progress = this.$store.getters.getProgress;
+    if(progress[this.$route.name] == true){
+      this.successMessage = "hint!";
+    }
+  },
+
   methods: {
     openPage: function(e) {
       this.$router.push("/"+e);
@@ -80,6 +88,10 @@ export default {
         }
       }
       this.answer = "";
+
+
+      // this.successMessage = "HINT"
+      // this.$store.commit('updateProgress', this.$route.name);
     },
 
     // flipCard: function(i){

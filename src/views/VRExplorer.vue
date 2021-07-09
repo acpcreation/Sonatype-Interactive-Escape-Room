@@ -3,6 +3,8 @@
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <h3>VR Explorer</h3>
     <p>Take a look around! In this challenge you need to find..</p>
+    <p class="successMessage">{{successMessage}}</p>
+
     <VRShapesView @openInfo="openInfo($event)"/>
   </div>
 </template>
@@ -25,6 +27,8 @@ export default {
   },
   data(){
     return{
+      successMessage:"",
+
       content:[
         {title:"", description:"", threats:[""]},
         {title:"", description:"", threats:[""]},
@@ -37,7 +41,11 @@ export default {
   },
 
   mounted() {
-    
+    //Check save state
+    let progress = this.$store.getters.getProgress;
+    if(progress[this.$route.name] == true){
+      this.successMessage = "hint!";
+    }
 
 
   },
@@ -50,6 +58,11 @@ export default {
     openInfo: function(e) {
       alert(e)
     },
+
+    challengeComplete: function(){
+      this.successMessage = "hint!";
+      this.$store.commit('updateProgress', this.$route.name);
+    }
    
 
 

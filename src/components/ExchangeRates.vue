@@ -13,7 +13,23 @@ export default {
 
   data(){
     return{
-      currencies:["110.6 Yen", "0.000029 Bitcoin", "22.65 Zambian Kwacha", "0.85 Euro"]
+      currencies:["110.6 Yen", 
+                  "0.000029 Bitcoin", 
+                  "22.65 Zambian Kwacha", 
+                  "0.85 Euro",
+                  "75 Russian Ruble",
+                  "20 Mexican Pesos",
+                  "321,359,000,000 Venezuelan Bolivar",
+                  "74.8 Indian Rupee",
+                  "0.000555717 Gold Ounce",
+                  "15.7 Egyptian Pound",
+                  "1.35 Australian Dollar",
+                  "6.27 Danish Krone",
+                  "1.25 Canadian Dollar",
+                  "96 Argentine Peso",
+                  "3.28 Israeli New Shekel",
+                  "900 North Korean Won",
+                  "21.06 Surinamese Dollar"]
     }
   },
 

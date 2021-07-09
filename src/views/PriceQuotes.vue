@@ -2,9 +2,9 @@
   <div class="main">
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <h1>Price Quotes</h1>
-    <p>Determine the correct price for Sonatype's products in the different currencies.</p>
+    <p>Determine the correct price for Sonatype's products in the different currencies. Round to the nearest dollar.</p>
     
-    <p class="successMessage">{{completeMessage}}</p>
+    <p class="successMessage">{{successMessage}}</p>
 
     <ExchangeRates v-if="exchangeRates"/>
     <b-button class="exchangeRateButton" variant="warning" @click="exchangeRates= !exchangeRates">Exchange Rates</b-button>
@@ -15,7 +15,7 @@
         <b-col md="6">
           <b-card-body :title="'Price in '+i.currency">
             <b-card-text>
-              What would be the price in <b>{{i.currency}}</b> for <b>{{i.products.toString().replaceAll(',',', ')}}</b> with <b>{{i.users}}?</b> Round to the nearest dollar.
+              What would be the price in <b>{{i.currency}}</b> for <b>{{i.products.toString().replaceAll(',',', ')}}</b> with <b>{{i.users}}?</b>
             </b-card-text>
 
             <div class="pillContainer">
@@ -75,15 +75,17 @@ export default {
         {id:8, users:"200 users", products:["Lifecycle", "IAC", "and it is a Zivra leveraged deal"], currency:"Euro", input:"", answer:"100"},
         {id:9, users:"100 users", products:["Lifecycle", "ADP", "IAC"], currency:"Bitcoin", input:"", answer:"100"},
       ],
-      completeMessage: "",
+      successMessage: "",
       exchangeRates: false
     }
   },
 
   mounted() {
-    
-
-
+    //Check save state
+    let progress = this.$store.getters.getProgress;
+    if(progress[this.$route.name] == true){
+      this.successMessage = "hint!";
+    }
   },
 
   methods: {
@@ -129,12 +131,13 @@ export default {
       }
 
       if(correct == this.prices.length){
-        this.completeMessage = "Hooray!"
+        this.successMessage = "Hooray!"
         window.scroll({
           top: 0, 
           left: 0, 
           behavior: 'smooth'
         });
+        this.$store.commit('updateProgress', this.$route.name);
       }
     }
 

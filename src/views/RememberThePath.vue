@@ -3,7 +3,7 @@
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
 
     <h1>Follow The Path</h1>
-    <p>In this challenge you need to guess the path from the start to the end in order to unlock the Passcode Digit.</p>
+    <p>In this challenge you need to guess the path from the start to the end in order to unlock the hint. Be careful not to guess the wrong space! If you do you will need to answer a question to continue.</p>
 
     <div class="tableView">
       <p class="start">Start</p>
@@ -20,8 +20,26 @@
     </div>
 
     <br><br><br><br>
-    <p class="successMessage">{{passcodeHint}}</p>
+    <p class="successMessage">{{successMessage}}</p>
     <br>
+
+    <b-modal id="hintModal" title="Oops! You didn't guess the right space." class="modal" ok-title="Restart" ok-variant="warning" @ok="resetPath()" ok-only>
+      <h4>Answer this question to give it another try, or reset the board:</h4>
+
+      <div class="modalContents">
+        <p>{{hints[hintIndex].hint}}</p>
+        <b-input-group class="inputGroup">
+          <b-form-input type="text" v-model="hintAnswerSubmission" placeholder="Answer.."></b-form-input>
+          <template #append>
+            <b-button variant="primary" @click="submitAnswer()">Submit</b-button>
+          </template>
+        </b-input-group>
+
+        <br>
+        <p v-if="hintCorrectOrIncorrect == 'correct'" style="color:green;">Correct!</p>
+        <p v-if="hintCorrectOrIncorrect == 'incorrect'" style="color:red;">Sorry, Incorrect!</p>
+      </div>
+    </b-modal>
 
   </div>
 </template>
@@ -49,14 +67,27 @@ export default {
       ],
       nextStep: 1,
       tableLoad: true,
-      passcodeHint:"",
+      successMessage:"",
 
+      hintDone: false,
+      hintIndex:0,
+      hintAnswerSubmission:"",
+      hints:[
+        {hint:"hint1", answer:"aaaa"},
+        {hint:"hint2", answer:"ssss"},
+        {hint:"hint3", answer:"ddddd"},
+      ],
+      hintCorrectOrIncorrect:""
       
     }
   },
 
   mounted() {
-
+    //Check save state
+    let progress = this.$store.getters.getProgress;
+    if(progress[this.$route.name] == true){
+      this.successMessage = "hint!";
+    }
   },
 
   methods: {
@@ -67,32 +98,65 @@ export default {
     checkPath: function(i,j) {
       let step = this.path[i][j];
       if(this.nextStep == step || step == "done"){
-        this.path[i][j] = "done";
-        this.nextStep++;
+        if(this.nextStep == step){
+          this.hintDone = false;
+          this.path[i][j] = "done";
+          this.nextStep++;
 
-        this.tableLoad = false;
-        this.tableLoad = true;
-        if(this.path[7][7] == "done"){
-          this.passcodeHint = "HINT";
-          alert("hint")
+          this.tableLoad = false;
+          this.tableLoad = true;
+          if(this.path[7][7] == "done"){
+            this.successMessage = "HINT";
+            this.$store.commit('updateProgress', this.$route.name);
+          }
         }
 
       }else{
-        this.nextStep = 1;
-        this.path = [
-          ["done",0,0,0,0,0,0,0],
-          [0,1,0,5,0,0,0,0],
-          [2,3,4,0,6,7,0,0],
-          [0,0,0,0,0,8,9,0],
-          [0,0,0,13,12,11,10,0],
-          [0,0,15,14,0,0,0,0],
-          [0,16,0,18,0,20,21,0],
-          [0,0,17,0,19,0,22,23],
-        ];
-        this.tableLoad = false;
-        this.tableLoad = true;
+        this.$bvModal.show("hintModal");  
       }
     },
+
+    submitAnswer: function(){
+      if( this.hintAnswerSubmission.length>2 && 
+          this.hintDone == false &&
+          this.hints[this.hintIndex].answer.includes(this.hintAnswerSubmission)){
+        this.hintDone = true;
+        this.hintCorrectOrIncorrect = "correct";
+      }else{
+        this.resetPath();
+        this.hintCorrectOrIncorrect = "incorrect";
+      }
+
+      let that = this;
+      setTimeout(function(){
+        that.$bvModal.hide("hintModal"); 
+        that.hintCorrectOrIncorrect = "";
+        that.hintAnswerSubmission = ""
+        if(that.hintIndex < that.hints.length-1){
+          that.hintIndex++;
+        }else{
+          that.hintIndex = Math.floor(Math.random() * that.hints.length);
+        }
+      }, 2000);
+      
+    },
+
+
+    resetPath: function(){
+      this.nextStep = 1;
+      this.path = [
+        ["done",0,0,0,0,0,0,0],
+        [0,1,0,5,0,0,0,0],
+        [2,3,4,0,6,7,0,0],
+        [0,0,0,0,0,8,9,0],
+        [0,0,0,13,12,11,10,0],
+        [0,0,15,14,0,0,0,0],
+        [0,16,0,18,0,20,21,0],
+        [0,0,17,0,19,0,22,23],
+      ];
+      this.tableLoad = false;
+      this.tableLoad = true;
+    }
 
 
 
@@ -141,6 +205,15 @@ td{
   margin-top: 2vw;
   margin-left:auto;
   margin-right: auto;
+}
+
+#hintModal p, h3{
+  color: black;
+  margin-left: 15px;
+}
+
+.modalContents{
+  padding:10px;
 }
 
 

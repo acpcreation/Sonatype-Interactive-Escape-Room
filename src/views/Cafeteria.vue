@@ -68,7 +68,11 @@ export default {
   },
 
   mounted() {
-  
+    //Check save state
+    let progress = this.$store.getters.getProgress;
+    if(progress[this.$route.name] == true){
+      this.successMessage = "hint!";
+    }
   },
 
   methods: {
@@ -127,6 +131,7 @@ export default {
           this.currentOrder +=1;
         }else{
           this.successMessage = "HINT"
+          this.$store.commit('updateProgress', this.$route.name);
         }
 
       }else{

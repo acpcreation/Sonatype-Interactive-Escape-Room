@@ -62,6 +62,12 @@ export default {
   },
 
   mounted() {
+    //Check save state
+    let progress = this.$store.getters.getProgress;
+    if(progress[this.$route.name] == true){
+      this.successMessage = this.hints.toString();
+    }
+
     this.tableContents = this.rounds[this.roundIndex];
 
     this.addCharacterListeners();
@@ -113,6 +119,8 @@ export default {
 
       if(complete == true){
         this.successMessage = this.hints[this.roundIndex];
+        this.$store.commit('updateProgress', this.$route.name);
+
       }
     },
 
