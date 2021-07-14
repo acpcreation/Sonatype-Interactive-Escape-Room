@@ -3,10 +3,13 @@
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <!-- Mandarin, Hieroglyphics, Morse Code, Russian, Arabic  -->
     <h3>Decoder</h3>
-    <p v-if="selectedBook == null" class="challengeDescription">Discover the hidden meaning of the text</p>
+    <p v-if="selectedBook == null" class="challengeDescription">Discover the hidden meaning of the text using the books in your library. Enter the full text in the input field below to reveal the escape clue. </p>
 
     <div class="centerItems">
-      <img class="codedPaper" src="../../public/img/codedPaper.jpeg" />
+      <!-- <img class="codedPaper" src="../../public/img/codedPaper.jpeg" /> -->
+      <div class="codedPaper">
+        <span v-for="i in encodedMessage" :key="i.id" :style="i.style">{{i.char}}</span>
+      </div>
 
       <div class="library">
         <div v-for="i in library" :key="i.title" @click="openBook(i)" :style="'background-color:'+i.color">{{i.title}}</div>
@@ -36,7 +39,7 @@ export default {
   computed: {
     inputState() {
       let msg = this.decodedMessage.toUpperCase();
-      if(msg == 'PASSWORD'){
+      if(msg == this.message){
         this.successfulDecyption();
         return true;
       }else{
@@ -54,10 +57,12 @@ export default {
         {title: "American Sign Language",        color:"rgb(133, 77,107)", style:"font-family:sign-language;font-size:100px;", content:""}, //https://www.lifeprint.com/asl101/pages-layout/gallaudettruetypefont.htm
         // {title: "Book", color:"rgb(133, 77, 107)", content:""}, 
       ],
-
+      
+      encodedMessage:[],
       selectedBook: null,
       decodedMessage: "",
-      successMessage: ""
+      successMessage: "",
+      message: null
     }
   },
 
@@ -68,6 +73,9 @@ export default {
       this.successfulDecyption();
     }
 
+    this.message = "The data we collect on OSS are security, license, version popularity, age, malicious components, category, hygiene rating";
+    this.message = this.message.toUpperCase()
+    this.encodeMessage(this.message)
 
   },
 
@@ -87,65 +95,116 @@ export default {
 
     morseCodeContent: function(){
       let morse = [
-        "._",
-        "_...",
-        "_._.",
-        "_..",
-        ".",
-        ".._. ",
-        "__.",
-        " ....",
-        "..",
-        ".___",
-        "_._",
-        "._..",
-        "__",
-        "_.",
-        "___",
-        ".__.",
-        "__._",
-        "._.",
-        "...",
-        "_",
-        ".._",
-        "..._",
-        ".__",
-        "_.._",
-        "_.__",
-        "__.."
+        "._",   //A
+        "_...", //B
+        "_._.", //C
+        "_..",  //D
+        ".",    //E
+        ".._. ",//F
+        "__.",  //G
+        " ....",//H
+        "..",   //I
+        ".___", //J
+        "_._",  //K
+        "._..", //L
+        "__",   //M
+        "_.",   //N
+        "___",  //O
+        ".__.", //P
+        "__._", //Q
+        "._.",  //R
+        "...",  //S
+        "_",    //T
+        ".._",  //U
+        "..._", //V
+        ".__",  //W
+        "_.._", //X
+        "_.__", //Y
+        "__.."  //Z
       ]; 
       return morse;
     },
 
     mandarinContent: function(){
       let mandarin = [
-          "三", 
-          "四",
-          "五",
-          "六",
-          "七",
-          "八",
-          "九",
-          "百",
-          "千",
-          "万",
-          "上",
-          "中",
-          "左",
-          "右",
-          "大",
-          "小",
-          "春",
-          "夏",
-          "秋",
-          "冬",
-          "东",
-          "忠",
-          "孝",
-          "兄",
-          "贝",
-          "先"]
+          "三", //A
+          "四", //B
+          "五", //C
+          "六", //D
+          "七", //E
+          "八", //F
+          "九", //G
+          "百", //H
+          "千", //I
+          "万", //J
+          "上", //K
+          "中", //L
+          "左", //M
+          "右", //N
+          "大", //O
+          "小", //P
+          "春", //Q
+          "夏", //R
+          "秋", //S
+          "冬", //T
+          "东", //U
+          "忠", //V
+          "孝", //W
+          "兄", //X
+          "贝", //Y
+          "先"] //Z
       return mandarin;
+    },
+
+    encodeMessage: function(evt){
+      this.encodedMessage = [];
+      let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      let alphabet = "";
+      // letters = letters.split(',');
+
+      let langs = [
+        "hieroglyphics",
+        "mandarin",
+        "russian",
+        "morse",
+        "sign",
+        ];
+
+      for(let i=0;i<evt.length;i++){
+        let character = evt.charAt(i)
+
+        if(character == " " || character == "," ){
+          this.encodedMessage.push({id:i, char:character , style:""})
+        }else{
+          let selected = langs[Math.floor(Math.random() * langs.length)];
+          let style = "";
+
+          switch(selected) {
+            case "hieroglyphics":
+              style = "font-family:hieroglyphics; font-size:50px;"
+              break;
+            case "mandarin":
+              alphabet = this.mandarinContent();
+              character = alphabet[letters.indexOf(character)];
+              style = "font-family:mandarin; font-size:34px;"
+              break;
+            case "russian":
+              style = "font-family:russian; font-size:34px;"
+              break;
+            case "morse":
+              alphabet = this.morseCodeContent();
+              character = alphabet[letters.indexOf(character)];
+              style = "font-size:45px; letter-spacing:1px;"
+              break;
+            case "sign":
+              style = "font-family:sign-language; font-size:80px;"
+              break;
+          }
+
+          this.encodedMessage.push({id:i, char:character, style:style})
+        }
+      }
+      // console.log(this.encodedMessage)
     }
 
 
@@ -168,7 +227,7 @@ export default {
 .library{
   width: 400px !important;
   /* margin: 60px auto; */
-  margin-top: 78px;
+  margin: 100px -90px 0px -30px;
   padding: 8px;
   border: solid 6px rgb(51, 27, 21);
   border-radius: 5px;
@@ -196,8 +255,21 @@ export default {
 
 
 .codedPaper{
-  width: 50vw;
+  width: 76vw;
   border-radius: 6px;
+  /* height:50vh; */
+  background-image: url('../../public/img/codedPaper.jpeg');
+  background-size: 76vw;
+  padding: 25px;
+  text-align: left;
+  font-size:20px;
+}
+
+.codedPaper span{
+  margin:0px 5px;
+  /* margin-top:-10px !important; */
+  user-select: none;
+  /* background: lightblue; */
 }
 
 .decodedMessage{

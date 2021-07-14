@@ -30,17 +30,18 @@
         <hr>
         <p>{{hints[hintIndex].hint}}</p>
         <b-input-group class="inputGroup">
-          <b-form-input type="text" v-model="hintAnswerSubmission" placeholder="Answer.."></b-form-input>
+          <b-form-input type="text" v-model="hintAnswerSubmission" placeholder="Answer.." :disabled='isDisabled'></b-form-input>
           <template #append>
-            <b-button variant="primary" @click="submitAnswer()">Submit</b-button>
+            <b-button variant="primary" @click="submitAnswer()" :disabled='isDisabled'>Submit</b-button>
           </template>
         </b-input-group>
 
         <br>
-        <p v-if="hintCorrectOrIncorrect == 'correct'" style="color:green;">Correct!</p>
-        <p v-if="hintCorrectOrIncorrect == 'incorrect'" style="color:red;">Sorry, Incorrect!</p>
+        <p v-if="hintCorrectOrIncorrect == 'correct'" style="color:green;">Correct: {{hints[hintIndex].answer}}</p>
+        <p v-if="hintCorrectOrIncorrect == 'incorrect'" style="color:red;">Sorry, Incorrect! Correct answers include: {{hints[hintIndex].answer}}</p>
 
-        <b-button variant="warning" @click="resetPath()">Reset</b-button>
+        <b-button variant="warning" v-if="hintCorrectOrIncorrect != 'correct'" @click="closeModal(true)">Reset</b-button>
+        <b-button variant="success" v-if="hintCorrectOrIncorrect == 'correct'" @click="closeModal(false)">Close and Continue</b-button>
       </div>
     </div>
 
@@ -89,15 +90,27 @@ export default {
       nextStep: 1,
       tableLoad: true,
       successMessage:"",
-
+      isDisabled: false,
       displayHint: false,
       hintDone: false,
       hintIndex:0,
       hintAnswerSubmission:"",
       hints:[
-        {hint:"hint1", answer:"aaaa"},
-        {hint:"hint2", answer:"ssss"},
-        {hint:"hint3", answer:"ddddd"},
+        {hint:"What competitor allows policies to be created for both SAST and OSA based on licenses, aging and vulnerability data; also has the ability to break builds on policy violations and thresholds (number of vulnerabilities by category). ", answer:"CheckMarx"},
+        {hint:"What competitor is well known by legal personas; typically win when legal departments lead evaluation/purchase decisions.", answer:"Synopsys Black Duck"},
+        {hint:"What competitor has component information pulled into their ‘hub’ to generate reports; these reports require manual follow-up for remediation (automating process, but not policy).", answer:"Synopsys Black Duck"},
+        {hint:"Name one of the 4 top competitors who identify components via a name-based search, instead of a hash-based unique fingerprint, resulting in large quantities of false positives/negatives. ", answer:"Synopsys Black Duck, Snyk, JFrog, WhiteSource"},
+        {hint:"What competitor, when positioning themselves with customers, tend to use terms like “radically universal”, “end to end devops platform” and “full artifact lifecycle”. ", answer:"JFrog"},
+        {hint:"Name one of the 3 top competitors we lose deals to due to call flow analysis.", answer:"Snyk, Veracode, Whitesource"},
+        {hint:"Name the competitor we often clash with as a repo-centric solution provider.", answer:"JFrog"},
+        {hint:"Which competitor also takes a BOM approach to OSS license obligations?", answer:"Whitesource"},
+        {hint:"Name one of our competitors who also has a licensing model that is per developer?", answer:"Synopsys Black Duck, Whitesource, Snyk"},
+        {hint:"When competing with NXRM, this competitor’s SaaS solution charges on peak usage resulting in a higher cost per month. ", answer:"JFrog"},
+        {hint:"Which competitor has a plugin called gatekeeper?", answer:"Snyk"},
+        {hint:"Name the competitor who we consider to be a “check-the-box” offering in contrast to ALP.", answer:"Fossa"},
+        {hint:"Name a competitor who we compete with in the code quality analysis space (competing with sonatype Lift)?", answer:"SonarCloud, SonarQube, Github, Gitlab, Snyk"},
+        // {hint:"", answer:""},
+
       ],
       hintCorrectOrIncorrect:""
       
@@ -119,7 +132,7 @@ export default {
 
     checkPath: function(i,j) {
       let step = this.path[i][j];
-      if(this.nextStep == step || step == "done"){
+      if(this.nextStep == step || step == "done" ){
         if(this.nextStep == step){
           this.hintDone = false;
           this.path[i][j] = "done";
@@ -134,31 +147,42 @@ export default {
         }
 
       }else{
-        this.displayHint = true;
+        if(this.hintDone == false){
+          this.displayHint = true;
+        }else{
+          this.resetPath();
+        }
+        
         // this.$bvModal.show("hintModal");  
       }
     },
 
     submitAnswer: function(){
-      let reset = false;
-      if( this.hintAnswerSubmission.length>2 && 
-          this.hintDone == false &&
-          this.hints[this.hintIndex].answer.includes(this.hintAnswerSubmission)){
-        this.hintDone = true;
+      // let reset = false;
+      this.isDisabled = true;
+      let answer = this.hints[this.hintIndex].answer.toLowerCase();
+
+      if( this.hintAnswerSubmission.length>3 && 
+          answer.includes(this.hintAnswerSubmission.toLowerCase())){
         this.hintCorrectOrIncorrect = "correct";
       }else{
-        reset = true;
+        // reset = true;
         this.hintCorrectOrIncorrect = "incorrect";
       }
+      
 
+      // closeModal(reset);
+    },
+
+    closeModal: function(reset){
       let that = this;
-      setTimeout(function(){
+      // setTimeout(function(){
         // that.$bvModal.hide("hintModal"); 
         that.displayHint = false;
         if(reset == true){
           that.resetPath();
         }
-
+        this.isDisabled = false;
         that.hintCorrectOrIncorrect = "";
         that.hintAnswerSubmission = ""
         if(that.hintIndex < that.hints.length-1){
@@ -166,8 +190,7 @@ export default {
         }else{
           that.hintIndex = Math.floor(Math.random() * that.hints.length);
         }
-      }, 2000);
-      
+      // }, 2000);
     },
 
 

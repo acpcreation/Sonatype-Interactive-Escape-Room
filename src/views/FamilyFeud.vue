@@ -9,7 +9,6 @@
           - Noise
           - Lightbulb dot grid in background
           - Multiple rounds
-          - Enter button to submit answers
      -->
 
     
@@ -25,15 +24,16 @@
     </div>
 
       <b-input-group class="inputGroup">
-        <b-form-input type="text" v-model="answer" placeholder="Answers..."></b-form-input>
+        <b-form-input type="text" v-model="answer" placeholder="Answers..." :disabled="successMessage.length>1"></b-form-input>
         <template #append>
-          <b-button variant="success" @click="submitAnswer">Submit</b-button>
+          <b-button variant="success" @click="submitAnswer" :disabled="successMessage.length>1">Submit</b-button>
         </template>
       </b-input-group>
       
-
-
     <p class="successMessage">{{successMessage}}</p>
+
+    <b-button variant="outline-warning" @click="newRound()" v-if="successMessage.length >1 && questionIndex < questions.length-1">New Round</b-button>
+
 
   </div>
 </template>
@@ -52,8 +52,17 @@ export default {
   data(){
     return{
       questions:[
-        {question:"Insert Question Here", answers:["snyk","challenge","your","means","question","this"]}
+        {question:"We surveyed 100 sales guides in Highspot: For which Sonatype products might you expect a security persona to act as a buyer?",                answers:["ADP","Container","Lift","Lifecycle","IaC","Firewall"]},
+        {question:"We surveyed 100 sales guides in Highspot: For which Sonatype products might you expect a Dev/Engineering Manager persona to act as a buyer?", answers:["ALP", "ADP", "Lift", "Repository", "Lifecycle"]},
+        {question:"We surveyed 100 sales guides in Highspot: For which Sonatype products might you expect an Operations persona to act as a buyer?",             answers:["Container", "IaC"]},
+        {question:"We surveyed 100 sales guides in Highspot: For which Sonatype products might you expect a developer/engineer to act as an influencer?",        answers:["ALP", "ADP", "Firewall", "Repository", "Lifecycle"]},
+        // {question:"", answers:[""]},
       ],
+
+      hints:[
+        "hint1",
+      ],
+
       currentQuestion:{},
       questionIndex: 0,
       submissions:[],
@@ -71,6 +80,8 @@ export default {
     let progress = this.$store.getters.getProgress;
     if(progress[this.$route.name] == true){
       this.successMessage = "hint!";
+      this.currentQuestion = this.questions[this.questions.length-1];
+      this.submissions = this.currentQuestion.answers;
     }
   },
 
@@ -80,19 +91,36 @@ export default {
     },
 
     submitAnswer: function(){
+      this.answer = this.answer.toUpperCase()
       for(let i in this.currentQuestion.answers){
-        let answer = this.currentQuestion.answers[i]
-        if(this.answer.includes(answer)){
-          this.submissions.push(answer)
+        let option = this.currentQuestion.answers[i].toUpperCase()
+
+        if(option.includes(this.answer) && this.answer.length >2){
+          if(!this.submissions.includes(this.currentQuestion.answers[i])){
+            this.submissions.push(this.currentQuestion.answers[i])
+          }
           break;
         }
       }
       this.answer = "";
 
+      if(this.submissions.length == this.currentQuestion.answers.length){
+        if(this.questionIndex < this.questions.length-1){
+          this.successMessage = "Hint";
+          this.$store.commit('updateProgress', this.$route.name);
+        }else{
+          this.successMessage = "Complete!"
+        }
+      }
 
-      // this.successMessage = "HINT"
-      // this.$store.commit('updateProgress', this.$route.name);
     },
+
+    newRound:function(){
+      this.submissions = [];
+      this.successMessage = "";
+      this.questionIndex +=1;
+      this.currentQuestion = this.questions[this.questionIndex];
+    }
 
     // flipCard: function(i){
     //   if(this.submissions.includes(this.currentQuestion.answers[i])){

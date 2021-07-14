@@ -13,10 +13,7 @@
         class="progressBar"
         animated></b-progress>
 
-    <!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_image_magnifier_glass -->
-    <div id="magnifier" :style="position"></div>
-    <img id="backgroundMagnifyImage" src="../../public/img/antiqueStore.jpeg" />
-    <!-- @mouseover="hover = true" @mouseleave="hover = false" -->
+    <MagnifyView />
 
     
     
@@ -32,6 +29,7 @@
 </template>
 
 <script>
+import MagnifyView from '@/components/MagnifyView.vue'
 
 export default {
   name: 'ClueFinder',
@@ -39,15 +37,10 @@ export default {
     
   },
   components: {
-
+    MagnifyView
   },
   data(){
     return{
-      // x:0,
-      // y:0,
-      position: "",
-      // hover:false
-
       clueInput:"",
       clues:[
         "this is an answer",
@@ -71,32 +64,11 @@ export default {
 
     
     this.cluesLength = this.clues.length;
-    window.addEventListener('mousemove',this.mouseMoving);
-    console.log("X: "+window.screen.width+" Y: "+window.screen.height)
   },
 
   methods: {
     openPage: function(e) {
       this.$router.push("/"+e);
-    },
-
-    mouseMoving: function(e) {
-      let halfWidth = 200/2;
-      let zoom = 3;
-      let x = e.pageX-halfWidth;
-      let y = e.pageY-halfWidth;
-      // let screenWidth = window.screen.width;
-      //Large: 1920 => -180
-      //Medium: 1536 => 220
-      
-      // console.log(x+", "+y)
-
-      if(x>-35 && y>-40 && y< window.screen.height){
-        let bp = "-"+((x * zoom) +220) + "px -" +((y * zoom) +20)+"px";
-        this.position = "left:"+x+"px; top:"+y+"px; background-position:"+bp;
-      }else{
-        this.position = "visibility:hidden;"
-      }
     },
 
     submitAnswer: function(){
@@ -139,9 +111,7 @@ export default {
 
   },
 
-  destroyed: function() {
-    window.removeEventListener('mousemove', this.mouseMoving);
-  }
+  
    
 }
 </script>
@@ -168,35 +138,6 @@ export default {
   margin-bottom:-10px;
 }
 
-.mousePosition{
-  position: fixed;
-  top: 15px;
-  right:15px;
-  background-color: white;
-  border-radius: 6px;
-  /* width:200px; */
-  padding:5px 10px;
-}
-
-#magnifier{
-  position: absolute;
-  border: 3px solid #000;
-  border-radius: 50%;
-  cursor: none;
-  width: 200px;
-  height: 200px;
-  background-image: url('../../public/img/antiqueStore.jpeg');
-  background-repeat: no-repeat;
-  /* background-size: 1500px*3; */
-  background-size: 100vw *3;
-}
-
-#backgroundMagnifyImage{
-  /* width: 1500px; */
-  width: 100vw; 
-}
-
-
 .inputFooter{
   position: fixed;
   bottom: 0px;
@@ -211,7 +152,7 @@ export default {
 
 .progressBar{
   position: fixed;
-  left: -230px;
+  left: -240px;
   top:50vh;
   width: 60vh;
   transform: rotate(-90deg);

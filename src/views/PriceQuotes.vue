@@ -10,7 +10,7 @@
     <b-button class="exchangeRateButton" variant="warning" @click="exchangeRates= !exchangeRates">Exchange Rates</b-button>
 
 
-    <b-card no-body class="overflow-hidden cards" v-for="i in prices" :key="i.id">
+    <b-card no-body class="overflow-hidden cards" v-for="i in prices" :key="i.id" @click="exchangeRates= false">
       <b-row no-gutters>
         <b-col md="6">
           <b-card-body :title="'Price in '+i.currency">
@@ -64,16 +64,18 @@ export default {
   data(){
     return{
       prices:[
-        {id:0, users:"250 users", products:["Lifecycle", "Repository Manager", "Firewall"],      extra:" and a Nexus Foundation Workshop", currency:"Japanese Yen", input:"", answer:"21632075"},
-        {id:1, users:"250 users",  products:["Repository Manager", "Lifecycle Foundation"],      extra:" as a leveraged deal with Optiv and Carahsoft as distributor", currency:"Bitcoin", input:"", answer:""},
-        {id:2, users:"10 users and 3 applications",  products:["Repository Manager", "Auditor"], extra:"", currency:"Euro", input:"", answer:"3570"},
-        {id:3, users:"150 users",  products:["Firewall","Lifecycle"],                            extra:"", currency:"Euro", input:"", answer:""},
-        {id:4, users:"100 users", products:["Repository Manager", "Firewall", "Lifecycle"],      extra:" and it is an inbound partner deal with Orasi", currency:"Zambian Kwacha", input:"", answer:"100"},
-        {id:5, users:"500 users", products:["Repository Manager","Firewall","Lifecycle"],        extra:" and it is a partner leveraged 9th BIT for a 3 year deal", currency:"Euro", input:"", answer:"100"},
-        {id:6, users:"300 nodes", products:["Container"],                                        extra:"", currency:"Bitcoin", input:"", answer:"100"},
-        {id:7, users:"30 users", products:["Lifecycle", "Firewall", "Repository Manager","Small IQ", "Container"], extra:" and a Nexus LC/FW Policy Workshop", currency:"Japanese Yen", input:"", answer:"100"},
-        {id:8, users:"200 users", products:["Lifecycle", "IAC"],                                 extra:" and it is a Zivra leveraged deal", currency:"Euro", input:"", answer:"100"},
-        {id:9, users:"100 users", products:["Lifecycle", "ADP", "IAC"],                          extra:"", currency:"Bitcoin", input:"", answer:"100"},
+        {id:0, users:"250 users", products:["Lifecycle", "Repository Manager", "Firewall"],      extra:" and a Nexus Foundation Workshop",                             currency:"Japanese Yen", input:"", answer:"23137520", usd:"209200"},
+        {id:1, users:"250 users",  products:["Repository Manager", "Lifecycle Foundation"],      extra:" as a leveraged deal with Optiv and Carahsoft as distributor", currency:"Bitcoin", input:"", answer:"11", usd:"410250"},
+        {id:2, users:"10 users and 3 applications",  products:["Repository Manager", "Auditor"], extra:"",                                                             currency:"Euro", input:"", answer:"12070", usd:"14200"},
+        {id:3, users:"150 users",  products:["Firewall","Lifecycle"],                            extra:"",                                                             currency:"North Korean Won", input:"", answer:"125865000", usd:"139850"},
+        {id:4, users:"100 users", products:["Repository Manager", "Firewall", "Lifecycle"],      extra:" and it is an inbound partner deal with Orasi",                currency:"Zambian Kwacha", input:"", answer:"2534535", usd:"111900"},
+        {id:5, users:"500 users", products:["Repository Manager","Firewall","Lifecycle"],        extra:" and it is a partner leveraged 9th BIT for a 3 year deal",     currency:"Gold Ounce", input:"", answer:"590", usd:"1062000"},
+        {id:6, users:"300 nodes", products:["Container"],                                        extra:"",                                                             currency:"Indian Rupee", input:"", answer:"33660000", usd:"450000"},
+        {id:7, users:"100 users", products:["Lifecycle", "ADP", "IaC", "ALP"],                   extra:"",                                                             currency:"Canadian Dollar", input:"", answer:"214625", usd:"171700"},
+        
+        // {id:7, users:"30 users", products:["Lifecycle", "Firewall", "Repository Manager","Container"], extra:"Small IQ, and a Nexus LC/FW Policy Workshop", currency:"Japanese Yen", input:"", answer:"", usd:""},
+        // {id:8, users:"200 users", products:["Lifecycle", "IaC"],                                 extra:" and it is a Zivra leveraged deal", currency:"Euro", input:"", answer:"", usd:""},
+        
       ],
       successMessage: "",
       exchangeRates: false
