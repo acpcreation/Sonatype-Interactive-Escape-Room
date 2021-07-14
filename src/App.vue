@@ -123,6 +123,7 @@ hr{
 .successMessage{
   color: rgb(77, 248, 77) !important;
   margin:20px !important;
+  font-size: 20px !important;
 }
 
 .challengeDescription{

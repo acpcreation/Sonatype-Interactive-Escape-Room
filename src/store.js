@@ -14,7 +14,8 @@ export default new Vuex.Store({
             PriceQuotes: false,
             RememberThePath: false,
             VRExplorer: false
-        },                
+        },  
+        passcode:[]
     },
 
     mutations:{
@@ -27,13 +28,20 @@ export default new Vuex.Store({
             state.progress = data;
         },
 
-        
+        storePasscode(state, data){
+            state.passcode = data;
+        },
 
+    
     },
 
     getters:{
         getProgress: state =>{
             return state.progress;
+        },
+
+        getPasscode: state =>{
+            return state.passcode;
         },
 
 

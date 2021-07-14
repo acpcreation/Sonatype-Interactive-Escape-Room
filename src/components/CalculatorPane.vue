@@ -13,7 +13,7 @@
       <p>{{equation.num1}}</p>
       <p><b>{{equation.operator}}</b> &nbsp; {{equation.num2}}</p>
     </div>
-    <b-form-input type="text" class="equationInput" :state="inputState" v-model="resultInput"></b-form-input>
+    <b-form-input type="text" class="equationInput" :state="inputState()" v-model="resultInput"></b-form-input>
   </div>
 </template>
 
@@ -24,18 +24,11 @@ export default {
     id: Number,
     title: String,
     hint: String,
-    equation: Object
+    equation: Object,
+    allCompleted: Boolean
   },
   computed: {
-    inputState() {
-      // console.log(this.resultInput +"=="+ this.equation.answer)
-      if(this.resultInput == this.equation.answer){
-        // this.$emit("closePasscode");
-        return true;
-      }else{
-        return null;
-      }
-    }
+   
   },
   data(){
     return{
@@ -44,12 +37,25 @@ export default {
   },
 
   mounted: function(){
+    if(this.allCompleted == true){
+      this.resultInput = this.equation.answer
+    }
   },
 
   methods:{
     checkAnswer:function(){
       
     },
+
+    inputState() {
+      // console.log(this.resultInput +"=="+ this.equation.answer)
+      if(this.resultInput == this.equation.answer){
+        this.$emit("updateCompleted",this.id);
+        return true;
+      }else{
+        return null;
+      }
+    }
 
 
 
@@ -79,7 +85,7 @@ p{
 }
 
 .equation{
-  width: 100px;
+  width: 160px;
   margin-left:auto;
   margin-right:auto;
   text-align: right;
@@ -93,7 +99,7 @@ p{
  
 .equationInput{
   margin:5px auto;
-  width:100px;
+  width:160px;
   border-radius: 6px;
   text-align: right;
 }

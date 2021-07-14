@@ -10,7 +10,7 @@ import PriceQuotes from './views/PriceQuotes.vue'
 import FamilyFeud from './views/FamilyFeud.vue'
 import HangMan from './views/HangMan.vue'
 import Cafeteria from './views/Cafeteria.vue'
-
+import Complete from './views/Complete.vue'
 
 
 
@@ -69,7 +69,11 @@ export default new Router({
       name: 'Cafeteria',
       component: Cafeteria
     },
-    
+    {
+      path: '/Complete',
+      name: 'Complete',
+      component: Complete
+    },
     
     
     

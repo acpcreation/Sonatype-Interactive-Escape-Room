@@ -2,7 +2,7 @@
   <div class="main">
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <h1>Price Quotes</h1>
-    <p class="challengeDescription">Determine the correct price for Sonatype's products in the different currencies. Round to the nearest dollar.</p>
+    <p>Determine the correct price for Sonatype's products in the different currencies. Round to the nearest dollar.</p>
     
     <p class="successMessage">{{successMessage}}</p>
 
@@ -87,6 +87,9 @@ export default {
     let progress = this.$store.getters.getProgress;
     if(progress[this.$route.name] == true){
       this.successMessage = "hint!";
+      for(let i in this.prices){
+        this.prices[i].input = this.prices[i].answer;
+      }
     }
   },
 

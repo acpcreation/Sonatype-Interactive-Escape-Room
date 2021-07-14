@@ -3,7 +3,7 @@
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
 
     <h1>Follow The Path</h1>
-    <p class="challengeDescription">In this challenge you need to guess the path from the start to the end in order to unlock the hint. Be careful not to guess the wrong space! If you do you will need to cerrectly answer a question to continue.</p>
+    <p class="challengeDescription">In this challenge you need to guess the path from the start to the end in order to unlock the escape clue. Be careful not to guess the wrong space! If you do you will need to correctly answer a question to continue.</p>
 
     <div class="tableContainer">
       <p class="start">Start</p>
@@ -109,6 +109,7 @@ export default {
         {hint:"Which competitor has a plugin called gatekeeper?", answer:"Snyk"},
         {hint:"Name the competitor who we consider to be a “check-the-box” offering in contrast to ALP.", answer:"Fossa"},
         {hint:"Name a competitor who we compete with in the code quality analysis space (competing with sonatype Lift)?", answer:"SonarCloud, SonarQube, Github, Gitlab, Snyk"},
+        {hint:"Name one of the public data sources Sonatype monitors for new vulnerabilities?", answer:"National Vulnerability Database (NVD), Github Events, Security Advisory Websites, Open Source Project Websites"},
         // {hint:"", answer:""},
 
       ],

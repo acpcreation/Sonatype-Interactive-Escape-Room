@@ -32,6 +32,7 @@ export default {
 
   methods: {
     mouseMoving: function(e) {
+      // console.log(e)
       let halfWidth = 200/2;
       let zoom = 3;
       let x = e.pageX-halfWidth;
@@ -86,7 +87,8 @@ export default {
 
 #backgroundMagnifyImage{
   /* width: 1500px; */
-  width: 100vw; 
+  width: 100vw;
+  height:100vh; 
 }
 
 

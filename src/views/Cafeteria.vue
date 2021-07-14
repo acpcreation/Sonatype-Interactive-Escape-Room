@@ -53,9 +53,16 @@ export default {
   data(){
     return{
       orders:[
-        {order: "I need LC", answers:["Lifecycle"]},
-        {order: "I need Full Platform", answers:["Lifecycle", "Repository Manager", "Firewall"]},
-        {order: "I need ALL", answers:["Lifecycle", "Repository Manager", "Firewall", "Container", "Lift", "IaC", "ADP", "ALP"]},
+        {answers:["Lifecycle", "Firewall"], order: "As a developer, I want to make sure I’m only choosing the best possible components that meet company policy from the start. I’m tired of doing a bunch of rework because our security team waits until the end of the build to tell me that something’s wrong. "},
+        {answers:["Lifecycle", "Repository Manager", "ALP"], order: "Our company needs a centralized storage spot that can be used for different types of artifacts as well as binaries being used in the build process. We’re also battling long feedback loops (sometimes months long) between dev + security, and are very concerned with licensing vulnerabilities. "},
+        {answers:["Lifecycle", "ALP", "Container"], order: "I’m looking for a way to run scans throughout our DevOps pipeline so we can identify vulnerabilities in both the staging and production environments. My legal team has also been putting pressure on me to find a way to perform license obligation and attribution reporting. Oh, and did I mention that we have container and Kubernetes deployments on multiple cloud platforms?"},
+        {answers:["Lifecycle","Firewall", "Lift"], order: "My team relies primarily on npm, we’re a big JavaScript shop. With all the recent attacks in the news, we want to make sure we’re being diligent about name space and typosquatting attacks. Code quality is top of mind for us! And we want a scanning tool that integrates with several different IDEs, with all the different dev teams we have. What would you recommend?"},
+        {answers:["Container", "Lift"], order: "I’m changing the architecture at our company to run all of our applications through docker and kubernetes. We’d also really like to get rid of SonarQube if possible because it’s noisy and expensive. Our developers only use source control and PR workflows as a way to write and review code as well, so we’d need a solution that plugs in well there."},
+        {answers:["Lifecycle","IaC", "ADP", "ALP"], order: "We need to know what’s in our open source packages, and we’re getting a lot of pressure from our legal department to make sure all of our licenses are in compliance. We also have a new SRE team focused on expanding our usage of the cloud. As we shift our culture we want to give our developers all of the information they need to make decisions and take ownership of security."},
+        {answers:["Lifecycle", "Repository Manager", "Firewall"], order: "Our security and DevOps teams are being asked from C-level leadership how we are protecting our applications and services from the increase of software supply chain attacks from upstream open source dependencies like name space/dependency confusion attacks. We need to identify a way to scale out protection before we bring in a vulnerable component AND continuously monitor for vulns in our deployed applications."},
+        {answers:["Lifecycle", "Repository Manager", "Firewall","Container", "Lift"], order: "We have been Repo OSS users for many years and have been working through conversations to upgrade to Repo Pro for upcoming Repository Replication capabilities. Our enterprise teams are able to accurately control known risks for security and license compliance, but we are now in need to better understand how to protect against recent malicious malware injection attacks. We develop and manage multiple cloud-native applications in several different ecosystems and have been constantly trying to optimize our AppSec and security best practices for our hundreds of developers. Being able to fully automate security and quality for developer source code, infrastructure and containers, and open source governance policies is a challenge we are eager to accept. "},
+        {answers:["Lifecycle", "Repository Manager", "Firewall", "Container", "Lift", "IaC", "ADP", "ALP"], order: "I'm Bill Gates and I just wanna spend! Literally give me everything you have."},
+        // {answers:[""], order: ""},
       ],
 
       currentOrder: 0,
@@ -164,7 +171,8 @@ export default {
 }
 
 .order{
-  margin: 20px -10px 0px 20px;
+  margin: 0px 10px 0px 20px;
+  max-width: 22vw;
   color: black;
   background: white;
   padding:10px;
@@ -234,7 +242,8 @@ export default {
 
 .accelerateOrder{
   width: 200px;
-  margin-right: 15vw;
+  margin-right: 5vw;
+  margin-top: 30px;
 }
 
 

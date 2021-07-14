@@ -3,7 +3,7 @@
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <div class="fixItems">
       <h3>Clue Finder</h3>
-      <p>Find all the hidden clues to decode the message.</p>
+      <p>Find all the hidden clues and submit them in order to unlock the clue.</p>
       <p class="successMessage">{{successMessage}}</p>
     </div>
 
@@ -14,8 +14,6 @@
         animated></b-progress>
 
     <MagnifyView />
-
-    
     
     <div class="inputFooter" >
       <b-input-group class="inputGroup">
@@ -24,7 +22,24 @@
           <b-button variant="success" @click="submitAnswer()">Submit</b-button>
         </template>
       </b-input-group>
+      
+      <div class="foundItems">
+        <div  class="pill" 
+          v-for="i in oldClues" 
+          :key="i.clue"
+          @click="selectItem(i)">
+          {{i.clue}}
+        </div>
+      </div>
     </div>
+
+
+    <b-modal id="clueDetailsModal" :title="selectedClue.clue" class="modal" ok-title="Close" ok-variant="warning"  ok-only>       
+      <div>
+        {{selectedClue.details}}
+      </div>
+    </b-modal>
+
   </div>
 </template>
 
@@ -43,10 +58,19 @@ export default {
     return{
       clueInput:"",
       clues:[
-        "this is an answer",
-        "another one",
-        "here we go"
+        {clue:"Multitool", details:"Lift uses multiple tools - There is generally no single tool that will find all of the types or errors that you care about."},
+        {clue:"Integration", details:"Integration matters - It’s not just about the tools you choose, but how you incorporate them into your processes and workflows."},
+        {clue:"Trust", details:"Cherish developer trust - It’s all about developers. If developers aren’t getting value from your tools, or you’re wasting their time, they won’t care, will stop responding, and will ignore or remove the tools."},
+        {clue:"Productivity", details:"Tools can support productivity - most developers are worried that too many tools or too many checks in CI will only slow down their processes. While this can be true, it doesn’t have to be the case."},
+        {clue:"Experience", details:"Developer Experience is Paramount: While security, QA and other stakeholders can create/implement tools, only developers can actually fix bugs. Tools need to be integrated into their workflow and results delivered in a way that makes it easy for them to spot, review, and fix them. (Facebook and Google key findings)"},
+        {clue:"Broad&Open", details:"Broad Analysis & Open Platform: No single tool can catch every bug, and the most effective approach involves an extensive range of tools to broadly cover languages and bug categories. (Facebook and Google key findings)"},
+        {clue:"FixRates", details:"Measure Fix Rates to Improve Results: When tools produce extensive results riddled with false positives, developer trust is lost and tools get ignored, and when multiple tools are run, the false positive risk rises exponentially. By measuring which bugs developers fix and which ones they ignore, they could identify and remediate noisy tools, to ensure that when bugs surfaced, they’d get fixed. (Facebook and Google key findings)"},
+        {clue:"Outdated", details:"Existing code analysis tools generate too many false positives that take time to weed out, leading to issues being ignored, bugs being missed, and the tools themselves being abandoned."},
+        {clue:"OtherTools", details:"Most other tools don’t fit within developers workflows, causing developers to switch from one system to another (context switching) which slows software delivery, creates animosity between security and dev teams, and almost guarantees the tools will be ignored."},
+        {clue:"SonarQube", details:"Traditional code quality tools (like SonarQube) only do lightweight analysis (linting), and can’t catch the tougher security issues. While linters catch performance and reliability bugs, they only inspect each file in isolation, so they can’t identify bugs that span across the project. "},
+        // {clue:"", details:""},
       ],
+      selectedClue:{clue:"", details:""},
       oldClues: [],
       inputCorrect:null,
       cluesLength: 0,
@@ -60,9 +84,8 @@ export default {
     let progress = this.$store.getters.getProgress;
     if(progress[this.$route.name] == true){
       this.successMessage = "hint!";
+      this.oldClues = this.clues;
     }
-
-    
     this.cluesLength = this.clues.length;
   },
 
@@ -76,7 +99,8 @@ export default {
       let clueIndex = 0;
       if(this.clueInput.length>2){
         for(let i in this.clues){
-          if(this.clues[i].includes(this.clueInput)){
+          let clueItem = this.clues[i].clue.toUpperCase()
+          if(clueItem.includes(this.clueInput.toUpperCase())){
             clueFound = true;
             clueIndex = i;
             break;
@@ -103,7 +127,11 @@ export default {
         that.clueInput = "";
         that.inputCorrect = null;
       }, 2200);
+    },
 
+    selectItem: function(e){
+      this.selectedClue = e;
+      this.$bvModal.show("clueDetailsModal"); 
       
     }
 
@@ -131,6 +159,7 @@ export default {
   padding:5px 10px;
   background: rgba(0, 0, 0, 0.637);
   border-radius: 10px;
+  max-width: 30vw;
 }
 
 .fixItems p{
@@ -141,13 +170,20 @@ export default {
 .inputFooter{
   position: fixed;
   bottom: 0px;
-  left: 20%;
-  right: 20%;
+  left: 5%;
+  right: 5%;
   /* margin: 0px auto; */
   /* background: rgb(41, 41, 41); */
   border-radius: 10px;
   /* height: 60px; */
   padding: 10px 15px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.inputGroup{
+  width: 350px;
 }
 
 .progressBar{
@@ -156,6 +192,23 @@ export default {
   top:50vh;
   width: 60vh;
   transform: rotate(-90deg);
+}
+
+.foundItems{
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  font-size: 14px;
+  margin: auto 25px;
+}
+
+.pill{
+  background-color: #0F1C4D;
+  color: white;
+  border-radius:15px;
+  margin:5px;
+  padding: 3px 13px;
+  cursor: pointer;
 }
 
 

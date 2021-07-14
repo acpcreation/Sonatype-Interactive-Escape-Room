@@ -2,7 +2,7 @@
   <div class="main">
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <h3>VR Explorer</h3>
-    <p>Take a look around! In this challenge you need to visit every node in order to collect clues around securing containers.</p>
+    <p style="margin:auto 15vw;">Take a look around! In this challenge you need to visit every node in order to collect information around securing containers to reveal the escape clue. Hint: move the focus dot onto the nodes you want to visit.</p>
     <p class="successMessage">{{successMessage}}</p>
 
     <b-progress 
@@ -91,6 +91,10 @@ export default {
       this.currentContent.id = e;
 
       this.$bvModal.show("vrDetailsModal"); 
+
+      if(this.visited.length == this.content.length){
+        this.challengeComplete()
+      }
     },
 
     

@@ -13,7 +13,6 @@ Code Contributors:
 
 Content Contributors:
 - Dana Ward
-- Brent Kostak
 - Kadi Grigg
 ```
 

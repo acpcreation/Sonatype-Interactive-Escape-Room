@@ -5,6 +5,7 @@
       <h1>Enter Passcode</h1>
       <br>
       <p class="errorText">{{errorText}}</p>
+      <p class="successMessage">{{successMessage}}</p>
       <div class="centerItems">
         <input  type="text" 
                 v-for="i in characters" 
@@ -13,7 +14,8 @@
                 maxlength="1"/>
                 <!-- @change="nextInput(i.id)" -->
       </div>
-      <b-button class="button" variant="success" size="lg" @click="submit()">Submit</b-button>
+      <b-button class="button" variant="success" size="lg" @click="submit()" :disabled="successMessage.length>1">Submit</b-button>
+
     </div>
   </div>
 </template>
@@ -33,18 +35,22 @@ export default {
         {id:4, v:""},
         {id:5, v:""}],
       passphrase:"",
-      errorText:""
+      errorText:"",
+      successMessage:""
     }
   },
 
   mounted: function(){
-
+    let passcode = this.$store.getters.getPasscode;
+    if(passcode.length>1){
+      this.characters = passcode;
+      this.submit();
+    }
   },
 
   methods:{
-    openPage: function(value) {
-      console.log(value)
-      this.$router.push(value);
+    openPage: function(e) {
+      this.$router.push(e);
     },
 
     closePane: function() {
@@ -54,12 +60,19 @@ export default {
     submit: function() {
       this.errorText = "";
       let codeSubmission = ""; //this.characters.join().replace(',','')
+      this.$store.commit('storePasscode', this.characters);
+
       for(let i in this.characters){
         codeSubmission += this.characters[i].v;
       }
 
       if(codeSubmission == "11111"){
-        alert("Success!")
+        this.successMessage = "Correct! Please Wait.."
+        let that = this;
+        setTimeout(function(){
+          that.openPage('Complete')
+        }, 3000);
+        
       }else{
         this.errorText = "Incorrect Passcode"
       }
