@@ -61,7 +61,7 @@ export default {
         {answers:["Lifecycle","IaC", "ADP", "ALP"], order: "We need to know what’s in our open source packages, and we’re getting a lot of pressure from our legal department to make sure all of our licenses are in compliance. We also have a new SRE team focused on expanding our usage of the cloud. As we shift our culture we want to give our developers all of the information they need to make decisions and take ownership of security."},
         {answers:["Lifecycle", "Repository Manager", "Firewall"], order: "Our security and DevOps teams are being asked from C-level leadership how we are protecting our applications and services from the increase of software supply chain attacks from upstream open source dependencies like name space/dependency confusion attacks. We need to identify a way to scale out protection before we bring in a vulnerable component AND continuously monitor for vulns in our deployed applications."},
         {answers:["Lifecycle", "Repository Manager", "Firewall","Container", "Lift"], order: "We have been Repo OSS users for many years and have been working through conversations to upgrade to Repo Pro for upcoming Repository Replication capabilities. Our enterprise teams are able to accurately control known risks for security and license compliance, but we are now in need to better understand how to protect against recent malicious malware injection attacks. We develop and manage multiple cloud-native applications in several different ecosystems and have been constantly trying to optimize our AppSec and security best practices for our hundreds of developers. Being able to fully automate security and quality for developer source code, infrastructure and containers, and open source governance policies is a challenge we are eager to accept. "},
-        {answers:["Lifecycle", "Repository Manager", "Firewall", "Container", "Lift", "IaC", "ADP", "ALP"], order: "I'm Bill Gates and I just wanna spend! Literally give me everything you have."},
+        {answers:["Lifecycle", "Repository Manager", "Firewall", "Container", "Lift", "IaC", "ADP", "ALP"], order: "I'm Bill Gates and I just wanna spend! Literally sell me everything you have."},
         // {answers:[""], order: ""},
       ],
 
@@ -79,6 +79,7 @@ export default {
     let progress = this.$store.getters.getProgress;
     if(progress[this.$route.name] == true){
       this.successMessage = "hint!";
+      this.disableClickArea="pointer-events:none"
     }
   },
 

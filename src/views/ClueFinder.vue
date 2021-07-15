@@ -59,15 +59,15 @@ export default {
       clueInput:"",
       clues:[
         {clue:"Multitool", details:"Lift uses multiple tools - There is generally no single tool that will find all of the types or errors that you care about."},
-        {clue:"Integration", details:"Integration matters - It’s not just about the tools you choose, but how you incorporate them into your processes and workflows."},
+        {clue:"Integration", details:"Integration matters - Lift integrates into your processes and workflows and scans GitHub, GitLab, and BitBucket repositories (Azure DevOps on the roadmap for end of 2021)."},
         {clue:"Trust", details:"Cherish developer trust - It’s all about developers. If developers aren’t getting value from your tools, or you’re wasting their time, they won’t care, will stop responding, and will ignore or remove the tools."},
         {clue:"Productivity", details:"Tools can support productivity - most developers are worried that too many tools or too many checks in CI will only slow down their processes. While this can be true, it doesn’t have to be the case."},
         {clue:"Experience", details:"Developer Experience is Paramount: While security, QA and other stakeholders can create/implement tools, only developers can actually fix bugs. Tools need to be integrated into their workflow and results delivered in a way that makes it easy for them to spot, review, and fix them. (Facebook and Google key findings)"},
-        {clue:"Broad&Open", details:"Broad Analysis & Open Platform: No single tool can catch every bug, and the most effective approach involves an extensive range of tools to broadly cover languages and bug categories. (Facebook and Google key findings)"},
+        {clue:"Broad&Open", details:"Broad Analysis & Open Platform: Scanning security, performance, reliability, and code style, no single tool can catch every bug, and the most effective approach involves an extensive range of tools to broadly cover languages and bug categories. (Facebook and Google key findings)"},
         {clue:"FixRates", details:"Measure Fix Rates to Improve Results: When tools produce extensive results riddled with false positives, developer trust is lost and tools get ignored, and when multiple tools are run, the false positive risk rises exponentially. By measuring which bugs developers fix and which ones they ignore, they could identify and remediate noisy tools, to ensure that when bugs surfaced, they’d get fixed. (Facebook and Google key findings)"},
-        {clue:"Outdated", details:"Existing code analysis tools generate too many false positives that take time to weed out, leading to issues being ignored, bugs being missed, and the tools themselves being abandoned."},
-        {clue:"OtherTools", details:"Most other tools don’t fit within developers workflows, causing developers to switch from one system to another (context switching) which slows software delivery, creates animosity between security and dev teams, and almost guarantees the tools will be ignored."},
-        {clue:"SonarQube", details:"Traditional code quality tools (like SonarQube) only do lightweight analysis (linting), and can’t catch the tougher security issues. While linters catch performance and reliability bugs, they only inspect each file in isolation, so they can’t identify bugs that span across the project. "},
+        {clue:"Outdated", details:"Outdated code analysis tools generate too many false positives that take time to weed out, leading to issues being ignored, bugs being missed, and the tools themselves being abandoned. With Lift bugs are 70 times more likely to be fixed than those reported via the issue tracker."},
+        {clue:"OtherTools", details:"Most other tools don’t fit within developers workflows, but Lift integrates with GitHub, GitLab, and BitBucket on-prem. Lift integrates with GitHub cloud, and GitLab and BitBucket as a SaaS solution. "},
+        {clue:"SonarQube", details:"Traditional code quality tools (like SonarQube) only do lightweight analysis (linting), and can’t catch the tougher security issues. While linters catch performance and reliability bugs, they only inspect each file in isolation, so they can’t identify bugs that span across the project. Lift provides better results (catches bugs that SonarQube does not), better coverage (more security-relevant issues), and lower noise (fewer false positives)"},
         // {clue:"", details:""},
       ],
       selectedClue:{clue:"", details:""},
@@ -170,8 +170,8 @@ export default {
 .inputFooter{
   position: fixed;
   bottom: 0px;
-  left: 5%;
-  right: 5%;
+  left:10px;
+  right: 10px;
   /* margin: 0px auto; */
   /* background: rgb(41, 41, 41); */
   border-radius: 10px;

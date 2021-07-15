@@ -7,6 +7,7 @@ export default new Vuex.Store({
     state:{
         progress: {
             Cafeteria: false,
+            Calculator: false,
             ClueFinder: false,
             Decoder: false,
             FamilyFeud: false,
@@ -24,7 +25,7 @@ export default new Vuex.Store({
             localStorage.setItem("progress", JSON.stringify(state.progress));
         },
 
-        resetProgress(state, data){
+        setAllProgress(state, data){
             state.progress = data;
         },
 

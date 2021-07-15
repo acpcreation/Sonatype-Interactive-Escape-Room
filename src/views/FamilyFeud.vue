@@ -80,6 +80,7 @@ export default {
     let progress = this.$store.getters.getProgress;
     if(progress[this.$route.name] == true){
       this.successMessage = "hint!";
+      this.questionIndex = this.questions.length-1
       this.currentQuestion = this.questions[this.questions.length-1];
       this.submissions = this.currentQuestion.answers;
     }

@@ -2,7 +2,7 @@
   <div class="main">
     <!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_image_magnifier_glass -->
     <div id="magnifier" :style="position"></div>
-    <img id="backgroundMagnifyImage" src="../../public/img/antiqueStore.jpeg" />
+    <img id="backgroundMagnifyImage" src="../../public/img/antiqueStore.jpg" />
     <!-- @mouseover="hover = true" @mouseleave="hover = false" -->
   </div>
 </template>
@@ -79,7 +79,7 @@ export default {
   cursor: none;
   width: 200px;
   height: 200px;
-  background-image: url('../../public/img/antiqueStore.jpeg');
+  background-image: url('../../public/img/antiqueStore.jpg');
   background-repeat: no-repeat;
   /* background-size: 1500px*3; */
   background-size: 100vw *3;

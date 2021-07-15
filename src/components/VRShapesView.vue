@@ -1,53 +1,55 @@
 <template>
-  <a-scene class="vr">
-    <a-camera>
-      <a-cursor color="white"/>
-    </a-camera>
+  <div class="main">
+    <a-scene class="vr">
+      <a-camera>
+        <!-- raycaster="objects:.landscape,.environmentGround,.environmentDressing; far:0.5;" -->
+        <a-cursor color="white"  />
+      </a-camera>
 
-    <!-- <a-entity 
-    v-for="i in connections" 
-            :key="'line'+i.id" 
-          :line="i.connection"
-          style="z-index:0px !important;"></a-entity> -->
+      <!-- <a-entity 
+      v-for="i in connections" 
+              :key="'line'+i.id" 
+            :line="i.connection"
+            style="z-index:0px !important;"></a-entity> -->
 
-    <a-box  v-for="i in boxes" 
-            :key="'box'+i.id" 
-            :name="'box'+i.id" 
-            :position="i.position" 
-            :rotation="i.rotation" 
-            :color="i.color"
-            @click="openInfo(i.id)"
-            animation="property: rotation; to: 0 360 0; loop: true; dur: 4500; easing:linear;"></a-box>
-    
-    
-    <!-- @click="openInfo(i.id)" -->
-    
-    <!-- <a-sphere v-for="i in spheres" 
-            :key="'sphere'+i.id" 
-            :name="'sphere'+i.id" 
-            :position="i.position" 
-            :radius="i.radius" 
-            :color="i.color"></a-sphere>
-
-
-    <a-cone v-for="i in cones" 
-            :key="'cone'+i.id" 
-            :name="'cone'+i.id" 
-            :position="i.position" 
-            :radius-bottom="i.radius" 
-            radius-top="0" 
-            :height="i.height" 
-            :color="i.color"></a-cone> -->
-    
+      <a-box  v-for="i in boxes" 
+              :key="'box'+i.id" 
+              :name="'box'+i.id" 
+              :position="i.position" 
+              :rotation="i.rotation" 
+              :color="i.color"
+              @click="openInfo(i.id)"
+              animation="property: rotation; to: 0 360 0; loop: true; dur: 4500; easing:linear;"></a-box>
+      
+      
+      <!-- @click="openInfo(i.id)" -->
+      
+      <!-- <a-sphere v-for="i in spheres" 
+              :key="'sphere'+i.id" 
+              :name="'sphere'+i.id" 
+              :position="i.position" 
+              :radius="i.radius" 
+              :color="i.color"></a-sphere>
 
 
-    <!-- <a-dodecahedron color="yellow" position="-5 1.25 -5" radius="2"></a-dodecahedron>
-    <a-icosahedron color="#FF926B" position="5 0.75 -3" radius="2"></a-icosahedron> -->
-    <!-- <a-torus-knot position="1 0.75 3" color="#B84A39" arc="360" p="3" q="7" radius="2" radius-tubular="0.05"></a-torus-knot> -->
-    <!-- <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane> -->
-    <!-- <a-sky color="#ECECEC"></a-sky> -->
-  </a-scene>
+      <a-cone v-for="i in cones" 
+              :key="'cone'+i.id" 
+              :name="'cone'+i.id" 
+              :position="i.position" 
+              :radius-bottom="i.radius" 
+              radius-top="0" 
+              :height="i.height" 
+              :color="i.color"></a-cone> -->
+      
 
+
+      <!-- <a-dodecahedron color="yellow" position="-5 1.25 -5" radius="2"></a-dodecahedron>
+      <a-icosahedron color="#FF926B" position="5 0.75 -3" radius="2"></a-icosahedron> -->
+      <!-- <a-torus-knot position="1 0.75 3" color="#B84A39" arc="360" p="3" q="7" radius="2" radius-tubular="0.05"></a-torus-knot> -->
+      <!-- <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane> -->
+      <!-- <a-sky color="#ECECEC"></a-sky> -->
+    </a-scene>
+  </div>
 </template>
 
 <script>
@@ -141,7 +143,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-.vr{
+.main{
+  position: fixed;
+  top:100px;
+  left:0;
+  right:0;
+  bottom:0;
 }
 
 

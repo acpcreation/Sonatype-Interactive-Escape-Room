@@ -5,6 +5,8 @@
     <h1>Follow The Path</h1>
     <p class="challengeDescription">In this challenge you need to guess the path from the start to the end in order to unlock the escape clue. Be careful not to guess the wrong space! If you do you will need to correctly answer a question to continue.</p>
 
+    <p class="successMessage">{{successMessage}}</p>
+
     <div class="tableContainer">
       <p class="start">Start</p>
       <table id="pathTable" v-if="tableLoad">
@@ -18,9 +20,7 @@
       </table>
       <p class="finish">Finish</p>
     </div>
-
-    <br><br><br><br>
-    <p class="successMessage">{{successMessage}}</p>
+    
     <br>
 
 
@@ -123,6 +123,14 @@ export default {
     let progress = this.$store.getters.getProgress;
     if(progress[this.$route.name] == true){
       this.successMessage = "hint!";
+
+      for(let i in this.path){
+        for(let j in this.path[i]){
+          if(this.path[i][j] != 0){
+            this.path[i][j] = "done"
+          }
+        }
+      }
     }
   },
 

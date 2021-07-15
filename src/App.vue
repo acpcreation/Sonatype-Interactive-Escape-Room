@@ -19,7 +19,7 @@ export default {
   },
   data(){
     return{
-      welcome:false,
+      welcome:true,
       audit: false
     }
   },
@@ -27,7 +27,7 @@ export default {
     let progress = localStorage.getItem("progress");
     if(progress != null){
       console.log(JSON.parse(progress))
-      this.$store.commit('resetProgress', JSON.parse(progress)); 
+      this.$store.commit('setAllProgress', JSON.parse(progress)); 
     }
 
     // this.$store.commit('updateProgress', this.$route.name); 

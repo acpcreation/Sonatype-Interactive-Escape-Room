@@ -4,7 +4,10 @@
     <h1>Complete!</h1>
     <p>This is where we will put all of the hints from all of the challenges.</p>
     
-    <h2>WE FIGGIN DID IT!</h2>
+    <video width="80%" id="videoPane" controls>
+      <source src="../../public/video/complete.mp4" type="video/mp4">
+        Your browser does not support HTML video.
+    </video>
 
   </div>
 </template>
@@ -26,7 +29,23 @@ export default {
 
   mounted() {
     
+    // let progress = this.$store.getters.getProgress;
 
+    // let complete ={
+    //   Cafeteria: true,
+    //   Calculator: true,
+    //   ClueFinder: true,
+    //   Decoder: true,
+    //   FamilyFeud: true,
+    //   HangMan: true,
+    //   PriceQuotes: true,
+    //   RememberThePath: true,
+    //   VRExplorer: true
+    // };
+    
+    // if(progress != complete){
+    //   this.openPage("");
+    // }
 
   },
 

@@ -8,7 +8,7 @@
       <!-- https://www.vecteezy.com/vector-art/420220-modern-office-setup-background-vector-flat-illustration -->
       <!-- <img class="backgroundImage" src="../../public/img/background.png"/> -->
     
-      <div class="buttonImages" @click="settings = !settings">
+      <div class="buttonImages" @click="settings = false">
         <img class="passcodePage"   @click="passcode=!passcode" src="../../public/img/passcode.png"/>
         <img class="mazePage"       @click="openPage('RememberThePath')" src="../../public/img/maze.png"/>
         <img class="calculatorPage" @click="openPage('Calculator')" src="../../public/img/calculator.png"/>

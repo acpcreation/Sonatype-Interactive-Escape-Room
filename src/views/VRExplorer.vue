@@ -36,8 +36,8 @@ export default {
     
   },
   components: {
-    VRShapesView,
-    
+    VRShapesView
+
   },
 
   computed: {
@@ -49,7 +49,7 @@ export default {
       visited: [],
 
       content:[
-        {title:"Slack",      description:"Join the conversation on Slack ( https://sonatype.slack.com/archives/C01N520DV3R ) to ask questions and learn more."},
+        {title:"Slack",      description:"Join the conversation on Slack: nexus-container-q_a-room to ask questions and learn more."},
         {title:"Research",   description:"According to Gartner, By 2022, more than 75% of global organizations will be running containerized applications in production, which is a significant increase from fewer than 30% today.", footer:"In the next 12 months, 36% of security pros who are implementing/expanding container security plan to implement it during testing, 37% plan to implement it in development, and 20% plan to implement it during design (July 2020)."},
         {title:"Conatainer", description:"Containers are a way to package code and all its dependencies and can be deployed to any environment in a matter of seconds (for example, moving quickly from a testing environment to production). Using a container allows teams to move fast, deploy software efficiently, and operate at an unprecedented scale. "},
         {title:"NeuVector",  description:"NeuVector provides commercial-grade, full lifecycle container security. This includes", list:["Vulnerability scanning", "Security assessments", "Compliance", "Admission control (gate containers based on certain criteria like root access)"], footer: "Similar to Sonatype, NeuVector provides a best-of-breed solution with unique features that differentiate it from the competition."},
@@ -63,7 +63,7 @@ export default {
         // {title:"", description:"", list:[""], footer:""},
 
       ],
-      currentContent: {}
+      currentContent: {},
 
     }
   },
@@ -73,9 +73,12 @@ export default {
     let progress = this.$store.getters.getProgress;
     if(progress[this.$route.name] == true){
       this.successMessage = "hint!";
+      for(let i in this.content){
+        this.visited.push(i)
+      }
     }
 
-
+    this.vrShapes = true;
   },
 
   methods: {
@@ -108,8 +111,13 @@ export default {
 
 
 
+  },
+
+  destroyed() {
+    window.location.reload();
   }
    
+
 }
 </script>
 

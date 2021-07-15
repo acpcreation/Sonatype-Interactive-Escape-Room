@@ -5,6 +5,9 @@
     <h3>Decoder</h3>
     <p v-if="selectedBook == null" class="challengeDescription">Decipher the hidden text using the books in your library. Enter the full text in the input field to reveal the escape clue. </p>
 
+    <p class="successMessage">{{successMessage}}</p>
+
+
     <div class="centerItems">
       <!-- <img class="codedPaper" src="../../public/img/codedPaper.jpeg" /> -->
       <div class="codedPaper">
@@ -15,9 +18,9 @@
         <div v-for="i in library" :key="i.title" @click="openBook(i)" :style="'background-color:'+i.color">{{i.title}}</div>
       </div>
     </div>
-
+    
     <b-form-input type="text" class="decodedMessage" :state="inputState" v-model="decodedMessage" placeholder="Enter the decoded message here.."></b-form-input>
-    <p class="successMessage">{{successMessage}}</p>
+    
 
     <Book v-if="selectedBook != null" :content="selectedBook" @close="selectedBook = null"/>
 
@@ -67,15 +70,16 @@ export default {
   },
 
   mounted() {
+    this.message = "The data we collect on OSS are security, license, version popularity, age, malicious components, category, hygiene rating";
+    this.message = this.message.toUpperCase()
+
     //Check save state
     let progress = this.$store.getters.getProgress;
     if(progress[this.$route.name] == true){
-      // this.decodedMessage = this.message ;
+      this.decodedMessage = this.message ;
       this.successfulDecyption();
     }
 
-    this.message = "The data we collect on OSS are security, license, version popularity, age, malicious components, category, hygiene rating";
-    this.message = this.message.toUpperCase()
     this.encodeMessage(this.message)
 
   },
@@ -275,8 +279,8 @@ export default {
 
 .decodedMessage{
   text-align: center;
-  margin: 60px auto; 
-  width:800px;
+  margin: 30px auto; 
+  width:80vw;
   text-transform:uppercase;
   color:rgb(133, 77, 107)
 }

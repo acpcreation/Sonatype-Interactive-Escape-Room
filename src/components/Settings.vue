@@ -4,6 +4,7 @@
     <hr>
     <b-button variant="primary" @click="replayIntro()">Replay intro Video</b-button>
     <b-button variant="danger" @click="fullReset()">Reset Game</b-button>
+    <!-- <b-button variant="dark" @click="setAllComplete()">Complete All</b-button> -->
 
   </div>
 </template>
@@ -33,6 +34,23 @@ export default {
 
     replayIntro: function(){
       this.$root.$emit('WelcomeVideo'); 
+    },
+
+    setAllComplete: function(){
+      let complete ={
+        Cafeteria: true,
+        Calculator: true,
+        ClueFinder: true,
+        Decoder: true,
+        FamilyFeud: true,
+        HangMan: true,
+        PriceQuotes: true,
+        RememberThePath: true,
+        VRExplorer: true
+      };
+
+      this.$store.commit('setAllProgress', complete);
+      localStorage.setItem("progress", JSON.stringify(complete));
     }
 
 

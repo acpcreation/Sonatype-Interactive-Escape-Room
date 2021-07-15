@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <div class="img-magnifier-container">
-      <img id="myimage" src="../../public/img/antiqueStore.jpeg" width="600" height="400">
+      <img id="myimage" src="../../public/img/antiqueStore.jpg" width="600" height="400">
     </div>
   </div>
 </template>

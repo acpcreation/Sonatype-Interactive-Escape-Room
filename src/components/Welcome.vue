@@ -2,11 +2,15 @@
   <div class="main centerItems">
     <div class="pane">
       <b-icon class="closeButton" icon="x-circle-fill" font-scale="2" variant="light" @click="closePane()"></b-icon>
-      <h3>TRAINING VIDEO</h3>
-      <!-- <video width="100%" id="videoPane" controls >
-        <source src="../../public/img/hexagon.png" type="video/mp4">
+      <p class="title">Welcome to the Sonatype Enablement Escape Room</p>
+      <p class="subtext">Watch this video to receive your assignment</p>
+      <video width="100%" id="videoPane" controls>
+        <source src="../../public/video/intro.mp4" type="video/mp4">
           Your browser does not support HTML video.
-      </video> -->
+          https://sonatype.zoom.us/rec/share/cuXlsdm1k74iUBRNijkvdSZ0IqsliXe005Yqbjgh_RvhcuBHN_n2HxTNuTVW4mzW.SN5eUE-0wrFzyDcs?startTime=1626364196000
+          <br>
+          Password:j@S&5bmn
+      </video>
     </div>
   </div>
 </template>
@@ -47,21 +51,36 @@ export default {
   left:0;
   bottom:0;
   right:0;
-  background-color: rgba(22, 22, 22, 0.80);
+  background-color: rgba(22, 22, 22, 0.85);
   z-index: 100;
+  overflow:scroll;
 }
 
 .pane{
-  width:70vw;
-  height: 40vh;
-  margin-top: 8vh;
-  background-color: rgb(26, 26, 26);  
+  width:80vw;
+  /* height: 40vh; */
+  margin-top: 2vw;
+  background-color: rgba(0, 0, 0, 0.85);  
   border: solid;
   border-color: rgb(235, 251, 255);
   border-width:10px;
   border-radius: 10px;
   text-align: center;  
+  padding:0px;
 }
+
+.title{
+  font-size: 28px;
+  margin-top:-30px;
+}
+
+.subtext{
+  margin-top:-10px;
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: gray;
+}
+
 
 .closeButton{
   /* position:fixed;
@@ -69,7 +88,7 @@ export default {
   top:13vh; */
 
   margin-top: 10px;
-  margin-left:-65vw;
+  margin-left:-75vw;
   cursor: pointer;
 }
 
