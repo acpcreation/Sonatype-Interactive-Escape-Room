@@ -48,19 +48,21 @@ export default {
 
   },
 
-
   data(){
     return{
       questions:[
-        {question:"We surveyed 100 sales guides in Highspot: For which Sonatype products might you expect a security persona to act as a buyer?",                answers:["ADP","Container","Lift","Lifecycle","IaC","Firewall"]},
-        {question:"We surveyed 100 sales guides in Highspot: For which Sonatype products might you expect a Dev/Engineering Manager persona to act as a buyer?", answers:["ALP", "ADP", "Lift", "Repository", "Lifecycle"]},
-        {question:"We surveyed 100 sales guides in Highspot: For which Sonatype products might you expect an Operations persona to act as a buyer?",             answers:["Container", "IaC"]},
-        {question:"We surveyed 100 sales guides in Highspot: For which Sonatype products might you expect a developer/engineer to act as an influencer?",        answers:["ALP", "ADP", "Firewall", "Repository", "Lifecycle"]},
+        {question:"We surveyed 100 sales guides in Highspot: For which Sonatype products might you expect a security persona to act as a primary buyer?",                answers:["ADP","Container","Lift","Lifecycle","IaC","Firewall"]},
+        {question:"We surveyed 100 sales guides in Highspot: For which Sonatype products might you expect a Dev/Engineering Manager persona to act as a primary buyer?", answers:["ALP", "ADP", "Lift", "Repository", "Lifecycle"]},
+        {question:"We surveyed 100 sales guides in Highspot: For which Sonatype products might you expect an Operations persona to act as a primary buyer?",             answers:["Container", "IaC"]},
+        {question:"We surveyed 100 sales guides in Highspot: For which Sonatype products might you expect a developer/engineer to act as an primary influencer?",        answers:["ALP", "ADP", "Firewall", "Repository", "Lifecycle"]},
         // {question:"", answers:[""]},
       ],
 
       hints:[
         "hint1",
+        "hint2",
+        "hint3",
+        "hint4",
       ],
 
       currentQuestion:{},
@@ -79,11 +81,13 @@ export default {
     //Check save state
     let progress = this.$store.getters.getProgress;
     if(progress[this.$route.name] == true){
-      this.successMessage = "hint!";
+      this.successMessage = "complete!";
       this.questionIndex = this.questions.length-1
       this.currentQuestion = this.questions[this.questions.length-1];
       this.submissions = this.currentQuestion.answers;
     }
+
+    this.addCharacterListeners();
   },
 
   methods: {
@@ -108,12 +112,20 @@ export default {
       if(this.submissions.length == this.currentQuestion.answers.length){
         if(this.questionIndex < this.questions.length-1){
           this.successMessage = "Hint";
-          this.$store.commit('updateProgress', this.$route.name);
         }else{
+          this.$store.commit('updateProgress', this.$route.name);
           this.successMessage = "Complete!"
         }
       }
 
+    },
+
+    addCharacterListeners: function(){
+      window.addEventListener('keydown', (e) => {
+        if(e.key == 'Enter'){
+          this.submitAnswer()
+        }
+      });
     },
 
     newRound:function(){

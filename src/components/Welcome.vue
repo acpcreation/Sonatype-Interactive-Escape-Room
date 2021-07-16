@@ -77,7 +77,7 @@ export default {
 .subtext{
   margin-top:-10px;
   margin-bottom: 5px;
-  font-size: 16px;
+  font-size: 20px;
   color: gray;
 }
 

@@ -45,24 +45,6 @@
       </div>
     </div>
 
-    <!-- <b-modal id="hintModal" title="Oops! You didn't guess the right space." class="modal" ok-title="Restart" ok-variant="warning" @ok="resetPath()" ok-only>
-      <h4>Answer this question to give it another try, or reset the board:</h4>
-
-      <div class="modalContents">
-        <p>{{hints[hintIndex].hint}}</p>
-        <b-input-group class="inputGroup">
-          <b-form-input type="text" v-model="hintAnswerSubmission" placeholder="Answer.."></b-form-input>
-          <template #append>
-            <b-button variant="primary" @click="submitAnswer()">Submit</b-button>
-          </template>
-        </b-input-group>
-
-        <br>
-        <p v-if="hintCorrectOrIncorrect == 'correct'" style="color:green;">Correct!</p>
-        <p v-if="hintCorrectOrIncorrect == 'incorrect'" style="color:red;">Sorry, Incorrect!</p>
-      </div>
-    </b-modal> -->
-
   </div>
 </template>
 
@@ -123,6 +105,7 @@ export default {
     let progress = this.$store.getters.getProgress;
     if(progress[this.$route.name] == true){
       this.successMessage = "hint!";
+      document.getElementById("pathTable").setAttribute("style", "pointer-events:none");
 
       for(let i in this.path){
         for(let j in this.path[i]){
@@ -132,6 +115,8 @@ export default {
         }
       }
     }
+
+    this.addCharacterListeners();
   },
 
   methods: {
@@ -151,6 +136,7 @@ export default {
           this.tableLoad = true;
           if(this.path[7][7] == "done"){
             this.successMessage = "HINT";
+            document.getElementById("pathTable").setAttribute("style", "pointer-events:none");
             this.$store.commit('updateProgress', this.$route.name);
           }
         }
@@ -223,7 +209,15 @@ export default {
       setTimeout(function(){
         document.getElementById("pathTable").setAttribute("style", "background-color: white;");
       }, 300);
-    }
+    },
+
+    addCharacterListeners: function(){
+      window.addEventListener('keydown', (e) => {
+        if(e.key == 'Enter'){
+          this.submitAnswer()
+        }
+      });
+    },
 
 
 

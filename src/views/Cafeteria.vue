@@ -4,7 +4,7 @@
     <h3>Cafeteria Cook</h3>
     <p class="challengeDescription">Customers will make orders and it is your job to select the correct products to fulfill the order. Careful not to click a wrong item!</p>
 
-    <p class="successMessage">{{successMessage}}</p>
+    <p class="successMessage"><a href="https://docs.google.com/document/d/1aQwNj8QY59mJDr4_KR0fe5zJO4oORuq1m84agY1rpxw/edit?usp=sharing" target="_blank">{{successMessage}}</a></p>
 
     <div class="sideBySide">
       <div class="plate">
@@ -78,7 +78,7 @@ export default {
     //Check save state
     let progress = this.$store.getters.getProgress;
     if(progress[this.$route.name] == true){
-      this.successMessage = "hint!";
+      this.successMessage = "Clue: Click HERE to open an email thread that may contain clues.";
       this.disableClickArea="pointer-events:none"
     }
   },
@@ -138,7 +138,7 @@ export default {
           this.disableClickArea = "";
           this.currentOrder +=1;
         }else{
-          this.successMessage = "HINT"
+          this.successMessage = "Clue: Click HERE to open an email thread that may contain clues."
           this.$store.commit('updateProgress', this.$route.name);
         }
 

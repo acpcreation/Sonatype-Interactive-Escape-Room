@@ -3,7 +3,7 @@
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <div class="fixItems">
       <h3>Clue Finder</h3>
-      <p>Find all the hidden clues and submit them in order to unlock the clue.</p>
+      <p>Find all the hidden clues and submit them in order to unlock the clue. Scroll down to view the submission box.</p>
       <p class="successMessage">{{successMessage}}</p>
     </div>
 
@@ -83,10 +83,11 @@ export default {
     //Check save state
     let progress = this.$store.getters.getProgress;
     if(progress[this.$route.name] == true){
-      this.successMessage = "hint!";
+      this.successMessage = "Clue: We’d like a way to be notified when issues do arise, and those notifications be sent to the correct business units for remediation / action. Oh and by the way...we don’t want to automatically fail everything, all the time. Some vulnerabilities are worse than others.";
       this.oldClues = this.clues;
     }
     this.cluesLength = this.clues.length;
+    this.addCharacterListeners();
   },
 
   methods: {
@@ -114,7 +115,7 @@ export default {
         this.oldClues.push(clue[0]);
 
         if(this.cluesLength == this.oldClues.length){
-          this.successMessage = "HINT!"
+          this.successMessage = "Clue: We’d like a way to be notified when issues do arise, and those notifications be sent to the correct business units for remediation / action. Oh and by the way...we don’t want to automatically fail everything, all the time. Some vulnerabilities are worse than others. "
           this.$store.commit('updateProgress', this.$route.name);
         }
 
@@ -133,7 +134,15 @@ export default {
       this.selectedClue = e;
       this.$bvModal.show("clueDetailsModal"); 
       
-    }
+    },
+
+    addCharacterListeners: function(){
+      window.addEventListener('keydown', (e) => {
+        if(e.key == 'Enter'){
+          this.submitAnswer()
+        }
+      });
+    },
 
 
 
@@ -150,6 +159,7 @@ export default {
   text-align: center;
   padding: 0px;
   margin-bottom: -100px;
+  overflow:scroll;
 }
 
 .fixItems{
@@ -168,14 +178,15 @@ export default {
 }
 
 .inputFooter{
-  position: fixed;
+  /* position: fixed;
   bottom: 0px;
   left:10px;
-  right: 10px;
+  right: 10px; */
   /* margin: 0px auto; */
   /* background: rgb(41, 41, 41); */
+  /* z-index: 101; */
+  margin-top:100px;
   border-radius: 10px;
-  /* height: 60px; */
   padding: 10px 15px;
   display: flex;
   justify-content: center;

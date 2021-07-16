@@ -1,5 +1,5 @@
 <template>
-  <div class="pane">
+  <div class="pane" @click="close()">
     <p>General Settings</p>
     <hr>
     <b-button variant="primary" @click="replayIntro()">Replay intro Video</b-button>
@@ -27,6 +27,12 @@ export default {
   },
 
   methods: {
+
+    close: function(){
+      this.$emit('closeSettings');   
+    },
+
+
     fullReset: function() {
       localStorage.clear();
       window.location.reload()
@@ -51,7 +57,9 @@ export default {
 
       this.$store.commit('setAllProgress', complete);
       localStorage.setItem("progress", JSON.stringify(complete));
-    }
+
+    },
+  
 
 
   }

@@ -37,17 +37,24 @@ export default {
       let zoom = 3;
       let x = e.pageX-halfWidth;
       let y = e.pageY-halfWidth;
-      // let screenWidth = window.screen.width;
-      //Large: 1920 => -180
-      //Medium: 1536 => 220
+
+      let w = (window.screen.width - 1536)*2;
+
+      // let h = window.screen.height/48;
+
+
       
-      // console.log(x+", "+y)
-      let bottomPadding = window.screen.height - (window.screen.height/4)-20
+      // console.log(w+", "+h)
+      // let bottomPadding = window.screen.height - (window.screen.height/4)-20
       // console.log(y+" < "+bottomPadding)
 
-      if(x>-35 && y>-40 && y< bottomPadding){
-        let bp = "-"+((x * zoom) +220) + "px -" +((y * zoom) +20)+"px";
+      if(x>-35 && y>-40){
+        let bp = "-"+((x * zoom) +200 -w)+ "px -" +((y * zoom) +20)+"px";
+        // let bp = "-" + ((x * zoom) - w + zoom) + "px; -" + ((y * zoom) - h + zoom) + "px";
+        // let bp = "-"+((x * zoom) -600) + "px -" +((y * zoom) -300)+"px";
         this.position = "left:"+x+"px; top:"+y+"px; background-position:"+bp;
+        // this.position = " -" + ((x * zoom) - w + zoom) + "px; -" + ((y * zoom) - h + zoom) + "px";
+        // console.log(this.position)
       }else{
         this.position = "visibility:hidden;"
       }
@@ -68,7 +75,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .main{
-
+  
 }
 
 
@@ -86,9 +93,9 @@ export default {
 }
 
 #backgroundMagnifyImage{
-  /* width: 1500px; */
-  width: 100vw;
-  height:100vh; 
+  width: 1536px;
+  /* width: 1400px; */
+  /* height:100vh;  */
 }
 
 

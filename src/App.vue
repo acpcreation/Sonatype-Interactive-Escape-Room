@@ -126,6 +126,10 @@ hr{
   font-size: 20px !important;
 }
 
+.successMessage a{
+  color: rgb(77, 248, 77);
+}
+
 .challengeDescription{
   padding:0px 15vw;
 }
