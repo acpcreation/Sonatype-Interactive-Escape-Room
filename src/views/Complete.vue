@@ -2,7 +2,8 @@
   <div class="main">
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <h1>Complete!</h1>
-    <p>This is where we will put all of the hints from all of the challenges.</p>
+    <p>Watch the below video then click the Google Drive link</p>
+    <p><a href="https://drive.google.com/drive/folders/1Q8xnLcn1dSU0lkdxZuTuHStIA5kerrr0?usp=sharing" target="_blank">Click HERE for Google Drive access</a></p>
     
     <video width="80%" id="videoPane" controls>
       <source src="../../public/video/complete.mp4" type="video/mp4">
@@ -28,25 +29,20 @@ export default {
   },
 
   mounted() {
+    let progress = this.$store.getters.getProgress;
+    let complete = true;
+    for(let i in progress){
+      // console.log(progress[i])
+      if(progress[i] != true){
+        this.openPage("");
+        complete = false;
+      }
+    }
     
-    // let progress = this.$store.getters.getProgress;
-
-    // let complete ={
-    //   Cafeteria: true,
-    //   Calculator: true,
-    //   ClueFinder: true,
-    //   Decoder: true,
-    //   FamilyFeud: true,
-    //   HangMan: true,
-    //   PriceQuotes: true,
-    //   RememberThePath: true,
-    //   VRExplorer: true
-    // };
     
-    // if(progress != complete){
-    //   this.openPage("");
-    // }
-
+    if(complete == true){
+      document.getElementById("videoPane").play();
+    }
   },
 
   methods: {
@@ -67,6 +63,10 @@ export default {
 .main{
   text-align: center;
   padding: 2vw;
+}
+
+a{
+  font-size: 20px;
 }
 
 

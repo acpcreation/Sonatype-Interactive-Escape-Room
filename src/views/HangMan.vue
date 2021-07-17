@@ -2,7 +2,8 @@
   <div class="main">
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <h1>Hang-Man</h1>
-    <p class="challengeDescription">Hangman! In this challenge you need complete each round by guessing letters on the keyboard in order to reveal the hidden answer. </p>
+    <p class="challengeDescription">Hangman! In this challenge you need complete each round by guessing letters on the keyboard in order to reveal the hidden answer. All your clues will be displayed at the end.</p>
+    <br>
 
     <p class="questionDisplay">{{roundQuestions[roundIndex]}}</p>
 
@@ -21,8 +22,9 @@
     <p>Characters Guessed</p>
     <p class="guessedLetters">{{guessedLetters.toString().replaceAll(',',', ')}}</p>
 
-    <p class="successMessage">{{successMessage.toString().replaceAll(',', ', ')}}</p>
-    <b-button variant="outline-warning" @click="newRound()" v-if="successMessage.length >1 && roundIndex < rounds.length-1">New Round</b-button>
+      <p class="successMessage" v-for="i in successMessage" :key="i">{{i}}</p>
+
+    <b-button variant="outline-warning" @click="newRound()" v-if="successMessage.length >0 && roundIndex < rounds.length-1">New Round</b-button>
   </div>
 </template>
 
@@ -83,12 +85,12 @@ export default {
       ],
 
       hints:[
-        "Hint 1", 
-        "Hint 2", 
-        "Hint 3", 
-        "Hint 4", 
-        "Hint 5", 
-        "Hint 6"
+        "We’ve been trying to figure out how to add automation to our SDLC process, as of right now it is manual and extremely time intensive. Legal review is even worse.", 
+        "At one point we tried jFrog due to them including XRay for free, however, we ended up paying a LOT more than originally quoted...there were a lot of hidden costs due to our request for HA and multiple servers.", 
+        "We have also looked at Black Duck and Whitesource for their security solutions. ", 
+        "We have no way to know if we are vulnerable or not, and no easy way to understand if we are using licenses that do not comply with company policy.", 
+        "We saw on the website there is a premium bundle, but given we don’t know what we have for code or the quality of it, given the nature of us looking at cloud and new technologies like container, we would be interested in understanding more.", 
+        "We appreciate you getting us this info today. We would love a demo/ presentation on the platform so we can compare and contrast with the other vendors we’re evaluating."
       ],
 
       guessedLetters:[],
@@ -102,7 +104,7 @@ export default {
     //Check save state
     let progress = this.$store.getters.getProgress;
     if(progress[this.$route.name] == true){
-      this.successMessage = this.hints.toString();
+      this.successMessage = this.hints;
       this.roundIndex = this.hints.length-1;
     }
 
@@ -156,11 +158,11 @@ export default {
       }
 
       if(complete == true){
-        this.successMessage = this.hints[this.roundIndex];
+        this.successMessage = [this.hints[this.roundIndex]];
 
         if(this.roundIndex == this.hints.length-1){
-          this.$store.commit('updateProgress', this.$route.name);
-          this.successMessage = this.hints.toString();
+          this.$store.commit('updateProgress', {route:this.$route.name, context:this});
+          this.successMessage = this.hints;
         }
 
       }

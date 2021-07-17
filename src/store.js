@@ -21,8 +21,20 @@ export default new Vuex.Store({
 
     mutations:{
         updateProgress(state, data){
-            state.progress[data] = true;
+            state.progress[data.route] = true;
             localStorage.setItem("progress", JSON.stringify(state.progress));
+
+            let complete = true;
+            for(let i in state.progress){
+                if(state.progress[i] != true && i != "Complete"){
+                  complete = false;
+                }
+            }
+
+            if(complete == true && state.progress.Complete != true){
+                let that = data.context;
+                that.$root.$emit('AllComplete'); 
+            }
         },
 
         setAllProgress(state, data){

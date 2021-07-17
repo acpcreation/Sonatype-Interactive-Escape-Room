@@ -40,6 +40,7 @@ export default {
 
     replayIntro: function(){
       this.$root.$emit('WelcomeVideo'); 
+      // this.$root.$emit('AllComplete'); 
     },
 
     setAllComplete: function(){
@@ -47,6 +48,7 @@ export default {
         Cafeteria: true,
         Calculator: true,
         ClueFinder: true,
+        Complete: false,
         Decoder: true,
         FamilyFeud: true,
         HangMan: true,

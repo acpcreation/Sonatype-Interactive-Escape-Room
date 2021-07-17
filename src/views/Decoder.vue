@@ -3,7 +3,7 @@
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <!-- Mandarin, Hieroglyphics, Morse Code, Russian, Arabic  -->
     <h3>Decoder</h3>
-    <p v-if="selectedBook == null" class="challengeDescription">Decipher the hidden text using the books in your library. Enter the full text in the input field to reveal the escape clue. </p>
+    <p v-if="selectedBook == null" class="challengeDescription">Decipher the hidden text using the books in your library. Enter the full text (including commas) in the input field to reveal the escape clue. </p>
 
     <p class="successMessage">{{successMessage}}</p>
 
@@ -95,7 +95,7 @@ export default {
 
     successfulDecyption: function() {
       this.successMessage = 'Clue: We have 250 users (dev and sec) here at EZ but Acme has 1000 developers and 250 security professionals. We know we have allocated $200,000 for this initiative, but pending the solution we may have to bring in our new parent company to help streamline integrations, procedures, etc.';
-      this.$store.commit('updateProgress', this.$route.name);
+      this.$store.commit('updateProgress', {route:this.$route.name, context:this});
     },
 
     morseCodeContent: function(){

@@ -4,6 +4,8 @@
       <b-icon class="closeButton" icon="x-circle-fill" font-scale="2" variant="dark" @click="closePane()"></b-icon>
       <h1>Enter Passcode</h1>
       <br>
+      <p class="scrambledLetters" v-if="scrambledLetters.length>1">{{scrambledLetters}}</p>
+      <p class="errorText" v-else>Complete all the challenges to try and submit a passcode</p>
       <p class="errorText">{{errorText}}</p>
       <p class="successMessage">{{successMessage}}</p>
       <div class="centerItems">
@@ -11,10 +13,12 @@
                 v-for="i in characters" 
                 :key="i.id" v-model="i.v" 
                 :ref="'input'+i.id"
-                maxlength="1"/>
-                <!-- @change="nextInput(i.id)" -->
+                maxlength="1"
+                v-on:keyup="changeInput($event)"
+                :disabled="scrambledLetters.length<1"
+                />
       </div>
-      <b-button class="button" variant="success" size="lg" @click="submit()" :disabled="successMessage.length>1">Submit</b-button>
+      <b-button class="button" variant="success" size="lg" @click="submit()" :disabled="successMessage.length>1 || scrambledLetters.length<1">Submit</b-button>
 
     </div>
   </div>
@@ -29,23 +33,53 @@ export default {
   data(){
     return{
       characters: [
+        {id:0, v:""},
         {id:1, v:""},
         {id:2, v:""},
         {id:3, v:""},
         {id:4, v:""},
-        {id:5, v:""}],
+        {id:5, v:""},
+        {id:6, v:""},
+        {id:7, v:""},
+        {id:8, v:""}],
       passphrase:"",
+      scrambledLetters:"",
+      correctPasscode:"DISCOVERY", 
       errorText:"",
       successMessage:""
     }
   },
 
   mounted: function(){
-    let passcode = this.$store.getters.getPasscode;
-    if(passcode.length>1){
-      this.characters = passcode;
-      this.submit();
+    let progress = this.$store.getters.getProgress;
+
+    let complete = true;
+    for(let i in progress){
+      // console.log(progress[i])
+      if(progress[i] != true && i != "Complete"){
+        complete = false;
+      }
     }
+    if(complete == true){
+      this.scrambledLetters = "Y D C R I V S O" //DISCOVERY
+    }
+
+
+    if(progress.Complete){
+      this.characters = [];
+      for(let i in this.correctPasscode){
+        this.characters.push({id:i, v:this.correctPasscode[i]})
+      }
+      this.submit();
+    }else{
+      let passcode = this.$store.getters.getPasscode;
+      if(passcode.length>1){
+        this.characters = passcode;
+        this.submit();
+      }
+    }
+    
+   
   },
 
   methods:{
@@ -57,17 +91,36 @@ export default {
       this.$emit("closePasscode");
     },
 
+    changeInput: function(evt){
+      if(evt.key !== "Backspace"){
+        try{
+          evt.target.nextElementSibling.focus();
+        }catch{
+          //Do nothing
+        }
+      }else{
+        try{
+          evt.target.previousElementSibling.focus();
+        }catch{
+          //Do nothing
+        }
+      }
+    },
+
     submit: function() {
       this.errorText = "";
       let codeSubmission = ""; //this.characters.join().replace(',','')
       this.$store.commit('storePasscode', this.characters);
 
       for(let i in this.characters){
-        codeSubmission += this.characters[i].v;
+        codeSubmission += this.characters[i].v.toUpperCase();
       }
 
-      if(codeSubmission == "11111"){
+      if(codeSubmission == this.correctPasscode){
         this.successMessage = "Correct! Please Wait.."
+
+        this.$store.commit('updateProgress', {route:"Complete", context:this});
+
         let that = this;
         setTimeout(function(){
           that.openPage('Complete')
@@ -77,6 +130,8 @@ export default {
         this.errorText = "Incorrect Passcode"
       }
     },
+
+  
 
 
 
@@ -136,10 +191,18 @@ input{
 }
 
 .errorText{
-  color:rgb(255, 43, 43);
+  color:rgb(255, 0, 0);
   font-size: 20px;
+  font-weight: 500;
   margin-top: -10px;
   letter-spacing: 2px;
+}
+
+.scrambledLetters{
+  font-size: 24px;
+  color:black;
+  letter-spacing: 5px;
+  margin-bottom: 30px;
 }
 
 

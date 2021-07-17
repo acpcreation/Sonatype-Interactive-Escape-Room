@@ -4,6 +4,12 @@
 
     <Welcome v-if="welcome" @closeWelcome="welcomeVideo"/>
     <Audit v-if="audit" @closeAudit="audit=!audit"/>
+
+    <b-modal id="allCompleteModal" title="All Challenges Complete" ok-title="I'm on it!" ok-variant="success"  ok-only> 
+      <p><b>Hooray!</b> You completed all the challenges!</p>
+      <p>Make sure you've collected <u>every clue</u>, then visit the locked computer in the escape room home screen to enter the password.</p>
+    </b-modal>
+
   </div>
 </template>
 
@@ -33,19 +39,26 @@ export default {
     // this.$store.commit('updateProgress', this.$route.name); 
     // let stuff = this.$store.getters.getProgress;
 
-    window.addEventListener('keydown', (e) => {
-      if (e.key == '|') {
-        this.audit = true;
-      }
-    });
+    // window.addEventListener('keydown', (e) => {
+    //   if (e.key == '|') {
+    //     this.audit = true;
+    //   }
+    // });
 
     this.$root.$on('WelcomeVideo', this.welcomeVideo);
+    this.$root.$on('AllComplete', function(){this.$bvModal.show("allCompleteModal")});
+  },
+
+  mounted(){
+
   },
 
   methods:{
     welcomeVideo: function(){
       this.welcome = !this.welcome;
     },
+
+
   }
 }
 </script>
@@ -122,7 +135,8 @@ hr{
 
 .successMessage{
   color: rgb(77, 248, 77) !important;
-  margin:20px !important;
+  margin:20px auto!important;
+  max-width: 70vw;
   font-size: 20px !important;
 }
 
@@ -132,6 +146,10 @@ hr{
 
 .challengeDescription{
   padding:0px 15vw;
+}
+
+#allCompleteModal h2, #allCompleteModal p{
+  color:black
 }
 
 

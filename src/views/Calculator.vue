@@ -5,7 +5,7 @@
     <p class="challengeDescription">In this challenge you will calculate the answer to the various equations below. Each of these equations require different mathematical priciples to determine the correct answer.</p>
 
     <!-- <p>*** Word problems, discrete math ***</p> -->
-    <p class="successMessage"><a href="#" target="_blank">FIX LINK!! {{successMessage}}</a></p>
+    <p class="successMessage"><a href="https://photos.app.goo.gl/hH4xnVTjPSCU85Vp6" target="_blank">{{successMessage}}</a></p>
 
 
     <div class="centerItems">
@@ -74,7 +74,7 @@ export default {
 
       if(this.completed.length == this.calculations.length){
         this.successMessage = "Clue: Click HERE to see a Post-It that might help you!";
-        this.$store.commit('updateProgress', this.$route.name);
+        this.$store.commit('updateProgress', {route:this.$route.name, context:this});
       }
     }
 

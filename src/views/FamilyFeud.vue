@@ -2,7 +2,7 @@
   <div class="main">
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <h1>Family Feud</h1>
-    <p class="challengeDescription">In this challenge you need to fill out all of the answers for each question to unlock the escape clue.</p>
+    <p class="challengeDescription">In this challenge you need to fill out all of the answers for each question to unlock the escape clue. All your clues will be displayed at the end.</p>
 
     <!-- ADD:
           - Flipping Cards
@@ -30,7 +30,7 @@
         </template>
       </b-input-group>
       
-    <p class="successMessage">{{successMessage}}</p>
+    <p class="successMessage" v-for="i in successMessage" :key="i">{{i}}</p>
 
     <b-button variant="outline-warning" @click="newRound()" v-if="successMessage.length >1 && questionIndex < questions.length-1">New Round</b-button>
 
@@ -59,10 +59,10 @@ export default {
       ],
 
       hints:[
-        "hint1",
-        "hint2",
-        "hint3",
-        "hint4",
+        "Clue: What’s our time frame? Like, yesterday would be nice! Realistically, before September 1st. We would like to have a solution in place - up and running - by August 15th, which corresponds to our developers’ sprint cycle.",
+        "Clue: We’re hoping for a better understanding of your platform and what tools Sonatype has to offer...including a better understanding of the artifact repository. But the repo would be just a piece of what we’re trying to accomplish.",
+        "Clue: Is there some way to create a workflow that automatically sends a notification for those components that don’t comply,  and flags them for human review?",
+        "Clue: We’ve had issues with being able to associate new vulnerabilities/license issues to existing approved components. This is why we stopped the ‘golden repo’ approach. Is there some way to help with that?",
       ],
 
       currentQuestion:{},
@@ -81,7 +81,7 @@ export default {
     //Check save state
     let progress = this.$store.getters.getProgress;
     if(progress[this.$route.name] == true){
-      this.successMessage = "complete!";
+      this.successMessage = this.hints;
       this.questionIndex = this.questions.length-1
       this.currentQuestion = this.questions[this.questions.length-1];
       this.submissions = this.currentQuestion.answers;
@@ -111,10 +111,10 @@ export default {
 
       if(this.submissions.length == this.currentQuestion.answers.length){
         if(this.questionIndex < this.questions.length-1){
-          this.successMessage = "Hint";
+          this.successMessage = [this.hints[this.questionIndex]];
         }else{
-          this.$store.commit('updateProgress', this.$route.name);
-          this.successMessage = "Complete!"
+          this.$store.commit('updateProgress', {route:this.$route.name, context:this});
+          this.successMessage = this.hints;
         }
       }
 

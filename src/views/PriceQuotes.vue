@@ -144,7 +144,7 @@ export default {
           left: 0, 
           behavior: 'smooth'
         });
-        this.$store.commit('updateProgress', this.$route.name);
+        this.$store.commit('updateProgress', {route:this.$route.name, context:this});
       }
     }
 

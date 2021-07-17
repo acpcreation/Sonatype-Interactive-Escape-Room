@@ -104,7 +104,7 @@ export default {
     //Check save state
     let progress = this.$store.getters.getProgress;
     if(progress[this.$route.name] == true){
-      this.successMessage = "hint!";
+      this.successMessage = "Clue: We need a way to proactively block or allow components for use by our development teams that are consistent with our company policies...but not all teams have the same requirements. We used to keep a list of the 'good' and 'bad' components, but that is no longer working.";
       document.getElementById("pathTable").setAttribute("style", "pointer-events:none");
 
       for(let i in this.path){
@@ -135,9 +135,9 @@ export default {
           this.tableLoad = false;
           this.tableLoad = true;
           if(this.path[7][7] == "done"){
-            this.successMessage = "HINT";
+            this.successMessage = "Clue: We need a way to proactively block or allow components for use by our development teams that are consistent with our company policies...but not all teams have the same requirements. We used to keep a list of the 'good' and 'bad' components, but that is no longer workin";
             document.getElementById("pathTable").setAttribute("style", "pointer-events:none");
-            this.$store.commit('updateProgress', this.$route.name);
+            this.$store.commit('updateProgress', {route:this.$route.name, context:this});
           }
         }
 
@@ -157,7 +157,7 @@ export default {
       this.isDisabled = true;
       let answer = this.hints[this.hintIndex].answer.toLowerCase();
 
-      if( this.hintAnswerSubmission.length>3 && 
+      if( this.hintAnswerSubmission.length>=3 && 
           answer.includes(this.hintAnswerSubmission.toLowerCase())){
         this.hintCorrectOrIncorrect = "correct";
       }else{

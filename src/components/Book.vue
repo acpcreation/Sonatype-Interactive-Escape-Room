@@ -34,9 +34,7 @@ export default {
 
   mounted() {
     this.letters = this.letters.split(',');
-    if(this.content.content.length >1){
-      this.content.content = this.content.content.split(',');
-    }else{
+    if(typeof(this.content.content) != 'object'){
       this.content.content = this.letters;
     }
     

@@ -28,7 +28,7 @@ export default {
   },
 
   mounted: function(){
-
+    // document.getElementById("videoPane").play();
   },
 
   methods:{
@@ -59,7 +59,7 @@ export default {
 .pane{
   width:80vw;
   /* height: 40vh; */
-  margin-top: 2vw;
+  margin-top: 2.5vh;
   background-color: rgba(0, 0, 0, 0.85);  
   border: solid;
   border-color: rgb(235, 251, 255);

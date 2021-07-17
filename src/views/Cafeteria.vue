@@ -139,7 +139,7 @@ export default {
           this.currentOrder +=1;
         }else{
           this.successMessage = "Clue: Click HERE to open an email thread that may contain clues."
-          this.$store.commit('updateProgress', this.$route.name);
+          this.$store.commit('updateProgress', {route:this.$route.name, context:this});
         }
 
       }else{
@@ -193,7 +193,7 @@ export default {
 }
 
 .plate{
-  margin:20px auto;
+  margin:20px 9vw;
   width: 32vw;
   height: 32vw;
   background-color: rgb(247, 243, 226);
@@ -243,8 +243,8 @@ export default {
 
 .accelerateOrder{
   width: 200px;
-  margin-right: 5vw;
-  margin-top: 30px;
+  /* margin-right: 5vw; */
+  margin-top: 5vh;
 }
 
 

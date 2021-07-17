@@ -116,7 +116,7 @@ export default {
 
         if(this.cluesLength == this.oldClues.length){
           this.successMessage = "Clue: We’d like a way to be notified when issues do arise, and those notifications be sent to the correct business units for remediation / action. Oh and by the way...we don’t want to automatically fail everything, all the time. Some vulnerabilities are worse than others. "
-          this.$store.commit('updateProgress', this.$route.name);
+          this.$store.commit('updateProgress', {route:this.$route.name, context:this});
         }
 
       }else{
