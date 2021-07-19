@@ -4,10 +4,11 @@
 
     <Welcome v-if="welcome" @closeWelcome="welcomeVideo"/>
     <Audit v-if="audit" @closeAudit="audit=!audit"/>
+    <Timer :start="timerState"/>
 
-    <b-modal id="allCompleteModal" title="All Challenges Complete" ok-title="I'm on it!" ok-variant="success"  ok-only> 
-      <p><b>Hooray!</b> You completed all the challenges!</p>
-      <p>Make sure you've collected <u>every clue</u>, then visit the locked computer in the escape room home screen to enter the password.</p>
+    <b-modal id="allCompleteModal" title="All Challenges Complete!" ok-title="I'm on it!" ok-variant="success"  ok-only> 
+      <p><b>Hooray!!</b> You completed all the challenges!</p>
+      <p>Make sure you've collected <b><u>every clue</u></b>, then visit the locked computer in the escape room home screen to enter the password.</p>
     </b-modal>
 
   </div>
@@ -16,17 +17,21 @@
 <script>
 import Welcome from '@/components/Welcome.vue'
 import Audit from '@/components/Audit.vue'
+import Timer from '@/components/Timer.vue'
 
 export default {
   name: 'App',
   components: {
     Welcome,
-    Audit
+    Audit,
+    Timer
   },
   data(){
     return{
-      welcome:true,
-      audit: false
+      welcome:true, 
+      audit: false,
+      complete: false,
+      timerState: false
     }
   },
   created() {
@@ -46,17 +51,40 @@ export default {
     // });
 
     this.$root.$on('WelcomeVideo', this.welcomeVideo);
-    this.$root.$on('AllComplete', function(){this.$bvModal.show("allCompleteModal")});
+    this.$root.$on('AllComplete', this.allComplete);
+    this.$root.$on('ToggleTimer', this.toggleTimer);
   },
 
   mounted(){
-
+    
   },
 
   methods:{
     welcomeVideo: function(){
       this.welcome = !this.welcome;
+      this.timeGame(true);
     },
+
+    allComplete: function(){
+      if(this.complete == false){
+        this.complete = true;
+
+        let that = this;
+        setTimeout(function(){
+          that.$bvModal.show("allCompleteModal")
+        }, 2000);
+      }
+    },
+
+    timeGame: function(e){
+      if(this.welcome == false && e == true){
+        this.timerState = true;
+      }
+    },
+
+    toggleTimer:function(e){
+      this.timerState = e; 
+    }
 
 
   }

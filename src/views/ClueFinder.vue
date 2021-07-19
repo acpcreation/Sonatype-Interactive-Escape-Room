@@ -101,7 +101,9 @@ export default {
       if(this.clueInput.length>2){
         for(let i in this.clues){
           let clueItem = this.clues[i].clue.toUpperCase()
-          if(clueItem.includes(this.clueInput.toUpperCase())){
+          let cInput = this.clueInput.toUpperCase()
+          cInput = cInput.replaceAll(" ", "")
+          if(clueItem.includes(cInput)){
             clueFound = true;
             clueIndex = i;
             break;
@@ -113,21 +115,28 @@ export default {
         this.inputCorrect = true;
         let clue = this.clues.splice(clueIndex,1)
         this.oldClues.push(clue[0]);
+        this.selectItem(clue[0])
 
         if(this.cluesLength == this.oldClues.length){
+           window.scroll({
+            top: 0, 
+            left: 0, 
+            behavior: 'smooth'
+          });
           this.successMessage = "Clue: We’d like a way to be notified when issues do arise, and those notifications be sent to the correct business units for remediation / action. Oh and by the way...we don’t want to automatically fail everything, all the time. Some vulnerabilities are worse than others. "
           this.$store.commit('updateProgress', {route:this.$route.name, context:this});
         }
+
+        let that = this;
+        setTimeout(function(){
+          that.clueInput = "";
+          that.inputCorrect = null;
+        }, 2200);
 
       }else{
         this.inputCorrect = false;
       }
 
-      let that = this;
-      setTimeout(function(){
-        that.clueInput = "";
-        that.inputCorrect = null;
-      }, 2200);
     },
 
     selectItem: function(e){

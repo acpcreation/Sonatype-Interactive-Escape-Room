@@ -45,10 +45,10 @@ export default {
 
       
       // console.log(w+", "+h)
-      // let bottomPadding = window.screen.height - (window.screen.height/4)-20
+      let bottomPadding = window.screen.height-(window.screen.height/8);
       // console.log(y+" < "+bottomPadding)
 
-      if(x>-35 && y>-40){
+      if(x>-35 && y>-40 && y<bottomPadding){
         let bp = "-"+((x * zoom) +200 -w)+ "px -" +((y * zoom) +20)+"px";
         // let bp = "-" + ((x * zoom) - w + zoom) + "px; -" + ((y * zoom) - h + zoom) + "px";
         // let bp = "-"+((x * zoom) -600) + "px -" +((y * zoom) -300)+"px";

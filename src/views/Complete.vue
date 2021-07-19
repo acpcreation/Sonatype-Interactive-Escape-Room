@@ -39,6 +39,7 @@ export default {
       }
     }
     
+    this.$root.$emit('ToggleTimer', false); 
     
     if(complete == true){
       document.getElementById("videoPane").play();

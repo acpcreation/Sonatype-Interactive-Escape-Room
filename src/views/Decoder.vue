@@ -3,7 +3,7 @@
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <!-- Mandarin, Hieroglyphics, Morse Code, Russian, Arabic  -->
     <h3>Decoder</h3>
-    <p v-if="selectedBook == null" class="challengeDescription">Decipher the hidden text using the books in your library. Enter the full text (including commas) in the input field to reveal the escape clue. </p>
+    <p v-if="selectedBook == null" class="challengeDescription">Decipher the hidden text using the books in your library. Enter the full text in the input field to reveal the escape clue. </p>
 
     <p class="successMessage">{{successMessage}}</p>
 
@@ -20,7 +20,12 @@
     </div>
     
     <b-form-input type="text" class="decodedMessage" :state="inputState" v-model="decodedMessage" placeholder="Enter the decoded message here.."></b-form-input>
-    
+    <b-progress 
+        :value="decodedMessage.length" 
+        :max="message.length"  
+        class="progressBar"
+        :variant="progressStyle"
+        animated></b-progress>
 
     <Book v-if="selectedBook != null" :content="selectedBook" @close="selectedBook = null"/>
 
@@ -41,13 +46,27 @@ export default {
   },
   computed: {
     inputState() {
-      let msg = this.decodedMessage.toUpperCase();
-      if(msg == this.message){
-        this.successfulDecyption();
+      let msgIn = this.decodedMessage.toUpperCase();
+      msgIn = msgIn.replaceAll(",","")
+      msgIn = msgIn.replaceAll(" ","")
+
+      let msgOriginal = this.message.replaceAll(",","")
+      msgOriginal = msgOriginal.replaceAll(" ","")
+
+      if(msgIn.length>2 && msgOriginal.includes(msgIn)){
+        if(msgIn == msgOriginal){
+          this.successfulDecyption();
+        }
+        this.updateProgressStyle("primary")
         return true;
-      }else{
+      }else if(msgIn.length <3){
         return null;
       }
+      else{
+        this.updateProgressStyle("danger")
+        return false;
+      }
+      
     }
   },
   data(){
@@ -65,7 +84,8 @@ export default {
       selectedBook: null,
       decodedMessage: "",
       successMessage: "",
-      message: null
+      message: "",
+      progressStyle: "primary"
     }
   },
 
@@ -94,6 +114,11 @@ export default {
     },
 
     successfulDecyption: function() {
+      window.scroll({
+          top: 0, 
+          left: 0, 
+          behavior: 'smooth'
+        });
       this.successMessage = 'Clue: We have 250 users (dev and sec) here at EZ but Acme has 1000 developers and 250 security professionals. We know we have allocated $200,000 for this initiative, but pending the solution we may have to bring in our new parent company to help streamline integrations, procedures, etc.';
       this.$store.commit('updateProgress', {route:this.$route.name, context:this});
     },
@@ -161,6 +186,10 @@ export default {
       return mandarin;
     },
 
+    updateProgressStyle: function(e){
+      this.progressStyle = e;
+    },
+
     encodeMessage: function(evt){
       this.encodedMessage = [];
       let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -226,7 +255,7 @@ export default {
 <style scoped>
 .main{
   text-align: center;
-  padding: 2vw;
+  padding: 2vh;
 }
 
 .library{
@@ -283,6 +312,11 @@ export default {
   width:80vw;
   text-transform:uppercase;
   color:rgb(133, 77, 107)
+}
+
+.progressBar{
+  margin: -20px auto;
+  width: 80vw;
 }
 
 

@@ -2,7 +2,7 @@
   <div class="main">
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <h1>Family Feud</h1>
-    <p class="challengeDescription">In this challenge you need to fill out all of the answers for each question to unlock the escape clue. All your clues will be displayed at the end.</p>
+    <p class="challengeDescription">In this challenge you need to fill out all of the answers for each question for each round to unlock the escape clue. All your clues will be displayed at the end.</p>
 
     <!-- ADD:
           - Flipping Cards
@@ -32,7 +32,7 @@
       
     <p class="successMessage" v-for="i in successMessage" :key="i">{{i}}</p>
 
-    <b-button variant="outline-warning" @click="newRound()" v-if="successMessage.length >1 && questionIndex < questions.length-1">New Round</b-button>
+    <b-button variant="outline-warning" @click="newRound()" v-if="successMessage.length >0 && questionIndex < questions.length-1">New Round</b-button>
 
 
   </div>
