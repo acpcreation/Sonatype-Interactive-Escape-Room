@@ -2,7 +2,7 @@
   <div class="main">
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <h1>Family Feud</h1>
-    <p class="challengeDescription">In this challenge you need to fill out all of the answers for each question for each round to unlock the escape clue. All your clues will be displayed at the end.</p>
+    <p class="challengeDescription">In this challenge you need to fill out all of the answers for each question <a>for each round</a> to unlock the escape clue. All your clues will be displayed at the end.</p>
 
     <!-- ADD:
           - Flipping Cards
@@ -14,7 +14,7 @@
     
     <p class="question">{{currentQuestion.question}}</p>
     <div class="flexView">
-      <div class="answerOptions" v-for="i in 8" :key="i">
+      <div class="answerOptions" v-for="i in 6" :key="i">
         <!--  :class="flipCard(i-1)" https://www.w3schools.com/howto/howto_css_flip_card.asp-->
         <span class="answerDisplay"
         v-if="submissions.includes(currentQuestion.answers[i-1])"
@@ -51,10 +51,10 @@ export default {
   data(){
     return{
       questions:[
-        {question:"We surveyed 100 sales guides in Highspot: For which Sonatype products might you expect a security persona to act as a primary buyer?",                answers:["ADP","Container","Lift","Lifecycle","IaC","Firewall"]},
-        {question:"We surveyed 100 sales guides in Highspot: For which Sonatype products might you expect a Dev/Engineering Manager persona to act as a primary buyer?", answers:["ALP", "ADP", "Lift", "Repository", "Lifecycle"]},
-        {question:"We surveyed 100 sales guides in Highspot: For which Sonatype products might you expect an Operations persona to act as a primary buyer?",             answers:["Container", "IaC"]},
-        {question:"We surveyed 100 sales guides in Highspot: For which Sonatype products might you expect a developer/engineer to act as an primary influencer?",        answers:["ALP", "ADP", "Firewall", "Repository", "Lifecycle"]},
+        {question:"We surveyed 100 sales guides in Highspot: For which Sonatype products might you expect a security persona to act as a primary buyer?",                answers:["Lifecycle","Auditor","Firewall","ADP"]},
+        {question:"We surveyed 100 sales guides in Highspot: For which Sonatype products might you expect a Dev/Engineering Manager persona to act as a primary buyer?", answers:["Lift", "Lifecycle", "ALP", "Firewall", "ADP", "Repository"]},
+        {question:"We surveyed 100 sales guides in Highspot: For which Sonatype products might you expect an Operations persona to act as a primary buyer?",             answers:["Container", "IaC", "Auditor"]},
+        {question:"We surveyed 100 sales guides in Highspot: For which Sonatype products might you expect a developer/engineer to act as an primary influencer?",        answers:["ADP", "Lifecycle", "Firewall", "Lift", "Repository"]},
         // {question:"", answers:[""]},
       ],
 
@@ -168,7 +168,7 @@ export default {
   border-radius: 30px;
   padding:15px;
   background-color: black;
-  height:290px;
+  height:230px;
   width: 646px;
 }
 
@@ -210,6 +210,10 @@ export default {
   color:rgb(255, 208, 0);
   font-weight:bold;
   font-size: 30px;
+}
+
+a{
+  color: rgb(0, 174, 255) !important;
 }
 
 

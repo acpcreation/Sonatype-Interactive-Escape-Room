@@ -2,7 +2,7 @@
   <div class="main">
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <h1>Price Quotes</h1>
-    <p>Determine the correct price for Sonatype's products in the different currencies using the <a>given exchange rates (top left)</a>. Visit SalesForce for pricing guidance. Round up to the nearest dollar. Don't apply volume discounts.</p>
+    <p class="challengeDescription">Determine the correct price for Sonatype's products in the different currencies using the <a>given exchange rates (top left)</a>. Visit SalesForce for pricing guidance. Round down to the nearest dollar.</p>
     
     <p class="successMessage">{{successMessage}}</p>
 
@@ -67,13 +67,14 @@ export default {
       prices:[
         // {id:0, users:"250 users", products:["Lifecycle", "Repository Manager", "Firewall"],      extra:" and a Nexus Foundation Workshop",                             currency:"Japanese Yen", input:"",     answer:"23137520", usd:"209200"},
         // {id:1, users:"250 users",  products:["Repository Manager", "Lifecycle"],                 extra:" as a leveraged deal with Optiv and Carahsoft as distributor", currency:"Bitcoin", input:"",          answer:"5",        usd:"410250"},
-        {id:0, users:"10 users and 3 applications",  products:["Repository Manager", "Auditor"], extra:"",                                                             currency:"Euro", input:"",             answer:"12070",    usd:"14200"},
-        {id:1, users:"150 users",  products:["Firewall","Lifecycle"],                            extra:"",                                                             currency:"Bitcoin", input:"", answer:"4",usd:"139850"},
         // {id:1, users:"150 users",  products:["Firewall","Lifecycle"],                            extra:"",                                                             currency:"North Korean Won", input:"", answer:"125865000",usd:"139850"},
         // {id:4, users:"100 users", products:["Repository Manager", "Firewall", "Lifecycle"],      extra:" and it is an inbound partner deal with Orasi",                currency:"Zambian Kwacha", input:"",   answer:"2534535",  usd:"111900"},
-        {id:2, users:"500 users", products:["Repository Manager","Firewall","Lifecycle"],        extra:" and it is a partner leveraged 9th BIT for a 3 year deal",     currency:"Gold Ounce", input:"",       answer:"591",      usd:"1062000"},
-        {id:3, users:"300 nodes", products:["Container"],                                        extra:"",                                                             currency:"Lumber", input:"",           answer:"644",     usd:"452000"},
-        {id:4, users:"100 users", products:["Lifecycle", "ADP", "IaC", "ALP"],                   extra:"",                                                             currency:"Canadian Dollar", input:"",  answer:"214625",   usd:"171700"},
+        
+        {id:0, users:"10 users and 3 applications",  products:["Repository Manager", "Auditor"], extra:"",                         currency:"Japanese Yen", input:"",   answer:"1570520", usd:"14200",  formula:"NXRM (1200)+ IQ (10000)+ Auditor (3000)"},
+        {id:1, users:"150 users",  products:["Firewall","Lifecycle"],                            extra:" ",                        currency:"Bitcoin", input:"",        answer:"4",       usd:"139850", formula:"Firewall (33600) + IQ (20000) + Lifecycle (86250)"},
+        {id:2, users:"500 users", products:["Repository Manager","Firewall","Lifecycle"],        extra:" total for a 3 year deal", currency:"Gold Ounce", input:"",     answer:"590",     usd:"1062000",formula:"354000 * 3 years"},
+        {id:3, users:"300 nodes", products:["Container"],                                        extra:"",                         currency:"Lumber", input:"",         answer:"641",     usd:"450000", formula:""},
+        {id:4, users:"100 users", products:["Lifecycle", "ADP", "ALP"],                          extra:" ",                        currency:"Zambian Kwacha", input:"", answer:"2729325", usd:"120500", formula:"Lifecycle (57500) + IQ (20000) + ADP (20000) + ALP (23000)"},
         
         // {id:7, users:"30 users", products:["Lifecycle", "Firewall", "Repository Manager","Container"], extra:"Small IQ, and a Nexus LC/FW Policy Workshop", currency:"Japanese Yen", input:"", answer:"", usd:""},
         // {id:8, users:"200 users", products:["Lifecycle", "IaC"],                                 extra:" and it is a Zivra leveraged deal", currency:"Euro", input:"", answer:"", usd:""},

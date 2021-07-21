@@ -2,7 +2,7 @@
   <div class="main">
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <h1>Hang-Man</h1>
-    <p class="challengeDescription">Hangman! In this challenge you need complete each round by guessing letters on the keyboard in order to reveal the hidden answer. All your clues will be displayed at the end.</p>
+    <p class="challengeDescription">Hangman! In this challenge you need complete each round by guessing letters on the keyboard in order to reveal the hidden answer. <a>Complete each round</a>. All your clues will be displayed at the end.</p>
     <br>
 
     <p class="questionDisplay">{{roundQuestions[roundIndex]}}</p>
@@ -247,6 +247,9 @@ td{
   background: none !important;
 }
 
+a{
+  color: rgb(0, 174, 255) !important;
+}
 
 
 

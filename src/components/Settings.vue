@@ -4,7 +4,7 @@
     <hr>
     <b-button variant="primary" @click="replayIntro()">Replay intro Video</b-button>
     <b-button variant="danger" @click="fullReset()">Reset Game</b-button>
-    <b-button variant="dark" @click="setAllComplete()">Complete All</b-button>
+    <!-- <b-button variant="dark" @click="setAllComplete()">Complete All</b-button> -->
 
   </div>
 </template>
