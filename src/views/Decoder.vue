@@ -3,7 +3,7 @@
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <!-- Mandarin, Hieroglyphics, Morse Code, Russian, Arabic  -->
     <h3>Decoder</h3>
-    <p v-if="selectedBook == null" class="challengeDescription">Decipher the hidden text using the books in your library. Enter the full text in the input field to reveal the escape clue. </p>
+    <p v-if="selectedBook == null" class="challengeDescription">Decipher the hidden text using the books in the below library. Enter the full text in the input field at the bottom of the page to reveal the escape clue. "The data we collect on OSS are security is.."</p>
 
     <p class="successMessage">{{successMessage}}</p>
 
@@ -19,6 +19,7 @@
       </div>
     </div>
     
+    <br><br><br><br>
     <b-form-input type="text" class="decodedMessage" :state="inputState" v-model="decodedMessage" placeholder="Enter the decoded message here.."></b-form-input>
     <b-progress 
         :value="decodedMessage.length" 
@@ -90,7 +91,7 @@ export default {
   },
 
   mounted() {
-    this.message = "The data we collect on OSS are security, license, version popularity, age, malicious components, category, hygiene rating";
+    this.message = "license, popularity, age, security, hygiene rating";
     this.message = this.message.toUpperCase()
 
     //Check save state
@@ -311,7 +312,7 @@ export default {
   margin: 30px auto; 
   width:80vw;
   text-transform:uppercase;
-  color:rgb(133, 77, 107)
+  color:black;
 }
 
 .progressBar{

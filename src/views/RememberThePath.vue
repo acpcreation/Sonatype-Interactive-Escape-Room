@@ -60,15 +60,24 @@ export default {
   data(){
     return{
       path:[
-        ["done",0,0,0,0,0,0,0],
-        [0,1,0,5,0,0,0,0],
-        [2,3,4,0,6,7,0,0],
-        [0,0,0,0,0,8,9,0],
-        [0,0,0,13,12,11,10,0],
-        [0,0,15,14,0,0,0,0],
-        [0,16,0,18,0,20,21,0],
-        [0,0,17,0,19,0,22,23],
+        ["done",0,0,0,0,0,0 ],
+        [0,1 ,0 ,5 ,0 ,0 ,0 ],
+        [2,3 ,4 ,0 ,6 ,7 ,0 ],
+        [0,0 ,0 ,0 ,0 ,8 ,9 ],
+        [0,0 ,0 ,13,12,11,10],
+        [0,0 ,14,0 ,0 ,17,0 ],
+        [0,0 ,0 ,15,16,0 ,18],
       ],
+      // path:[
+      //   ["done",0,0,0,0,0,0,0],
+      //   [0,1,0,5,0,0,0,0],
+      //   [2,3,4,0,6,7,0,0],
+      //   [0,0,0,0,0,8,9,0],
+      //   [0,0,0,13,12,11,10,0],
+      //   [0,0,15,14,0,0,0,0],
+      //   [0,16,0,18,0,20,21,0],
+      //   [0,0,17,0,19,0,22,23],
+      // ],
       nextStep: 1,
       tableLoad: true,
       successMessage:"",
@@ -115,7 +124,7 @@ export default {
         }
       }
     }
-
+    
     this.addCharacterListeners();
   },
 
@@ -134,7 +143,7 @@ export default {
 
           this.tableLoad = false;
           this.tableLoad = true;
-          if(this.path[7][7] == "done"){
+          if(this.path[6][6] == "done"){
             this.successMessage = "Clue: We need a way to proactively block or allow components for use by our development teams that are consistent with our company policies...but not all teams have the same requirements. We used to keep a list of the 'good' and 'bad' components, but that is no longer workin";
             document.getElementById("pathTable").setAttribute("style", "pointer-events:none");
             this.$store.commit('updateProgress', {route:this.$route.name, context:this});
@@ -194,14 +203,13 @@ export default {
       this.displayHint = false;
       this.nextStep = 1;
       this.path = [
-        ["done",0,0,0,0,0,0,0],
-        [0,1,0,5,0,0,0,0],
-        [2,3,4,0,6,7,0,0],
-        [0,0,0,0,0,8,9,0],
-        [0,0,0,13,12,11,10,0],
-        [0,0,15,14,0,0,0,0],
-        [0,16,0,18,0,20,21,0],
-        [0,0,17,0,19,0,22,23],
+        ["done",0,0,0,0,0,0 ],
+        [0,1 ,0 ,5 ,0 ,0 ,0 ],
+        [2,3 ,4 ,0 ,6 ,7 ,0 ],
+        [0,0 ,0 ,0 ,0 ,8 ,9 ],
+        [0,0 ,0 ,13,12,11,10],
+        [0,0 ,14,0 ,0 ,17,0 ],
+        [0,0 ,0 ,15,16,0 ,18],
       ];
       this.tableLoad = false;
       this.tableLoad = true;
@@ -210,6 +218,7 @@ export default {
         document.getElementById("pathTable").setAttribute("style", "background-color: white;");
       }, 300);
     },
+
 
     addCharacterListeners: function(){
       window.addEventListener('keydown', (e) => {

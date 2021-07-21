@@ -2,7 +2,7 @@
   <div class="main">
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <h1>Price Quotes</h1>
-    <p>Determine the correct price for Sonatype's products in the different currencies using the given exchange rates. Visit SalesForce for pricing guidance. Round up to the nearest dollar. </p>
+    <p>Determine the correct price for Sonatype's products in the different currencies using the <a>given exchange rates (top left)</a>. Visit SalesForce for pricing guidance. Round up to the nearest dollar. Don't apply volume discounts.</p>
     
     <p class="successMessage">{{successMessage}}</p>
 
@@ -65,14 +65,15 @@ export default {
     return{
       //Finance people: Dave Miller - CFO, Mike Florenzo, Craig Vaughan, Stephen Odorczyk
       prices:[
-        {id:0, users:"250 users", products:["Lifecycle", "Repository Manager", "Firewall"],      extra:" and a Nexus Foundation Workshop",                             currency:"Japanese Yen", input:"",     answer:"23137520", usd:"209200"},
-        {id:1, users:"250 users",  products:["Repository Manager", "Lifecycle"],                 extra:" as a leveraged deal with Optiv and Carahsoft as distributor", currency:"Bitcoin", input:"",          answer:"5",        usd:"410250"},
-        {id:2, users:"10 users and 3 applications",  products:["Repository Manager", "Auditor"], extra:"",                                                             currency:"Euro", input:"",             answer:"12070",    usd:"14200"},
-        {id:3, users:"150 users",  products:["Firewall","Lifecycle"],                            extra:"",                                                             currency:"North Korean Won", input:"", answer:"125865000",usd:"139850"},
-        {id:4, users:"100 users", products:["Repository Manager", "Firewall", "Lifecycle"],      extra:" and it is an inbound partner deal with Orasi",                currency:"Zambian Kwacha", input:"",   answer:"2534535",  usd:"111900"},
-        {id:5, users:"500 users", products:["Repository Manager","Firewall","Lifecycle"],        extra:" and it is a partner leveraged 9th BIT for a 3 year deal",     currency:"Gold Ounce", input:"",       answer:"591",      usd:"1062000"},
-        {id:6, users:"300 nodes", products:["Container"],                                        extra:"",                                                             currency:"Lumber", input:"",           answer:"6441",     usd:"4520000"},
-        {id:7, users:"100 users", products:["Lifecycle", "ADP", "IaC", "ALP"],                   extra:"",                                                             currency:"Canadian Dollar", input:"",  answer:"214625",   usd:"171700"},
+        // {id:0, users:"250 users", products:["Lifecycle", "Repository Manager", "Firewall"],      extra:" and a Nexus Foundation Workshop",                             currency:"Japanese Yen", input:"",     answer:"23137520", usd:"209200"},
+        // {id:1, users:"250 users",  products:["Repository Manager", "Lifecycle"],                 extra:" as a leveraged deal with Optiv and Carahsoft as distributor", currency:"Bitcoin", input:"",          answer:"5",        usd:"410250"},
+        {id:0, users:"10 users and 3 applications",  products:["Repository Manager", "Auditor"], extra:"",                                                             currency:"Euro", input:"",             answer:"12070",    usd:"14200"},
+        {id:1, users:"150 users",  products:["Firewall","Lifecycle"],                            extra:"",                                                             currency:"Bitcoin", input:"", answer:"4",usd:"139850"},
+        // {id:1, users:"150 users",  products:["Firewall","Lifecycle"],                            extra:"",                                                             currency:"North Korean Won", input:"", answer:"125865000",usd:"139850"},
+        // {id:4, users:"100 users", products:["Repository Manager", "Firewall", "Lifecycle"],      extra:" and it is an inbound partner deal with Orasi",                currency:"Zambian Kwacha", input:"",   answer:"2534535",  usd:"111900"},
+        {id:2, users:"500 users", products:["Repository Manager","Firewall","Lifecycle"],        extra:" and it is a partner leveraged 9th BIT for a 3 year deal",     currency:"Gold Ounce", input:"",       answer:"591",      usd:"1062000"},
+        {id:3, users:"300 nodes", products:["Container"],                                        extra:"",                                                             currency:"Lumber", input:"",           answer:"644",     usd:"452000"},
+        {id:4, users:"100 users", products:["Lifecycle", "ADP", "IaC", "ALP"],                   extra:"",                                                             currency:"Canadian Dollar", input:"",  answer:"214625",   usd:"171700"},
         
         // {id:7, users:"30 users", products:["Lifecycle", "Firewall", "Repository Manager","Container"], extra:"Small IQ, and a Nexus LC/FW Policy Workshop", currency:"Japanese Yen", input:"", answer:"", usd:""},
         // {id:8, users:"200 users", products:["Lifecycle", "IaC"],                                 extra:" and it is a Zivra leveraged deal", currency:"Euro", input:"", answer:"", usd:""},
@@ -204,6 +205,10 @@ export default {
 
 p{
   color: #999999;
+}
+
+a{
+  color: rgb(0, 174, 255) !important;
 }
 
 

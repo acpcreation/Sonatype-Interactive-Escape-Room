@@ -70,7 +70,7 @@ export default {
    
       setTimeout(function(){
         that.largeTimerStyle = "";
-      }, 3000);
+      }, 2500);
     },
 
 

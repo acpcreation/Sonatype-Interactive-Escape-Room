@@ -3,7 +3,8 @@
     <div class="screen">
       <b-icon class="closeButton" icon="x-circle-fill" font-scale="2" variant="dark" @click="closePane()"></b-icon>
       <h1>Enter Passcode</h1>
-      <br>
+      
+      <p class="" v-if="scrambledLetters.length>1">Unscramble the Passcode</p>
       <p class="scrambledLetters" v-if="scrambledLetters.length>1">{{scrambledLetters}}</p>
       <p class="errorText" v-else>Complete all the challenges to try and submit a passcode</p>
       <p class="errorText">{{errorText}}</p>
@@ -61,7 +62,7 @@ export default {
       }
     }
     if(complete == true){
-      this.scrambledLetters = "Y D C R I V S O" //DISCOVERY
+      this.scrambledLetters = "Y D C R I V S O E" //DISCOVERY
     }
 
 
@@ -154,7 +155,7 @@ export default {
 
 .screen{
   width:60vw;
-  height:50vh;
+  min-height:50vh;
   margin-top: 10vh;
   background-image:linear-gradient(to bottom, rgb(65, 117, 160),rgb(26, 128, 146)); 
   border: solid;

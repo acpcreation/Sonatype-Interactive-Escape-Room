@@ -35,10 +35,18 @@ export default {
     }
   },
   created() {
+    this.$root.$on('WelcomeVideo', this.welcomeVideo);
+    this.$root.$on('AllComplete', this.allComplete);
+    this.$root.$on('ToggleTimer', this.toggleTimer);
+  },
+
+  mounted(){
     let progress = localStorage.getItem("progress");
     if(progress != null){
       console.log(JSON.parse(progress))
       this.$store.commit('setAllProgress', JSON.parse(progress)); 
+      this.welcome = false;
+      this.timeGame(true);
     }
 
     // this.$store.commit('updateProgress', this.$route.name); 
@@ -49,14 +57,6 @@ export default {
     //     this.audit = true;
     //   }
     // });
-
-    this.$root.$on('WelcomeVideo', this.welcomeVideo);
-    this.$root.$on('AllComplete', this.allComplete);
-    this.$root.$on('ToggleTimer', this.toggleTimer);
-  },
-
-  mounted(){
-    
   },
 
   methods:{

@@ -29,21 +29,21 @@ export default {
   },
 
   mounted() {
-    let progress = this.$store.getters.getProgress;
-    let complete = true;
-    for(let i in progress){
-      // console.log(progress[i])
-      if(progress[i] != true){
-        this.openPage("");
-        complete = false;
-      }
-    }
+    // let progress = this.$store.getters.getProgress;
+    // let complete = true;
+    // for(let i in progress){
+    //   // console.log(progress[i])
+    //   if(progress[i] != true){
+    //     this.openPage("");
+    //     complete = false;
+    //   }
+    // }
     
     this.$root.$emit('ToggleTimer', false); 
     
-    if(complete == true){
-      document.getElementById("videoPane").play();
-    }
+    // if(complete == true){
+    //   document.getElementById("videoPane").play();
+    // }
   },
 
   methods: {
