@@ -15,6 +15,10 @@ Code Contributors:
 Content Contributors:
 - Dana Ward
 - Kadi Grigg
+
+Events Used at:
+- Accelerate 2021 (Internal - NA, EMEA, APJ)
+
 ```
 
 ## Project setup
