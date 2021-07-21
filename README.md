@@ -10,6 +10,7 @@ Copyright Sonatype - 2021
 Code Contributors:
 - Alexander Plattel
 - Austin Becker
+- Maury Cupitt
 
 Content Contributors:
 - Dana Ward
