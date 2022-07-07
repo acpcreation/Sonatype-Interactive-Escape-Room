@@ -51,7 +51,7 @@ export default {
   data(){
     return{
       questions:[
-        {question:"We surveyed 100 sales guides in Highspot: For which Sonatype products might you expect a security persona to act as a primary buyer?",                answers:["Lifecycle","Auditor","Firewall","ADP"]},
+        {question:"We surveyed 100 sales guides in Highspot: For which Sonatype products might you expect a security persona to act as a primary buyer?",                answers:["Lifecycle","Auditor","Firewall","ADP","Beer"]},
         {question:"We surveyed 100 sales guides in Highspot: For which Sonatype products might you expect a Dev/Engineering Manager persona to act as a primary buyer?", answers:["Lift", "Lifecycle", "ALP", "Firewall", "ADP", "Repository"]},
         {question:"We surveyed 100 sales guides in Highspot: For which Sonatype products might you expect an Operations persona to act as a primary buyer?",             answers:["Container", "IaC", "Auditor"]},
         {question:"We surveyed 100 sales guides in Highspot: For which Sonatype products might you expect a developer/engineer to act as an primary influencer?",        answers:["ADP", "Lifecycle", "Firewall", "Lift", "Repository"]},

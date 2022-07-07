@@ -10,10 +10,14 @@ Copyright Sonatype - 2021
 Code Contributors:
 - Alexander Plattel
 - Austin Becker
+- Maury Cupitt
 
 Content Contributors:
 - Dana Ward
 - Kadi Grigg
+
+Events Used:
+- Accelerate 2021 (Internal - NA, EMEA, APJ)
 ```
 
 ## Project setup
