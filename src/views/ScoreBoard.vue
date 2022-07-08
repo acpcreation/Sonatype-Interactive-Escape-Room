@@ -7,7 +7,6 @@
         <p>Title</p>
       </div>
 
-
     </div>
 
   </div>
@@ -29,7 +28,7 @@ export default {
   },
 
   mounted() {
-    
+    var name = "Noah"
 
 
   },
