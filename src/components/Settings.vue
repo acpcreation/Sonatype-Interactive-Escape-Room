@@ -4,6 +4,7 @@
     <hr>
     <b-button variant="primary" @click="replayIntro()">Replay intro Video</b-button>
     <b-button variant="danger" @click="fullReset()">Reset Game</b-button>
+    <b-button variant="success" @click="openPage('ScoreBoard')">Score Board</b-button>
     <!-- <b-button variant="dark" @click="setAllComplete()">Complete All</b-button> -->
 
   </div>
@@ -60,6 +61,10 @@ export default {
       this.$store.commit('setAllProgress', complete);
       localStorage.setItem("progress", JSON.stringify(complete));
 
+    },
+
+    openPage: function(e) {
+      this.$router.push("/"+e);
     },
   
 

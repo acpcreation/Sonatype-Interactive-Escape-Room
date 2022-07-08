@@ -11,6 +11,8 @@ import FamilyFeud from './views/FamilyFeud.vue'
 import HangMan from './views/HangMan.vue'
 import Cafeteria from './views/Cafeteria.vue'
 import Complete from './views/Complete.vue'
+import ScoreBoard from './views/ScoreBoard.vue'
+
 
 
 
@@ -73,6 +75,11 @@ export default new Router({
       path: '/Complete',
       name: 'Complete',
       component: Complete
+    },
+    {
+      path: '/ScoreBoard',
+      name: 'ScoreBoard',
+      component: ScoreBoard
     },
     
     

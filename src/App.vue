@@ -2,7 +2,7 @@
   <div id="app">
     <router-view/>
 
-    <Welcome v-if="welcome" @closeWelcome="welcomeVideo"/>
+    <!-- <Welcome v-if="welcome" @closeWelcome="welcomeVideo"/> -->
     <Audit v-if="audit" @closeAudit="audit=!audit"/>
     <Timer :start="timerState"/>
 
