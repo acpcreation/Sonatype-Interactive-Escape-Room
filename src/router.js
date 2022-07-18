@@ -10,8 +10,10 @@ import PriceQuotes from './views/PriceQuotes.vue'
 import FamilyFeud from './views/FamilyFeud.vue'
 import HangMan from './views/HangMan.vue'
 import Cafeteria from './views/Cafeteria.vue'
+import VulnerabilitySort from './views/VulnerabilitySort.vue'
 import Complete from './views/Complete.vue'
 import ScoreBoard from './views/ScoreBoard.vue'
+
 
 
 
@@ -70,6 +72,11 @@ export default new Router({
       path: '/Cafeteria',
       name: 'Cafeteria',
       component: Cafeteria
+    },
+    {
+      path: '/VulnerabilitySort',
+      name: 'VulnerabilitySort',
+      component: VulnerabilitySort
     },
     {
       path: '/Complete',

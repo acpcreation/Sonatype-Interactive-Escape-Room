@@ -2,7 +2,9 @@
   <div class="pane" @click="close()">
     <p>General Settings</p>
     <hr>
-    <b-button variant="primary" @click="replayIntro()">Replay intro Video</b-button>
+    <!-- <b-button variant="primary" @click="replayIntro()">Replay intro Video</b-button> -->
+
+    <b-button variant="primary" @click="setStoryMode('Freeplay')">Story / Freeplay</b-button>
     <b-button variant="danger" @click="fullReset()">Reset Game</b-button>
     <b-button variant="success" @click="openPage('ScoreBoard')">Score Board</b-button>
     <!-- <b-button variant="dark" @click="setAllComplete()">Complete All</b-button> -->
@@ -33,16 +35,15 @@ export default {
       this.$emit('closeSettings');   
     },
 
-
     fullReset: function() {
       localStorage.clear();
       window.location.reload()
     },
 
-    replayIntro: function(){
-      this.$root.$emit('WelcomeVideo'); 
-      // this.$root.$emit('AllComplete'); 
-    },
+    // replayIntro: function(){
+    //   this.$root.$emit('WelcomeVideo'); 
+    //   // this.$root.$emit('AllComplete'); 
+    // },
 
     setAllComplete: function(){
       let complete ={
@@ -51,16 +52,29 @@ export default {
         ClueFinder: true,
         Complete: false,
         Decoder: true,
-        FamilyFeud: true,
-        HangMan: true,
+        // FamilyFeud: true,
+        // HangMan: true,
         PriceQuotes: true,
         RememberThePath: true,
-        VRExplorer: true
+        // VRExplorer: true
+        VulnerabilitySort:true
       };
-
       this.$store.commit('setAllProgress', complete);
       localStorage.setItem("progress", JSON.stringify(complete));
+    },
 
+    setStoryMode: function(e){
+      this.$store.commit('setStoryMode', e);
+      
+      if(e == "Story"){
+        let progress = this.$store.getters.getProgress;
+        localStorage.setItem("progress", JSON.stringify(progress));
+      }
+      else if(e == "Freeplay"){
+        localStorage.setItem("progress", e);
+      }
+      
+      window.location.reload();
     },
 
     openPage: function(e) {

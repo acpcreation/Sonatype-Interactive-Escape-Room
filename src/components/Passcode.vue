@@ -65,7 +65,6 @@ export default {
       this.scrambledLetters = "Y D C R I V S O E" //DISCOVERY
     }
 
-
     if(progress.Complete){
       this.characters = [];
       for(let i in this.correctPasscode){

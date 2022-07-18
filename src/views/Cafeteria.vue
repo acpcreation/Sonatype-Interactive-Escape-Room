@@ -70,7 +70,8 @@ export default {
       productOptions: ["Lifecycle", "Repository Manager", "Firewall", "Container", "Lift", "IaC", "ADP", "ALP"],
       showCheck: null,
       successMessage: "",
-      disableClickArea: ""
+      disableClickArea: "",
+      score: 0
     }
   },
 
@@ -150,6 +151,15 @@ export default {
         this.orders.push(item[0]);
       }
     },
+
+    updateScore: function(e){
+      // Correct / Incorrect
+      if(e == "Correct"){
+        this.score += 10
+      }else{
+        this.score -= 25;
+      }
+    }
 
 
 

@@ -27,13 +27,14 @@ export default {
   },
 
   mounted() {
-  
+    this.startTimer();
+    
   },
 
   watch: { 
     start: function(){ 
       if(this.start == true){
-        this.startTimer()
+        this.startTimer();
       }else{
         this.stopTimer();
       }

@@ -21,6 +21,8 @@
 
     </div>
 
+   
+
   </div>
 </template>
 
@@ -76,7 +78,7 @@ export default {
         this.successMessage = "Clue: Click HERE to see a Post-It that might help you!";
         this.$store.commit('updateProgress', {route:this.$route.name, context:this});
       }
-    }
+    },
 
 
 
@@ -97,6 +99,7 @@ export default {
 .centerItems{
   flex-wrap: wrap;
 }
+
 
 
 

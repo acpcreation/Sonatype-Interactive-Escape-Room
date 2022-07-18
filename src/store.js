@@ -10,19 +10,23 @@ export default new Vuex.Store({
             Calculator: false,
             ClueFinder: false,
             Decoder: false,
-            FamilyFeud: false,
-            HangMan: false,
+            // FamilyFeud: false,
+            // HangMan: false,
             PriceQuotes: false,
             RememberThePath: false,
-            VRExplorer: false
+            // VRExplorer: false
+            VulnerabilitySort:false
         },  
-        passcode:[]
+        passcode:[],
+        storyMode: "Freeplay"
     },
 
     mutations:{
         updateProgress(state, data){
             state.progress[data.route] = true;
-            localStorage.setItem("progress", JSON.stringify(state.progress));
+            if(state.storyMode == "Story"){
+                localStorage.setItem("progress", JSON.stringify(state.progress));
+            }
 
             let complete = true;
             for(let i in state.progress){
@@ -45,6 +49,10 @@ export default new Vuex.Store({
             state.passcode = data;
         },
 
+        setStoryMode(state, data){
+            //Story / Freeplay
+            state.storyMode = data;
+        },
     
     },
 

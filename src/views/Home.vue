@@ -13,11 +13,11 @@
         <img class="mazePage"       @click="openPage('RememberThePath')" src="../../public/img/maze.png"/>
         <img class="calculatorPage" @click="openPage('Calculator')" src="../../public/img/calculator.png"/>
         <img class="clueFinderPage" @click="openPage('ClueFinder')" src="../../public/img/map.jpeg"/>
-        <img class="vrExplorerPage" @click="openPage('VRExplorer')" src="../../public/img/vrheadset.png"/>
+        <img class="vulnerabilitySort" @click="openPage('VulnerabilitySort')" src="../../public/img/vrheadset.png"/>
         <img class="decoderPage"    @click="openPage('Decoder')" src="../../public/img/book.png"/>
         <img class="priceQuotePage" @click="openPage('PriceQuotes')" src="../../public/img/abacus.jpg"/>
-        <img class="hangManPage"    @click="openPage('HangMan')" src="../../public/img/hangman.png"/>
-        <img class="familyFeudPage" @click="openPage('FamilyFeud')" src="../../public/img/familyfeud.png"/>
+        <!-- <img class="hangManPage"    @click="openPage('HangMan')" src="../../public/img/hangman.png"/> -->
+        <!-- <img class="familyFeudPage" @click="openPage('FamilyFeud')" src="../../public/img/familyfeud.png"/> -->
         <img class="cafeteriaPage" @click="openPage('Cafeteria')" src="../../public/img/cafeteria.png"/>
       </div>
 
@@ -112,7 +112,7 @@ export default {
   transform: rotate(-5deg);
 }
 
-.vrExplorerPage{
+.vulnerabilitySort{
   top:320px;
   left: 538px;
   width: 70px;

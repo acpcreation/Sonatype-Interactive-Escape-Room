@@ -2,9 +2,8 @@
   <div id="app">
     <router-view/>
 
-    <!-- <Welcome v-if="welcome" @closeWelcome="welcomeVideo"/> -->
-    <Audit v-if="audit" @closeAudit="audit=!audit"/>
-    <Timer :start="timerState"/>
+    <!-- <Audit v-if="audit" @closeAudit="audit=!audit"/> -->
+    <Timer :start="timerState" v-if="storyMode == true"/>
 
     <b-modal id="allCompleteModal" title="All Challenges Complete!" ok-title="I'm on it!" ok-variant="success"  ok-only> 
       <p><b>Hooray!!</b> You completed all the challenges!</p>
@@ -15,39 +14,42 @@
 </template>
 
 <script>
-import Welcome from '@/components/Welcome.vue'
-import Audit from '@/components/Audit.vue'
+// import Audit from '@/components/Audit.vue'
 import Timer from '@/components/Timer.vue'
 
 export default {
   name: 'App',
   components: {
-    Welcome,
-    Audit,
+    // Audit,
     Timer
   },
   data(){
     return{
-      welcome:true, 
-      audit: false,
+      // audit: false,
       complete: false,
-      timerState: false
+      timerState: false,
+      storyMode: false
     }
   },
   created() {
-    this.$root.$on('WelcomeVideo', this.welcomeVideo);
     this.$root.$on('AllComplete', this.allComplete);
-    this.$root.$on('ToggleTimer', this.toggleTimer);
   },
 
   mounted(){
     let progress = localStorage.getItem("progress");
     if(progress != null){
-      console.log(JSON.parse(progress))
-      this.$store.commit('setAllProgress', JSON.parse(progress)); 
-      this.welcome = false;
-      this.timeGame(true);
+      
+      console.log(progress)
+      if(progress != "Freeplay"){ 
+        progress = JSON.parse(progress)
+        this.$store.commit('setAllProgress', progress); 
+        this.storyMode = true;
+        this.toggleTimer(true);
+      }else{
+        this.toggleTimer(false);
+      }
     }
+    // this.timeGame(true);
 
     // this.$store.commit('updateProgress', this.$route.name); 
     // let stuff = this.$store.getters.getProgress;
@@ -60,10 +62,6 @@ export default {
   },
 
   methods:{
-    welcomeVideo: function(){
-      this.welcome = !this.welcome;
-      this.timeGame(true);
-    },
 
     allComplete: function(){
       if(this.complete == false){
@@ -73,12 +71,6 @@ export default {
         setTimeout(function(){
           that.$bvModal.show("allCompleteModal")
         }, 2000);
-      }
-    },
-
-    timeGame: function(e){
-      if(this.welcome == false && e == true){
-        this.timerState = true;
       }
     },
 

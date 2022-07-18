@@ -4,13 +4,13 @@
       <b-icon class="closeButton" icon="x-circle-fill" font-scale="2" variant="light" @click="closePane()"></b-icon>
       <p class="title">Welcome to the Sonatype Enablement Escape Room</p>
       <p class="subtext">Watch this video to receive your assignment</p>
-      <video width="100%" id="videoPane" controls>
+      <!-- <video width="100%" id="videoPane" controls>
         <source src="../../public/video/intro.mp4" type="video/mp4">
           Your browser does not support HTML video.
           https://sonatype.zoom.us/rec/share/cuXlsdm1k74iUBRNijkvdSZ0IqsliXe005Yqbjgh_RvhcuBHN_n2HxTNuTVW4mzW.SN5eUE-0wrFzyDcs?startTime=1626364196000
           <br>
           Password:j@S&5bmn
-      </video>
+      </video> -->
     </div>
   </div>
 </template>
