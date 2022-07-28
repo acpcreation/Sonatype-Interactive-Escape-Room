@@ -12,9 +12,6 @@ import HangMan from './views/HangMan.vue'
 import Cafeteria from './views/Cafeteria.vue'
 import VulnerabilitySort from './views/VulnerabilitySort.vue'
 import Complete from './views/Complete.vue'
-import ScoreBoard from './views/ScoreBoard.vue'
-
-
 
 
 
@@ -83,11 +80,7 @@ export default new Router({
       name: 'Complete',
       component: Complete
     },
-    {
-      path: '/ScoreBoard',
-      name: 'ScoreBoard',
-      component: ScoreBoard
-    },
+
     
     
     

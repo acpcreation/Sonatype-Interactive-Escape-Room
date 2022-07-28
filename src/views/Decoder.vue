@@ -121,7 +121,7 @@ export default {
           behavior: 'smooth'
         });
       this.successMessage = 'Clue: We have 250 users (dev and sec) here at EZ but Acme has 1000 developers and 250 security professionals. We know we have allocated $200,000 for this initiative, but pending the solution we may have to bring in our new parent company to help streamline integrations, procedures, etc.';
-      this.$store.commit('updateProgress', {route:this.$route.name, context:this});
+      this.$store.commit('updateProgress', {route:this.$route.name, context:this, score:1000});
     },
 
     morseCodeContent: function(){

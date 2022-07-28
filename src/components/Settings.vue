@@ -6,7 +6,8 @@
 
     <b-button variant="primary" @click="setStoryMode('Freeplay')">Story / Freeplay</b-button>
     <b-button variant="danger" @click="fullReset()">Reset Game</b-button>
-    <b-button variant="success" @click="openPage('ScoreBoard')">Score Board</b-button>
+    <b-button variant="success" @click="reloadPage()">Reset Username</b-button>
+    <!-- <b-button variant="success" @click="openPage('ScoreBoard')">Score Board</b-button> -->
     <!-- <b-button variant="dark" @click="setAllComplete()">Complete All</b-button> -->
 
   </div>
@@ -37,6 +38,10 @@ export default {
 
     fullReset: function() {
       localStorage.clear();
+      window.location.reload()
+    },
+
+    reloadPage: function(){
       window.location.reload()
     },
 

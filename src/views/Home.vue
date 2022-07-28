@@ -12,10 +12,11 @@
         <img class="passcodePage"   @click="passcode=!passcode" src="../../public/img/passcode.png"/>
         <img class="mazePage"       @click="openPage('RememberThePath')" src="../../public/img/maze.png"/>
         <img class="calculatorPage" @click="openPage('Calculator')" src="../../public/img/calculator.png"/>
-        <img class="clueFinderPage" @click="openPage('ClueFinder')" src="../../public/img/map.jpeg"/>
+        <!-- <img class="clueFinderPage" @click="openPage('ClueFinder')" src="../../public/img/map.jpeg"/> -->
         <img class="vulnerabilitySort" @click="openPage('VulnerabilitySort')" src="../../public/img/vrheadset.png"/>
         <img class="decoderPage"    @click="openPage('Decoder')" src="../../public/img/book.png"/>
         <img class="priceQuotePage" @click="openPage('PriceQuotes')" src="../../public/img/abacus.jpg"/>
+        <!-- <img class="vrExplorerPage" @click="openPage('VRExplorer')" src="../../public/img/vrheadset.png"/> -->
         <!-- <img class="hangManPage"    @click="openPage('HangMan')" src="../../public/img/hangman.png"/> -->
         <!-- <img class="familyFeudPage" @click="openPage('FamilyFeud')" src="../../public/img/familyfeud.png"/> -->
         <img class="cafeteriaPage" @click="openPage('Cafeteria')" src="../../public/img/cafeteria.png"/>
@@ -41,7 +42,7 @@ export default {
     return{
       welcome:true,
       passcode:false,
-      settings: false
+      settings: false,
     }
   },
   methods:{
@@ -82,25 +83,25 @@ export default {
 }
 
 .buttonImages img{
-    position: relative;
+    position: fixed;
     cursor: pointer;
 }
 
 .passcodePage{
-  top:435px;
-  left: 445px;
+  top:500px;
+  left: 450px;
   width: 200px;
 }
 
 .mazePage{
-  top:394px;
-  left: -98px;
+  top:200px;
+  left: 400px;
   width: 85px;
 }
 
 .calculatorPage{
   top:600px;
-  left: 0px;
+  left: 300px;
   width: 60px;
   transform: rotate(-70deg);
 }
@@ -113,22 +114,22 @@ export default {
 }
 
 .vulnerabilitySort{
-  top:320px;
-  left: 538px;
+  top:460px;
+  left: 1035px;
   width: 70px;
 }
 
 .decoderPage{
-  top:490px;
-  left: 190px;
+  top:630px;
+  left: 750px;
   width: 70px;
   transform: rotate(8deg);
   opacity: .9;
 }
 
 .priceQuotePage{
-  top: 180px;
-  left: 110px;
+  top: 280px;
+  left: 700px;
   width: 100px;
   transform: rotate(18deg);
   opacity: .95;
@@ -149,8 +150,8 @@ export default {
 }
 
 .cafeteriaPage{
-  top: 520px;
-  left: 40px;
+  top: 650px;
+  left: 1100px;
   width: 220px;
 }
 

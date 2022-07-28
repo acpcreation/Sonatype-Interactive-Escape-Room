@@ -146,7 +146,7 @@ export default {
           if(this.path[6][6] == "done"){
             this.successMessage = "Clue: We need a way to proactively block or allow components for use by our development teams that are consistent with our company policies...but not all teams have the same requirements. We used to keep a list of the 'good' and 'bad' components, but that is no longer workin";
             document.getElementById("pathTable").setAttribute("style", "pointer-events:none");
-            this.$store.commit('updateProgress', {route:this.$route.name, context:this});
+            this.$store.commit('updateProgress', {route:this.$route.name, context:this, score:1000});
           }
         }
 

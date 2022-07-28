@@ -103,7 +103,7 @@ export default {
   
     challengeComplete: function(){
       this.successMessage = "Clue: We prefer to be in the cloud. Can you help us better understand if and how we can utilize containers?";
-      this.$store.commit('updateProgress', {route:this.$route.name, context:this});
+      this.$store.commit('updateProgress', {route:this.$route.name, context:this, score:1000});
     }
    
 

@@ -1,6 +1,8 @@
 <template>
   <div id="app">
     <router-view/>
+    <Player />
+    <!-- <WebSocket/> -->
 
     <!-- <Audit v-if="audit" @closeAudit="audit=!audit"/> -->
     <Timer :start="timerState" v-if="storyMode == true"/>
@@ -16,12 +18,16 @@
 <script>
 // import Audit from '@/components/Audit.vue'
 import Timer from '@/components/Timer.vue'
+import Player from '@/components/Player.vue'
+// import WebSocket from '@/components/WebSocket.vue'
 
 export default {
   name: 'App',
   components: {
     // Audit,
-    Timer
+    Timer,
+    Player,
+    // WebSocket
   },
   data(){
     return{
@@ -59,6 +65,9 @@ export default {
     //     this.audit = true;
     //   }
     // });
+
+
+
   },
 
   methods:{

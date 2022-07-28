@@ -113,7 +113,7 @@ export default {
         if(this.questionIndex < this.questions.length-1){
           this.successMessage = [this.hints[this.questionIndex]];
         }else{
-          this.$store.commit('updateProgress', {route:this.$route.name, context:this});
+          this.$store.commit('updateProgress', {route:this.$route.name, context:this, score:1000});
           this.successMessage = this.hints;
         }
       }

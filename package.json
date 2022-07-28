@@ -8,14 +8,10 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@sap/hana-client": "^2.4.194",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.2",
     "bootstrap-vue": "^2.17.3",
     "core-js": "^3.6.4",
-    "fiori-fundamentals": "^1.7.4",
-    "fundamental-styles": "^0.1.0",
-    "fundamental-vue": "^0.18.3",
     "jquery": "^1.9.1",
     "minimist": "^1.2.6",
     "vue": "^2.6.11",

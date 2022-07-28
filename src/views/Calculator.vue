@@ -76,7 +76,7 @@ export default {
 
       if(this.completed.length == this.calculations.length){
         this.successMessage = "Clue: Click HERE to see a Post-It that might help you!";
-        this.$store.commit('updateProgress', {route:this.$route.name, context:this});
+        this.$store.commit('updateProgress', {route:this.$route.name, context:this, score:1000});
       }
     },
 

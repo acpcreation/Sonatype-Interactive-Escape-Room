@@ -161,7 +161,7 @@ export default {
         this.successMessage = [this.hints[this.roundIndex]];
 
         if(this.roundIndex == this.hints.length-1){
-          this.$store.commit('updateProgress', {route:this.$route.name, context:this});
+          this.$store.commit('updateProgress', {route:this.$route.name, context:this, score:1000});
           this.successMessage = this.hints;
         }
 

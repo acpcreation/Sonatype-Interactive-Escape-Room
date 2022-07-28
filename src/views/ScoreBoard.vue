@@ -76,12 +76,13 @@ export default {
 
   mounted() {
 
-    // window.addEventListener("message", function(message){
-    //   // console.log(message.data)
-    //   if(message.origin == "http://localhost:8082/"){
-    //     alert(message.data)
-    //   }
-    // });
+    window.addEventListener("message", function(e){
+      console.log(e.origin)
+      if(e.origin == "http://localhost:8083"){
+        alert(e.data)
+      }
+    });
+
    
     this.addNewScore({id:"Player2", score:102280, time:"1/2/4", game:"VR Adventure"})
     this.addNewScore({id:"Player3", score:10000, time:"1/2/5", game:"Hangman"})
@@ -89,7 +90,6 @@ export default {
     this.addNewScore({id:"Player4", score:8973, time:"1/3/1", game:"Hangman"})
     this.addNewScore({id:"Player5", score:98732, time:"1/3/2", game:"Hangman"})
     this.addNewScore({id:"Player6", score:10, time:"1/3/3", game:"Escape the Maze"})
-
 
   },
 

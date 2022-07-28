@@ -140,7 +140,7 @@ export default {
           this.currentOrder +=1;
         }else{
           this.successMessage = "Clue: Click HERE to open an email thread that may contain clues."
-          this.$store.commit('updateProgress', {route:this.$route.name, context:this});
+          this.$store.commit('updateProgress', {route:this.$route.name, context:this, score:1000});
         }
 
       }else{
