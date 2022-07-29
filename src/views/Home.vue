@@ -9,21 +9,22 @@
       <!-- <img class="backgroundImage" src="../../public/img/background.png"/> -->
     
       <div class="buttonImages" @click="settings = false">
-        <img class="passcodePage"   @click="passcode=!passcode" src="../../public/img/passcode.png"/>
-        <img class="mazePage"       @click="openPage('RememberThePath')" src="../../public/img/maze.png"/>
-        <img class="calculatorPage" @click="openPage('Calculator')" src="../../public/img/calculator.png"/>
+        <img class="mazePage"       @click="openPage('RememberThePath')" src="../../public/img/Maze.svg"/>
+        <img class="calculatorPage" @click="openPage('Calculator')" src="../../public/img/Calculator.svg"/>
+        <img class="vulnerabilitySort" @click="openPage('VulnerabilitySort')" src="../../public/img/Vuln.svg"/>
+        <img class="decoderPage"    @click="openPage('Decoder')" src="../../public/img/Decoder.svg"/>
+        <img class="priceQuotePage" @click="openPage('PriceQuotes')" src="../../public/img/Price.svg"/>
+        <img class="cafeteriaPage" @click="openPage('Cafeteria')" src="../../public/img/Pizza.svg"/>
+
+        <img class="passcodePage"   @click="passcode=!passcode" src="../../public/img/Arrows.svg"/>
         <!-- <img class="clueFinderPage" @click="openPage('ClueFinder')" src="../../public/img/map.jpeg"/> -->
-        <img class="vulnerabilitySort" @click="openPage('VulnerabilitySort')" src="../../public/img/vrheadset.png"/>
-        <img class="decoderPage"    @click="openPage('Decoder')" src="../../public/img/book.png"/>
-        <img class="priceQuotePage" @click="openPage('PriceQuotes')" src="../../public/img/abacus.jpg"/>
         <!-- <img class="vrExplorerPage" @click="openPage('VRExplorer')" src="../../public/img/vrheadset.png"/> -->
         <!-- <img class="hangManPage"    @click="openPage('HangMan')" src="../../public/img/hangman.png"/> -->
         <!-- <img class="familyFeudPage" @click="openPage('FamilyFeud')" src="../../public/img/familyfeud.png"/> -->
-        <img class="cafeteriaPage" @click="openPage('Cafeteria')" src="../../public/img/cafeteria.png"/>
       </div>
 
     <Passcode v-if="passcode" @closePasscode="passcode = !passcode"/>
-    
+    <!-- <Background /> -->
   </div>
 </template>
 
@@ -31,12 +32,14 @@
 
 import Passcode from '@/components/Passcode.vue'
 import Settings from '@/components/Settings.vue'
+// import Background from '@/components/Background.vue'
 
 export default {
   name: 'Home',
   components: {
     Passcode,
-    Settings
+    Settings,
+    // Background
   },
   data(){
     return{
@@ -76,34 +79,34 @@ export default {
   height:800px;
   width: 1500px ;
   margin-bottom:-200px;
-  background-image:url('../../public/img/background.png'); 
+  background-image:url('../../public/img/background.svg'); 
   background-repeat: no-repeat;
   background-size: 1500px;
   margin:5px auto;
 }
 
 .buttonImages img{
-    position: fixed;
+    position: relative;
     cursor: pointer;
 }
 
 .passcodePage{
-  top:500px;
-  left: 450px;
-  width: 200px;
+  top:518px;
+  left: -54px;
+  width: 292px;
 }
 
 .mazePage{
-  top:200px;
-  left: 400px;
-  width: 85px;
+  top:520px;
+  left: 940px;
+  width: 120px;
 }
 
 .calculatorPage{
-  top:600px;
-  left: 300px;
-  width: 60px;
-  transform: rotate(-70deg);
+  top:520px;
+  left: 965px;
+  width: 110px;
+  /* transform: rotate(-70deg); */
 }
 
 .clueFinderPage{
@@ -114,25 +117,25 @@ export default {
 }
 
 .vulnerabilitySort{
-  top:460px;
-  left: 1035px;
-  width: 70px;
+  top:518px;
+  left: 211px;
+  width: 121px;
 }
 
 .decoderPage{
-  top:630px;
-  left: 750px;
-  width: 70px;
-  transform: rotate(8deg);
-  opacity: .9;
+  top:518px;
+  left: -44px;
+  width: 120px;
+  /* transform: rotate(8deg); */
+  /* opacity: .9; */
 }
 
 .priceQuotePage{
-  top: 280px;
-  left: 700px;
-  width: 100px;
-  transform: rotate(18deg);
-  opacity: .95;
+  top: 394px;
+  left: -64px;
+  width: 66px;
+  /* transform: rotate(18deg); */
+  /* opacity: .95; */
 }
 
 .hangManPage{
@@ -150,17 +153,33 @@ export default {
 }
 
 .cafeteriaPage{
-  top: 650px;
-  left: 1100px;
-  width: 220px;
+  top: 704px;
+  left: 294px;
+  width: 120px;
 }
 
+
+@media (max-width: 1300px) {
+  .main{
+    transform: scale(0.9);
+    margin-left: -4vw;
+  }
+}
+
+@media (max-width: 1300px) {
+  .main{
+    transform: scale(0.8);
+    margin-left: -10vw;
+  }
+}
 
 @media (max-width: 1200px) {
   .main{
-    transform: scale(0.8);
+    transform: scale(0.7);
+    margin-left: -14vw;
   }
 }
+
 
 
 </style>

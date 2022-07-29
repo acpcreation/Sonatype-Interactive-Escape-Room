@@ -94,6 +94,8 @@ export default {
 .main{
   text-align: center;
   padding: 2vw 8vw;
+  background-image: linear-gradient(to bottom, rgba(22, 22, 22, 0.88),rgba(0, 0, 0, 0.88)), 
+                    url('../../public/img/background.svg');
 }
 
 .centerItems{

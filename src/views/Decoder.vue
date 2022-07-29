@@ -19,7 +19,7 @@
       </div>
     </div>
     
-    <br><br><br><br>
+    <br v-for="i in 6" :key="i">
     <b-form-input type="text" class="decodedMessage" :state="inputState" v-model="decodedMessage" placeholder="Enter the decoded message here.."></b-form-input>
     <b-progress 
         :value="decodedMessage.length" 
@@ -257,6 +257,9 @@ export default {
 .main{
   text-align: center;
   padding: 2vh;
+
+  background-image: linear-gradient(to bottom, rgba(22, 22, 22, 0.88),rgba(0, 0, 0, 0.88)), 
+                    url('../../public/img/background.svg');
 }
 
 .library{

@@ -24,7 +24,7 @@
         <div class="order">
           {{orders[currentOrder].order}}
         </div>
-        <img class="accelerateOrder" src="../../public/img/accelerateOrder.png"/>
+        <img class="accelerateOrder" src="../../public/img/Robot-10.svg"/>
       </div>
     </div>
 
@@ -177,8 +177,8 @@ export default {
   padding-top: 2vw;
   height: 100vh;
   margin-bottom:-200px;
-  background-image: linear-gradient(to bottom, rgba(22, 22, 22, 0.92),rgba(0, 0, 0, 0.92)), 
-                    url('../../public/img/background.png');
+  background-image: linear-gradient(to bottom, rgba(22, 22, 22, 0.88),rgba(0, 0, 0, 0.88)), 
+                    url('../../public/img/background.svg');
 }
 
 .order{
@@ -252,7 +252,7 @@ export default {
 }
 
 .accelerateOrder{
-  width: 200px;
+  width: 300px;
   /* margin-right: 5vw; */
   margin-top: 5vh;
 }
