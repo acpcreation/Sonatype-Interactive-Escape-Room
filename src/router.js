@@ -7,6 +7,7 @@ import ClueFinder from './views/ClueFinder.vue'
 import VRExplorer from './views/VRExplorer.vue'
 import Decoder from './views/Decoder.vue'
 import PriceQuotes from './views/PriceQuotes.vue'
+import PriceEstimator from './views/PriceEstimator.vue'
 import FamilyFeud from './views/FamilyFeud.vue'
 import HangMan from './views/HangMan.vue'
 import Cafeteria from './views/Cafeteria.vue'
@@ -54,6 +55,11 @@ export default new Router({
       path: '/PriceQuotes',
       name: 'PriceQuotes',
       component: PriceQuotes
+    },
+    {
+      path: '/PriceEstimator',
+      name: 'PriceEstimator',
+      component: PriceEstimator
     },
     {
       path: '/HangMan',

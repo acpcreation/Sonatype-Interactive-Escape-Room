@@ -200,10 +200,11 @@ export default {
 
 .sideBySide .icon{
   margin-top:25px;
+  font-size: 50px !important;
 }
 
 .plate{
-  margin:20px 9vw;
+  margin:20px 8vw;
   width: 32vw;
   height: 32vw;
   background-color: rgb(247, 243, 226);
@@ -239,7 +240,7 @@ export default {
   bottom: 20px;
   left: 20%;
   /* margin: 0px auto; */
-  background: gray;
+  background: rgb(48, 48, 48);
   border-radius: 6px;
   height: 60px;
   padding-top: 15px;

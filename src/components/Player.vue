@@ -98,7 +98,8 @@ export default {
         "klingon",
         "nazgûl",
         "platypus",
-        "sumo wrestler"
+        "sumo wrestler",
+        "jared"
       ];
 
       this.username = firstNames[Math.floor(Math.random() * firstNames.length)] +" ";

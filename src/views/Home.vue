@@ -4,7 +4,6 @@
     <b-icon class="settingsButton" icon="gear-fill" font-scale="2" variant="dark" @click="settings = !settings"></b-icon>
     <Settings v-if="settings" @closeSettings="settings = !settings"/>
 
-
       <!-- https://www.vecteezy.com/vector-art/420220-modern-office-setup-background-vector-flat-illustration -->
       <!-- <img class="backgroundImage" src="../../public/img/background.png"/> -->
     
@@ -13,7 +12,7 @@
         <img class="calculatorPage" @click="openPage('Calculator')" src="../../public/img/Calculator.svg"/>
         <img class="vulnerabilitySort" @click="openPage('VulnerabilitySort')" src="../../public/img/Vuln.svg"/>
         <img class="decoderPage"    @click="openPage('Decoder')" src="../../public/img/Decoder.svg"/>
-        <img class="priceQuotePage" @click="openPage('PriceQuotes')" src="../../public/img/Price.svg"/>
+        <img class="priceQuotePage" @click="openPage('PriceEstimator')" src="../../public/img/Price.svg"/>
         <img class="cafeteriaPage" @click="openPage('Cafeteria')" src="../../public/img/Pizza.svg"/>
 
         <img class="passcodePage"   @click="passcode=!passcode" src="../../public/img/Arrows.svg"/>
