@@ -2,9 +2,9 @@
   <div class="main">
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <h3>Cafeteria Cook</h3>
-    <p class="challengeDescription">Customers will make orders and it is your job to select the correct products to fulfill the order. Careful not to click a wrong item!</p>
+    <p class="challengeDescription">Customers will make orders of Sonatype products and it is your job to select the correct products to fulfill the order. Careful not to click a wrong item or they will leave and come back at the end of the day!</p>
 
-    <p class="successMessage"><a href="https://docs.google.com/document/d/1aQwNj8QY59mJDr4_KR0fe5zJO4oORuq1m84agY1rpxw/edit?usp=sharing" target="_blank">{{successMessage}}</a></p>
+    <p class="successMessage">{{successMessage}}</p>
 
     <div class="sideBySide">
       <div class="plate">
@@ -31,13 +31,17 @@
     <div class="servingContainer" :style="disableClickArea">
       <span class="pill" 
         v-for="i in productOptions" 
-        :key="i"
-        :style="'background-color:'+pillColors(i)"
-        @click="addItem(i)">
-        {{i}}
+        :key="i.id"
+        :style="'background-color:'+i.color"
+        @click="addItem(i.id)"
+        v-b-tooltip.hover :title="i.description">
+        {{i.id}}
       </span>
     </div>
-
+        
+        
+    <h1 class="h1Score" v-if="score >-1">{{('00000'+score).slice(-5)}}</h1>
+    <h1 class="h1Score" v-else>{{score}}</h1>
   </div>
 </template>
 
@@ -54,7 +58,7 @@ export default {
     return{
       orders:[
         {answers:["Lifecycle", "Firewall"], order: "As a developer, I want to make sure I’m only choosing the best possible components that meet company policy from the start. I’m tired of doing a bunch of rework because our security team waits until the end of the build to tell me that something’s wrong. "},
-        {answers:["Lifecycle", "Repository Manager", "ALP"], order: "Our company needs a centralized storage spot that can be used for different types of artifacts as well as binaries being used in the build process. We’re also battling long feedback loops (sometimes months long) between dev + security, and are very concerned with licensing vulnerabilities. "},
+        {answers:["Lifecycle", "Repository Manager", ""], order: "Our company needs a centralized storage spot that can be used for different types of artifacts as well as binaries being used in the build process. We’re also battling long feedback loops (sometimes months long) between dev + security, and are very concerned with licensing vulnerabilities. "},
         {answers:["Lifecycle", "ALP", "Container"], order: "I’m looking for a way to run scans throughout our DevOps pipeline so we can identify vulnerabilities in both the staging and production environments. My legal team has also been putting pressure on me to find a way to perform license obligation and attribution reporting. Oh, and did I mention that we have container and Kubernetes deployments on multiple cloud platforms?"},
         {answers:["Lifecycle","Firewall", "Lift"], order: "My team relies primarily on npm, we’re a big JavaScript shop. With all the recent attacks in the news, we want to make sure we’re being diligent about name space and typosquatting attacks. Code quality is top of mind for us! And we want a scanning tool that integrates with several different IDEs, with all the different dev teams we have. What would you recommend?"},
         {answers:["Container", "Lift"], order: "I’m changing the architecture at our company to run all of our applications through docker and kubernetes. We’d also really like to get rid of SonarQube if possible because it’s noisy and expensive. Our developers only use source control and PR workflows as a way to write and review code as well, so we’d need a solution that plugs in well there."},
@@ -67,11 +71,22 @@ export default {
 
       currentOrder: 0,
       selectedProducts: [],
-      productOptions: ["Lifecycle", "Repository Manager", "Firewall", "Container", "Lift", "IaC", "ADP", "ALP"],
+      productOptions: [
+        {id:"Lifecycle", color:"#479FDC", description:"Description 1"}, 
+        {id:"Repository Manager", color:"#4DBB73", description:"Description 2"}, 
+        {id:"Firewall", color:"#8c30c2", description:"Description 3"}, 
+        {id:"Container", color:"#EC646D", description:"Description 4"}, 
+        {id:"Lift", color:"#faa200", description:"Description 5"}, 
+        // {id:"IaC", color:"#999999", description:"Description 6"}, 
+        // {id:"ADP", color:"#0F1C4D", description:"Description 7"}, 
+        {id:"Advanced Legal Pack", color:"#0F1C4D", description:"Description 8"}  
+      ],
       showCheck: null,
       successMessage: "",
       disableClickArea: "",
-      score: 0
+      score: 0,
+      scoreInterval: null,
+      roundScore:0
     }
   },
 
@@ -79,9 +94,11 @@ export default {
     //Check save state
     let progress = this.$store.getters.getProgress;
     if(progress[this.$route.name] == true){
-      this.successMessage = "Clue: Click HERE to open an email thread that may contain clues.";
+      this.successMessage = "Complete!";
       this.disableClickArea="pointer-events:none"
     }
+
+    this.newScoreRound(true)
   },
 
   methods: {
@@ -90,18 +107,14 @@ export default {
     },
 
     pillColors: function(e){
-      let colors = {
-        Lifecycle: '#479FDC', //Blue
-        Firewall: '#8c30c2', //Purple
-        RepositoryManager: '#4DBB73', //Green
-        Container: '#EC646D', //Pink,
-        Lift: '#f7d127',
-        IaC: '#999999',
-        ADP: '#0F1C4D',
-        ALP: '#faa200'
-      };
-      let color = colors[e.replace(' ','')]
-      return color;
+      let value = null;
+      for(let i in this.productOptions){
+        if(this.productOptions[i].id == e){
+          value = this.productOptions[i].color;
+          break;
+        }
+      }
+      return value;
     },
 
     addItem: function(e){
@@ -116,6 +129,7 @@ export default {
           this.showCheck = true;
           this.disabled = true;
           this.disableClickArea="pointer-events:none"
+          this.newScoreRound(true)
           setTimeout(function(){
             that.newRound(true);
           }, 3000);
@@ -124,6 +138,7 @@ export default {
           this.showCheck = false;
           this.disabled = true;
           this.disableClickArea="pointer-events:none"
+          this.newScoreRound(false)
           setTimeout(function(){
             that.newRound(false);
           }, 3000);
@@ -139,7 +154,8 @@ export default {
           this.disableClickArea = "";
           this.currentOrder +=1;
         }else{
-          this.successMessage = "Clue: Click HERE to open an email thread that may contain clues."
+          clearInterval(this.scoreInterval)
+          this.successMessage = "Complete!"
           this.$store.commit('updateProgress', {route:this.$route.name, context:this, score:1000});
         }
 
@@ -152,13 +168,22 @@ export default {
       }
     },
 
-    updateScore: function(e){
-      // Correct / Incorrect
-      if(e == "Correct"){
-        this.score += 10
-      }else{
-        this.score -= 25;
+    newScoreRound: function(e){
+      if(this.scoreInterval != null){
+        // Correct / Incorrect
+        if(e == true){
+          this.score += 1000-this.roundScore;
+        }else{
+          this.score -= this.roundScore;
+        }
+        this.roundScore=0;
+        clearInterval(this.scoreInterval)
       }
+
+      let that = this;
+      this.scoreInterval = setInterval(function(){
+        that.roundScore+=10;
+      }, 1000);      
     }
 
 
@@ -175,10 +200,10 @@ export default {
 .main{
   text-align: center;
   padding-top: 2vw;
-  height: 100vh;
-  margin-bottom:-200px;
   background-image: linear-gradient(to bottom, rgba(22, 22, 22, 0.88),rgba(0, 0, 0, 0.88)), 
                     url('../../public/img/background.svg');
+  min-height: 100vh !important;
+  background-size: cover !important;
 }
 
 .order{

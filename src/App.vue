@@ -104,7 +104,7 @@ export default {
     linear-gradient(to bottom, rgba(22, 22, 22, 0.85),rgba(0, 0, 0, 0.85)); 
 
   /* border-top: 5px solid rgb(20, 20, 20); */
-  padding-bottom:100px;
+  /* padding-bottom:100px; */
 }
 
 a{
@@ -121,6 +121,12 @@ h1,h2,h3{
 
 h1{
   font-size: 60px;
+}
+
+.h1Score{
+  position: absolute;
+  bottom: 8px;
+  left:0px;
 }
 
 h2{

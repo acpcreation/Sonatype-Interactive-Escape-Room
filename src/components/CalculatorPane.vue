@@ -95,6 +95,7 @@ p{
 
 .equation p{
   margin:0;
+  white-space: pre-line;
 }
  
 .equationInput{
@@ -106,6 +107,7 @@ p{
 
 .card-text{
   text-align: left;
+  white-space: pre-line; 
 }
 
 

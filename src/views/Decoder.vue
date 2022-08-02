@@ -3,7 +3,8 @@
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <!-- Mandarin, Hieroglyphics, Morse Code, Russian, Arabic  -->
     <h3>Decoder</h3>
-    <p v-if="selectedBook == null" class="challengeDescription">Decipher the hidden text using the books in the below library. Enter the full text in the input field at the bottom of the page to reveal the escape clue. "The data we collect on OSS are security is.."</p>
+    <p v-if="selectedBook == null" class="challengeDescription">Decipher the hidden text using the books in the below library. Enter the full text in the input field at the bottom of the page and watch the progress bar, it will tell you if you're on track.</p>
+    <br>
 
     <p class="successMessage">{{successMessage}}</p>
 
@@ -29,6 +30,8 @@
         animated></b-progress>
 
     <Book v-if="selectedBook != null" :content="selectedBook" @close="selectedBook = null"/>
+
+    <h1 class="h1Score">{{('00000'+score).slice(-5)}}</h1>
 
   </div>
 </template>
@@ -73,11 +76,11 @@ export default {
   data(){
     return{
       library:[
-        {title: "Anchient Egyptian Hieroglyphs", color:"rgb(143, 106,25)", style:"font-family:hieroglyphics;font-size:50px;", content:""}, 
+        {title: "Anchient Egyptian Hieroglyphs", color:"rgb(143, 106,25)", style:"font-family:hieroglyphics;font-size:80px;", content:""}, 
         {title: "The Languages of Eastern Asia", color:"rgb(139, 25, 25)", style:"font-family:mandarin;", content:this.mandarinContent()}, //https://fonts.google.com/specimen/Long+Cang?subset=chinese-simplified
         {title: "Common Tongue of Russian",      color:"rgb(46, 46, 105)", style:"font-family:russian;", content:""}, 
-        {title: "Beginners Guide to Morse Code", color:"rgb(31, 82,  33)", style:"font-size:60px;font-weight:bold;", content:this.morseCodeContent()},
-        {title: "American Sign Language",        color:"rgb(133, 77,107)", style:"font-family:sign-language;font-size:100px;", content:""}, //https://www.lifeprint.com/asl101/pages-layout/gallaudettruetypefont.htm
+        {title: "Beginners Guide to Morse Code", color:"rgb(31, 82,  33)", style:"font-size:55px;font-weight:bold;", content:this.morseCodeContent()},
+        {title: "American Sign Language",        color:"rgb(133, 77,107)", style:"font-family:sign-language;font-size:180px;", content:""}, //https://www.lifeprint.com/asl101/pages-layout/gallaudettruetypefont.htm
         // {title: "Book", color:"rgb(133, 77, 107)", content:""}, 
       ],
       
@@ -86,12 +89,14 @@ export default {
       decodedMessage: "",
       successMessage: "",
       message: "",
-      progressStyle: "primary"
+      progressStyle: "primary",
+      score:1000,
+      scoreInterval:null
     }
   },
 
   mounted() {
-    this.message = "license, popularity, age, security, hygiene rating";
+    this.message = "hello from paris";
     this.message = this.message.toUpperCase()
 
     //Check save state
@@ -102,7 +107,11 @@ export default {
     }
 
     this.encodeMessage(this.message)
-
+    
+    let that = this;
+    setTimeout(function(){
+      that.countdownScore()
+    }, 5000);
   },
 
   methods: {
@@ -115,13 +124,15 @@ export default {
     },
 
     successfulDecyption: function() {
+      clearInterval(this.scoreInterval)
+
       window.scroll({
           top: 0, 
           left: 0, 
           behavior: 'smooth'
         });
-      this.successMessage = 'Clue: We have 250 users (dev and sec) here at EZ but Acme has 1000 developers and 250 security professionals. We know we have allocated $200,000 for this initiative, but pending the solution we may have to bring in our new parent company to help streamline integrations, procedures, etc.';
-      this.$store.commit('updateProgress', {route:this.$route.name, context:this, score:1000});
+      this.successMessage = 'Complete!';
+      this.$store.commit('updateProgress', {route:this.$route.name, context:this, score:this.score});
     },
 
     morseCodeContent: function(){
@@ -240,9 +251,14 @@ export default {
         }
       }
       // console.log(this.encodedMessage)
-    }
+    },
 
-
+    countdownScore: function(){
+      let that = this;
+      this.scoreInterval = setInterval(function(){
+        that.score -= 1;
+      }, 2000)
+    },
 
 
 
@@ -256,16 +272,20 @@ export default {
 <style scoped>
 .main{
   text-align: center;
-  padding: 2vh;
+  padding: 2vw;
 
   background-image: linear-gradient(to bottom, rgba(22, 22, 22, 0.88),rgba(0, 0, 0, 0.88)), 
                     url('../../public/img/background.svg');
+
+  min-height: 100vh;
+  background-size: cover;
+  overflow: hidden;
 }
 
 .library{
   width: 400px !important;
   /* margin: 60px auto; */
-  margin: 100px -90px 0px -30px;
+  margin: 50px -90px 0px -30px;
   padding: 8px;
   border: solid 6px rgb(51, 27, 21);
   border-radius: 5px;
@@ -298,9 +318,9 @@ export default {
   /* height:50vh; */
   background-image: url('../../public/img/codedPaper.jpeg');
   background-size: 76vw;
-  padding: 25px;
+  padding: 25px 50px;
   text-align: left;
-  font-size:20px;
+  font-size:35px;
 }
 
 .codedPaper span{
