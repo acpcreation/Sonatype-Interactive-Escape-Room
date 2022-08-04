@@ -5,7 +5,8 @@
     <h3>Decoder</h3>
     <p v-if="selectedBook == null" class="challengeDescription">Decipher the hidden text using the books in the below library. Enter the full text in the input field at the bottom of the page and watch the progress bar, it will tell you if you're on track.</p>
     <br>
-
+    <p style="font-size:25px; "><i>"You like guys who take risks???"</i></p>
+    <br>
     <p class="successMessage">{{successMessage}}</p>
 
 
@@ -90,13 +91,13 @@ export default {
       successMessage: "",
       message: "",
       progressStyle: "primary",
-      score:1000,
+      score:1200,
       scoreInterval:null
     }
   },
 
   mounted() {
-    this.message = "hello from paris";
+    this.message = "well I store my code in google drive";
     this.message = this.message.toUpperCase()
 
     //Check save state

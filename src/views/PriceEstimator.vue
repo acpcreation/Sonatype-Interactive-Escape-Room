@@ -80,13 +80,14 @@ export default {
   data(){
     return{
       prices:[
-        {low:300, icon:"fa-ship", high:500, submission:400, answer:450, append:"Billion Dollars", step: 10, question:"Which industry has a larger dollar evaluation? The drug trade or cybercrime?", answerText:"Cyber crime profits $450 Billion each year while the drug trade only profits $435 Billion.", complete:false, finalScore:0},
-        // {low:0, icon:"fa-ship", high:5, submission:0, answer:1, append:"", step: 1, question:"1", answerText:"1", complete:false},
-        // {low:0, icon:"fa-ship", high:5, submission:0, answer:2, append:"", step: 1, question:"2", answerText:"2", complete:false},
-        // {low:0, icon:"fa-ship", high:5, submission:0, answer:3, append:"", step: 1, question:"3", answerText:"3", complete:false},
-        // {low:0, icon:"fa-ship", high:5, submission:0, answer:4, append:"", step: 1, question:"4", answerText:"4", complete:false},
+        {icon:"fa-ship", low:300, high:500,  submission:400,  answer:450, append:"Billion Dollars", step:10, question:"Which industry has a larger dollar evaluation? The drug trade or cybercrime?", answerText:"Cyber crime profits $450 Billion each year while the drug trade only profits $435 Billion.", complete:false, finalScore:0},
+        {icon:"fa-ship", low:.25, high:3,    submission:1.6,  answer:1,   append:"Dollars", step:.25, question:"What costs more to buy in the US: A malware installation kit or a pack of gum?", answerText:"A malware kit cost $1.00 on the dark web vs $1.49 for gum.", complete:false, finalScore:0},
+        {icon:"fa-ship", low:200, high:2000, submission:1100, answer:1500, append:"Percent", step:100, question:"By what percentage has Cybercrime grown since 2016?", answerText:"Cybercrime is the fastest growing illegal activity on the planet and has grown by 1500% to over $6 Trillion.", complete:false, finalScore:0},
+        {icon:"fa-ship", low:18,  high:1000, submission:518,  answer:18,   append:"Million Dollars", step:50, question:"Average cost of attack on the banking industry per incident vs. the cost John Sherman paid to buy the Royals in 2019?", answerText:"Banking industry cost per incident is $18.37 Million vs. $1 Billion for the Royals.", complete:false, finalScore:0},
+        {icon:"fa-ship", low:36,  high:212,  submission:138,  answer:196, append:"Days", step:16, question:"Average days it takes for a data breach to be detected vs days it took the Kon-Tiki expedition to travel by raft from South America to Polynesia?", answerText:"Average time to discover a data breach is 196 days vs. 101 day rafting from South America to Polynesia.", complete:false, finalScore:0},
+        {icon:"fa-ship", low:10,  high:60,   submission:35,   answer:25,  append:"Percent", step: 5, question:"Percent of Americans who don’t know smart devices can be hacked vs. the percent of Americans who have never left the state they were born in?", answerText:"25% of Americans don’t know their phones can be hacked vs 11% who have never left their home state.", complete:false, finalScore:0},
 
-        // {low:0, icon:"", high:0, submission:0, answer:0, append:"", step: 0, question:"", answerText:"", complete:false},
+        // {icon:"fa-ship", low:0, high:0, submission:0, answer:0, append:"", step: 0, question:"", answerText:"", complete:false, finalScore:0},
       ],
 
       successMessage: "",

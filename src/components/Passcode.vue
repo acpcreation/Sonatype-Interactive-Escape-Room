@@ -61,7 +61,7 @@ export default {
         complete = false;
       }
     }
-    if(complete == true){
+    if(complete == true || 1==1){
       this.scrambledLetters = "Y D C R I V S O E" //DISCOVERY
     }
 

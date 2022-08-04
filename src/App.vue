@@ -124,7 +124,7 @@ h1{
 }
 
 .h1Score{
-  position: absolute;
+  position: fixed;
   bottom: 8px;
   left:0px;
 }
