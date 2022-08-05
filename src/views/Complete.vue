@@ -2,14 +2,6 @@
   <div class="main">
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
     <h1>Complete!</h1>
-    <p>Watch the below video then click the Google Drive link</p>
-    <p><a href="https://drive.google.com/drive/folders/1Q8xnLcn1dSU0lkdxZuTuHStIA5kerrr0?usp=sharing" target="_blank">Click HERE for Google Drive access</a></p>
-    
-    <!-- <video width="80%" id="videoPane" controls>
-      <source src="../../public/video/complete.mp4" type="video/mp4">
-        Your browser does not support HTML video.
-    </video> -->
-
   </div>
 </template>
 
