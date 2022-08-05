@@ -45,7 +45,7 @@ export default {
         {id:8, v:""}],
       passphrase:"",
       scrambledLetters:"",
-      correctPasscode:"DISCOVERY", 
+      correctPasscode:"DEVSECOPS", 
       errorText:"",
       successMessage:""
     }
@@ -62,7 +62,7 @@ export default {
       }
     }
     if(complete == true || 1==1){
-      this.scrambledLetters = "Y D C R I V S O E" //DISCOVERY
+      this.scrambledLetters = "E D P C V S S O E" //DEVSECOPS
     }
 
     if(progress.Complete){
