@@ -26,7 +26,9 @@ Events Used:
 
 ## Project Description
 There are several games linked onto the interactive `src/views/Home.vue` page.
+
 Games currently available for use are in the `src/views/` directory.
+
 There are unused pages and game ideas in the `src/unused-views` directory.
 
 When you want to **add a new game**, make sure to do the following:
@@ -34,6 +36,7 @@ When you want to **add a new game**, make sure to do the following:
 - Add the game to the `progress` object in the `store.js`
 - Add the same game details from the store.js to the `src/components/Settings.vue`
 - Add an image and link the game on the `Home.vue` page
+
 You can use one of the other games as a template to work off of.
 
 This game also come with a scoreboard which can be run locally in parallel to record player scores: https://github.com/acpcreation/GameScoreBoard
