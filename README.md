@@ -22,6 +22,7 @@ Content Contributors:
 Events Used:
 - Accelerate 2021 (Internal - NA, EMEA, APJ)
 - Kansas City Developers Conference September 2022
+```
 
 ## Project Description
 ```
