@@ -25,7 +25,6 @@ Events Used:
 ```
 
 ## Project Description
-```
 There are several games linked onto the interactive `src/views/Home.vue` page.
 Games currently available for use are in the `src/views/` directory.
 There are unused pages and game ideas in the `src/unused-views` directory.
@@ -38,7 +37,6 @@ When you want to **add a new game**, make sure to do the following:
 You can use one of the other games as a template to work off of.
 
 This game also come with a scoreboard which can be run locally in parallel to record player scores: https://github.com/acpcreation/GameScoreBoard
-```
 
 
 ## Project setup
@@ -49,16 +47,14 @@ npm install
 ### Compiles and hot-reloads for development
 ```
 npm run serve
-
-The console output will indicate what port it's running on (it will smart select an available port).
 ```
+The console output will indicate what port it's running on (it will smart select an available port).
 
 ### Compiles and minifies for production
 ```
 npm run build
-
-This generates a `dist` folder.
 ```
+This generates a `dist` folder.
 
 ### Lints and fixes files
 ```
