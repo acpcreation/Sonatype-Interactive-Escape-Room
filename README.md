@@ -1,10 +1,10 @@
 # Sonatype - Interactive Escape Room
 
 ## Project Overview
-```
 This is a Vue.js project which simulates a digital escape room. 
 The challenges and content are designed to educate and entertain on open source software and the security risks out there, all in a creative and interactive environment. 
 
+```
 Copyright Sonatype - 2021
 
 Code Contributors:
@@ -25,11 +25,7 @@ Events Used:
 ```
 
 ## Project Description
-There are several games linked onto the interactive `src/views/Home.vue` page.
-
-Games currently available for use are in the `src/views/` directory.
-
-There are unused pages and game ideas in the `src/unused-views` directory.
+There are several games linked onto the interactive `src/views/Home.vue` page. Games currently available for use are in the `src/views/` directory. There are unused pages and game ideas in the `src/unused-views` directory.
 
 When you want to **add a new game**, make sure to do the following:
 - Add the page details to the `router.js`
@@ -53,11 +49,13 @@ npm run serve
 ```
 The console output will indicate what port it's running on (it will smart select an available port).
 
+
 ### Compiles and minifies for production
 ```
 npm run build
 ```
 This generates a `dist` folder.
+
 
 ### Lints and fixes files
 ```
