@@ -3,7 +3,7 @@
     <b-icon class="returnToHomeButton" icon="arrow-left-circle-fill" font-scale="2" variant="light" @click="openPage('')"></b-icon>
 
     <h1>Follow The Path</h1>
-    <p class="challengeDescription">In this challenge you need to guess the path from the start to the end in order to unlock the escape clue. Be careful not to guess the wrong space! If you do you will need to correctly answer a question to continue.</p>
+    <p class="challengeDescription">In this challenge you need to guess the path from the start to the end in order to unlock the escape clue. Be careful not to guess the wrong space! If you do you will need to correctly answer a question to continue or have to restart and lose points!</p>
 
     <p class="successMessage">{{successMessage}}</p>
 
@@ -24,7 +24,7 @@
     <br>
 
 
-     <div class="overlay centerItems" v-if="displayHint">
+    <div class="overlay centerItems" v-if="displayHint">
       <div class="frame">
         <h4>Oops! You didn't guess the right space, answer this question to give it another try, or reset the board.</h4>
         <hr>
@@ -45,6 +45,8 @@
       </div>
     </div>
 
+    <h1 class="h1Score">{{('00000'+score).slice(-5)}}</h1>
+
   </div>
 </template>
 
@@ -59,25 +61,23 @@ export default {
   },
   data(){
     return{
-      path:[
-        ["done",0,0,0,0,0,0 ],
-        [0,1 ,0 ,5 ,0 ,0 ,0 ],
-        [2,3 ,4 ,0 ,6 ,7 ,0 ],
-        [0,0 ,0 ,0 ,0 ,8 ,9 ],
-        [0,0 ,0 ,13,12,11,10],
-        [0,0 ,14,0 ,0 ,17,0 ],
-        [0,0 ,0 ,15,16,0 ,18],
-      ],
       // path:[
-      //   ["done",0,0,0,0,0,0,0],
-      //   [0,1,0,5,0,0,0,0],
-      //   [2,3,4,0,6,7,0,0],
-      //   [0,0,0,0,0,8,9,0],
-      //   [0,0,0,13,12,11,10,0],
-      //   [0,0,15,14,0,0,0,0],
-      //   [0,16,0,18,0,20,21,0],
-      //   [0,0,17,0,19,0,22,23],
+      //   ["done",0,0,0,0,0,0 ],
+      //   [0,1 ,0 ,5 ,0 ,0 ,0 ],
+      //   [2,3 ,4 ,0 ,6 ,7 ,0 ],
+      //   [0,0 ,0 ,0 ,0 ,8 ,9 ],
+      //   [0,0 ,0 ,13,12,11,10],
+      //   [0,0 ,14,0 ,0 ,17,0 ],
+      //   [0,0 ,0 ,15,16,0 ,18],
       // ],
+      path:[],
+      orginalPath:[
+        ["done",0,0,3,0],
+        [0,1,2,0,4],
+        [0,0,0,0,5],
+        [0,0,0,6,0],
+        [0,0,0,0,7]
+      ],
       nextStep: 1,
       tableLoad: true,
       successMessage:"",
@@ -87,24 +87,23 @@ export default {
       hintIndex:0,
       hintAnswerSubmission:"",
       hints:[
-        {hint:"What competitor allows policies to be created for both SAST and OSA based on licenses, aging and vulnerability data; also has the ability to break builds on policy violations and thresholds (number of vulnerabilities by category). ", answer:"CheckMarx"},
-        {hint:"What competitor is well known by legal personas; typically win when legal departments lead evaluation/purchase decisions.", answer:"Synopsys Black Duck"},
-        {hint:"What competitor has component information pulled into their ‘hub’ to generate reports; these reports require manual follow-up for remediation (automating process, but not policy).", answer:"Synopsys Black Duck"},
-        {hint:"Name one of the 4 top competitors who identify components via a name-based search, instead of a hash-based unique fingerprint, resulting in large quantities of false positives/negatives. ", answer:"Synopsys Black Duck, Snyk, JFrog, WhiteSource"},
-        {hint:"What competitor, when positioning themselves with customers, tend to use terms like “radically universal”, “end to end devops platform” and “full artifact lifecycle”. ", answer:"JFrog"},
-        {hint:"Name one of the 3 top competitors we lose deals to due to call flow analysis.", answer:"Snyk, Veracode, Whitesource"},
-        {hint:"Name the competitor we often clash with as a repo-centric solution provider.", answer:"JFrog"},
-        {hint:"Which competitor also takes a BOM approach to OSS license obligations?", answer:"Whitesource"},
-        {hint:"Name one of our competitors who also has a licensing model that is per developer?", answer:"Synopsys Black Duck, Whitesource, Snyk"},
-        {hint:"When competing with NXRM, this competitor’s SaaS solution charges on peak usage resulting in a higher cost per month. ", answer:"JFrog"},
-        {hint:"Which competitor has a plugin called gatekeeper?", answer:"Snyk"},
-        {hint:"Name the competitor who we consider to be a “check-the-box” offering in contrast to ALP.", answer:"Fossa"},
-        {hint:"Name a competitor who we compete with in the code quality analysis space (competing with sonatype Lift)?", answer:"SonarCloud, SonarQube, Github, Gitlab, Snyk"},
-        {hint:"Name one of the public data sources Sonatype monitors for new vulnerabilities?", answer:"National Vulnerability Database (NVD), Github Events, Security Advisory Websites, Open Source Project Websites"},
+        {hint:"What was the YoY increase in cybersecurity attacks aimed at open source? \n 172%, 210%, 480%, 650%, 835%?", answer:"650%"},
+        {hint:"What is the YoY growth of component downloads? \n 73%, 95%, 108%, 120%, 156%?", answer:"73%"},
+        {hint:"How many new versions of components were introduced in 2020? \n 300 Thousand, 550 Thousand, 1.2 Million, 4.5 Million, 6 Million?", answer:"6 Million"},
+        {hint:"What % of popular projects contain at least 1 known vulnerability? \n 4%, 17%, 29%, 46%, 58%?", answer:"29%"},
+        {hint:"Intelligent automation that standardizes engineering could remove how many hours of wasted time world wide? \n 680 Thousand, 1.6 Million, 2.5 Million, 4 Million, 5.1 Million?", answer:"1.6 Million Hours"},
+        {hint:"Intelligent automation that standardizes engineering could remove $ _____ in real world waste? \n $1.6 Million, $6 Million, $60 Million, $160 Million, $240 Million?", answer:"$240 Million"},
+        {hint:"Intelligent automation could save companies on average $_____ per year? \n $80,000, $192,000, $399,000, $623,000, $1.1 Million?", answer:"$192,000"},
+        {hint:"On average, enterprise java applications utilize ____% of all the components that are available for download in Maven central repository. \n 1%, 7%, 13%, 19%, 25%?", answer:"25%"},
+        {hint:"How many project versions are available between the Java, Javascript, Python, and .NET ecosystems? \n 37 Million, 129 Million, 546 Million, 862 Million, 1.05 Billion?", answer:"37 Million"},
+        {hint:"As of July 2021, between Java, JavaScript, Python, and .NET, which ecosystem saw the most increase in downloads YoY?", answer:"Python at 92%"},
+        {hint:"As of July 2021, between Java, JavaScript, Python, and .NET, which ecosystem saw the most annual downloads?", answer:"JavaScript at 1.5 Trillion"},
+        {hint:"How many active projects are in Maven Central as of July 2021? \n390,000, 430,000, 568,000, 901,000, 1.07 Million?", answer:"430,000"},
+        {hint:"What is the Executive order number that the USA enacted to formalize software supply chain standards? \n14024, 14025, 14026, 14027, 14028?", answer:"14028"},
         // {hint:"", answer:""},
-
       ],
-      hintCorrectOrIncorrect:""
+      hintCorrectOrIncorrect:"",
+      score: 1000
       
     }
   },
@@ -113,7 +112,7 @@ export default {
     //Check save state
     let progress = this.$store.getters.getProgress;
     if(progress[this.$route.name] == true){
-      this.successMessage = "Clue: We need a way to proactively block or allow components for use by our development teams that are consistent with our company policies...but not all teams have the same requirements. We used to keep a list of the 'good' and 'bad' components, but that is no longer working.";
+      this.successMessage = "Complete!";
       document.getElementById("pathTable").setAttribute("style", "pointer-events:none");
 
       for(let i in this.path){
@@ -124,7 +123,7 @@ export default {
         }
       }
     }
-    
+    this.path = JSON.parse(JSON.stringify(this.orginalPath));
     this.addCharacterListeners();
   },
 
@@ -143,10 +142,10 @@ export default {
 
           this.tableLoad = false;
           this.tableLoad = true;
-          if(this.path[6][6] == "done"){
-            this.successMessage = "Clue: We need a way to proactively block or allow components for use by our development teams that are consistent with our company policies...but not all teams have the same requirements. We used to keep a list of the 'good' and 'bad' components, but that is no longer workin";
+          if(this.path[4][4] == "done"){
+            this.successMessage = "Complete!";
             document.getElementById("pathTable").setAttribute("style", "pointer-events:none");
-            this.$store.commit('updateProgress', {route:this.$route.name, context:this});
+            this.$store.commit('updateProgress', {route:this.$route.name, context:this, score:this.score});
           }
         }
 
@@ -166,7 +165,7 @@ export default {
       this.isDisabled = true;
       let answer = this.hints[this.hintIndex].answer.toLowerCase();
 
-      if( this.hintAnswerSubmission.length>=3 && 
+      if( this.hintAnswerSubmission.length>=2 && 
           answer.includes(this.hintAnswerSubmission.toLowerCase())){
         this.hintCorrectOrIncorrect = "correct";
       }else{
@@ -202,17 +201,10 @@ export default {
       document.getElementById("pathTable").setAttribute("style", "background-color: red;");
       this.displayHint = false;
       this.nextStep = 1;
-      this.path = [
-        ["done",0,0,0,0,0,0 ],
-        [0,1 ,0 ,5 ,0 ,0 ,0 ],
-        [2,3 ,4 ,0 ,6 ,7 ,0 ],
-        [0,0 ,0 ,0 ,0 ,8 ,9 ],
-        [0,0 ,0 ,13,12,11,10],
-        [0,0 ,14,0 ,0 ,17,0 ],
-        [0,0 ,0 ,15,16,0 ,18],
-      ];
+      this.path = JSON.parse(JSON.stringify(this.orginalPath))
       this.tableLoad = false;
       this.tableLoad = true;
+      this.score -=10;
 
       setTimeout(function(){
         document.getElementById("pathTable").setAttribute("style", "background-color: white;");
@@ -242,6 +234,11 @@ export default {
 .main{
   text-align: center;
   padding: 2vw;
+    background-image: linear-gradient(to bottom, rgba(22, 22, 22, 0.88),rgba(0, 0, 0, 0.88)), 
+                    url('../../public/img/background.svg');
+  min-height: 100vh;
+  background-size: cover;
+  overflow: hidden;
 }
 
 table{
@@ -268,7 +265,7 @@ td{
 
 .finish{
   text-align: right;
-  margin-right: 4px;
+  margin-right: 20px;
 }
 
 .tableContainer{
@@ -304,12 +301,14 @@ td{
 
 .frame p{
   color: black;
+  white-space: pre-line; 
 }
 
 @media (min-width: 800px) {
   .tableContainer{
-    margin-top: 150px;
-    transform: scale(1.5);
+    margin-top: 180px;
+    transform: scale(1.7);
+    padding-left:30px;
   }
 }
 

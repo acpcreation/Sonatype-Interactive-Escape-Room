@@ -20,10 +20,27 @@ Vue.config.ignoredElements = [
   'a-plane'
 ];
 
+
 // Install BootstrapVue
 Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
+
+
+// FontAwesome
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome' //import font awesome icon component
+
+// import each specific icon (WILL BE BLANK IF THEY ARE PRO)
+import { faShip } from '@fortawesome/free-solid-svg-icons'
+import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+
+// Add icons to the library
+library.add(faShip, faUserSecret)
+
+// Add font awesome icon component
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+
 
 
 new Vue({

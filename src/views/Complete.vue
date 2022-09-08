@@ -5,10 +5,10 @@
     <p>Watch the below video then click the Google Drive link</p>
     <p><a href="https://drive.google.com/drive/folders/1Q8xnLcn1dSU0lkdxZuTuHStIA5kerrr0?usp=sharing" target="_blank">Click HERE for Google Drive access</a></p>
     
-    <video width="80%" id="videoPane" controls>
+    <!-- <video width="80%" id="videoPane" controls>
       <source src="../../public/video/complete.mp4" type="video/mp4">
         Your browser does not support HTML video.
-    </video>
+    </video> -->
 
   </div>
 </template>
@@ -39,7 +39,7 @@ export default {
     //   }
     // }
     
-    this.$root.$emit('ToggleTimer', false); 
+    // this.$root.$emit('ToggleTimer', false); 
     
     // if(complete == true){
     //   document.getElementById("videoPane").play();

@@ -2,8 +2,14 @@
   <div class="pane" @click="close()">
     <p>General Settings</p>
     <hr>
-    <b-button variant="primary" @click="replayIntro()">Replay intro Video</b-button>
+    <!-- <b-button variant="primary" @click="replayIntro()">Replay intro Video</b-button> -->
+
+    <b-button variant="primary" @click="setStoryMode('Freeplay')">Story / Freeplay</b-button>
     <b-button variant="danger" @click="fullReset()">Reset Game</b-button>
+    <b-button variant="success" @click="reloadPage()">Reset Username</b-button>
+    <!-- <b-button variant="warning" @click="testScoreUpdates()">Generate Score</b-button> -->
+
+    <!-- <b-button variant="success" @click="openPage('ScoreBoard')">Score Board</b-button> -->
     <!-- <b-button variant="dark" @click="setAllComplete()">Complete All</b-button> -->
 
   </div>
@@ -32,35 +38,70 @@ export default {
       this.$emit('closeSettings');   
     },
 
-
     fullReset: function() {
       localStorage.clear();
       window.location.reload()
     },
 
-    replayIntro: function(){
-      this.$root.$emit('WelcomeVideo'); 
-      // this.$root.$emit('AllComplete'); 
+    reloadPage: function(){
+      window.location.reload()
     },
+
+    // replayIntro: function(){
+    //   this.$root.$emit('WelcomeVideo'); 
+    //   // this.$root.$emit('AllComplete'); 
+    // },
 
     setAllComplete: function(){
       let complete ={
         Cafeteria: true,
         Calculator: true,
-        ClueFinder: true,
+        // ClueFinder: true,
         Complete: false,
         Decoder: true,
-        FamilyFeud: true,
-        HangMan: true,
+        // FamilyFeud: true,
+        // HangMan: true,
         PriceQuotes: true,
         RememberThePath: true,
-        VRExplorer: true
+        // VRExplorer: true
+        VulnerabilitySort:true
       };
-
       this.$store.commit('setAllProgress', complete);
       localStorage.setItem("progress", JSON.stringify(complete));
-
     },
+
+    setStoryMode: function(e){
+      this.$store.commit('setStoryMode', e);
+      
+      if(e == "Story"){
+        let progress = this.$store.getters.getProgress;
+        localStorage.setItem("progress", JSON.stringify(progress));
+      }
+      else if(e == "Freeplay"){
+        localStorage.setItem("progress", e);
+      }
+      
+      window.location.reload();
+    },
+
+    openPage: function(e) {
+      this.$router.push("/"+e);
+    },
+
+    testScoreUpdates: function(){
+      let randomScore = Math.floor(Math.random() * 1200)
+      let games = [
+        "Cafeteria",
+        "Calculator",
+        "Decoder",
+        "PriceEstimator",
+        "RememberThePath",
+        "VulnerabilitySort"
+      ]
+      let randomGame = games[Math.floor(Math.random() * games.length)]
+      this.$store.commit('updateProgress', {route:randomGame, context:this, score:randomScore});
+
+    }
   
 
 

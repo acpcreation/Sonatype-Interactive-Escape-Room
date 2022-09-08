@@ -1,10 +1,13 @@
 <template>
   <div id="app">
     <router-view/>
+    
+    <!-- <WebSocket/> -->
+    <Player /> <!-- v-if="$route.name=='home'" -->
+    
 
-    <Welcome v-if="welcome" @closeWelcome="welcomeVideo"/>
-    <Audit v-if="audit" @closeAudit="audit=!audit"/>
-    <Timer :start="timerState"/>
+    <!-- <Audit v-if="audit" @closeAudit="audit=!audit"/> -->
+    <Timer :start="timerState" v-if="storyMode == true"/>
 
     <b-modal id="allCompleteModal" title="All Challenges Complete!" ok-title="I'm on it!" ok-variant="success"  ok-only> 
       <p><b>Hooray!!</b> You completed all the challenges!</p>
@@ -15,39 +18,47 @@
 </template>
 
 <script>
-import Welcome from '@/components/Welcome.vue'
-import Audit from '@/components/Audit.vue'
+// import Audit from '@/components/Audit.vue'
 import Timer from '@/components/Timer.vue'
+import Player from '@/components/Player.vue'
+
+// import WebSocket from '@/components/WebSocket.vue'
 
 export default {
   name: 'App',
   components: {
-    Welcome,
-    Audit,
-    Timer
+    // Audit,
+    Timer,
+    Player
+    // WebSocket
   },
   data(){
     return{
-      welcome:true, 
-      audit: false,
+      // audit: false,
       complete: false,
-      timerState: false
+      timerState: false,
+      storyMode: false
     }
   },
   created() {
-    this.$root.$on('WelcomeVideo', this.welcomeVideo);
     this.$root.$on('AllComplete', this.allComplete);
-    this.$root.$on('ToggleTimer', this.toggleTimer);
   },
 
   mounted(){
     let progress = localStorage.getItem("progress");
     if(progress != null){
-      console.log(JSON.parse(progress))
-      this.$store.commit('setAllProgress', JSON.parse(progress)); 
-      this.welcome = false;
-      this.timeGame(true);
+      
+      console.log(progress)
+      if(progress != "Freeplay"){ 
+        progress = JSON.parse(progress)
+        this.$store.commit('setAllProgress', progress); 
+        this.storyMode = true;
+        this.toggleTimer(true);
+      }else{
+        this.toggleTimer(false);
+      }
     }
+    // this.timeGame(true);
 
     // this.$store.commit('updateProgress', this.$route.name); 
     // let stuff = this.$store.getters.getProgress;
@@ -57,13 +68,10 @@ export default {
     //     this.audit = true;
     //   }
     // });
+
   },
 
   methods:{
-    welcomeVideo: function(){
-      this.welcome = !this.welcome;
-      this.timeGame(true);
-    },
 
     allComplete: function(){
       if(this.complete == false){
@@ -73,12 +81,6 @@ export default {
         setTimeout(function(){
           that.$bvModal.show("allCompleteModal")
         }, 2000);
-      }
-    },
-
-    timeGame: function(e){
-      if(this.welcome == false && e == true){
-        this.timerState = true;
       }
     },
 
@@ -102,7 +104,7 @@ export default {
     linear-gradient(to bottom, rgba(22, 22, 22, 0.85),rgba(0, 0, 0, 0.85)); 
 
   /* border-top: 5px solid rgb(20, 20, 20); */
-  padding-bottom:100px;
+  /* padding-bottom:100px; */
 }
 
 a{
@@ -119,6 +121,12 @@ h1,h2,h3{
 
 h1{
   font-size: 60px;
+}
+
+.h1Score{
+  position: fixed;
+  bottom: 8px;
+  left:0px;
 }
 
 h2{
@@ -174,6 +182,7 @@ hr{
 
 .challengeDescription{
   padding:0px 15vw;
+  color:white !important;
 }
 
 #allCompleteModal h2, #allCompleteModal p{

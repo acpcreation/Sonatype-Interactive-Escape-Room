@@ -33,16 +33,7 @@ export default {
   },
   data(){
     return{
-      characters: [
-        {id:0, v:""},
-        {id:1, v:""},
-        {id:2, v:""},
-        {id:3, v:""},
-        {id:4, v:""},
-        {id:5, v:""},
-        {id:6, v:""},
-        {id:7, v:""},
-        {id:8, v:""}],
+      characters: [],
       passphrase:"",
       scrambledLetters:"",
       correctPasscode:"DISCOVERY", 
@@ -61,10 +52,19 @@ export default {
         complete = false;
       }
     }
-    if(complete == true){
-      this.scrambledLetters = "Y D C R I V S O E" //DISCOVERY
+    complete = true;
+    
+    for(let i in this.correctPasscode){
+      this.characters.push({id:i, v:""})
+    }
+    
+
+    if(complete == true || 1==1){
+      this.scrambledLetters = this.shuffleArray(this.correctPasscode) //DISCOVERY
     }
 
+    console.log(this.characters)
+    
 
     if(progress.Complete){
       this.characters = [];
@@ -130,6 +130,17 @@ export default {
       }else{
         this.errorText = "Incorrect Passcode"
       }
+    },
+
+    shuffleArray: function(eArray){
+      var i, j, k;
+      for (i = eArray.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * i);
+        k = eArray[i];
+        eArray[i] = eArray[j];
+        eArray[j] = k;
+      }
+      return eArray;
     },
 
   

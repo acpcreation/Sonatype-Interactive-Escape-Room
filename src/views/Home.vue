@@ -3,26 +3,29 @@
     <img class="logo" src="../../public/img/sonatype_logo.png"/>
     <b-icon class="settingsButton" icon="gear-fill" font-scale="2" variant="dark" @click="settings = !settings"></b-icon>
     <Settings v-if="settings" @closeSettings="settings = !settings"/>
+    <HelloMyNameIs/>
 
 
       <!-- https://www.vecteezy.com/vector-art/420220-modern-office-setup-background-vector-flat-illustration -->
       <!-- <img class="backgroundImage" src="../../public/img/background.png"/> -->
     
       <div class="buttonImages" @click="settings = false">
-        <img class="passcodePage"   @click="passcode=!passcode" src="../../public/img/passcode.png"/>
-        <img class="mazePage"       @click="openPage('RememberThePath')" src="../../public/img/maze.png"/>
-        <img class="calculatorPage" @click="openPage('Calculator')" src="../../public/img/calculator.png"/>
-        <img class="clueFinderPage" @click="openPage('ClueFinder')" src="../../public/img/map.jpeg"/>
-        <img class="vrExplorerPage" @click="openPage('VRExplorer')" src="../../public/img/vrheadset.png"/>
-        <img class="decoderPage"    @click="openPage('Decoder')" src="../../public/img/book.png"/>
-        <img class="priceQuotePage" @click="openPage('PriceQuotes')" src="../../public/img/abacus.jpg"/>
-        <img class="hangManPage"    @click="openPage('HangMan')" src="../../public/img/hangman.png"/>
-        <img class="familyFeudPage" @click="openPage('FamilyFeud')" src="../../public/img/familyfeud.png"/>
-        <img class="cafeteriaPage" @click="openPage('Cafeteria')" src="../../public/img/cafeteria.png"/>
+        <img class="mazePage"       @click="openPage('RememberThePath')" src="../../public/img/Maze.svg"/>
+        <img class="calculatorPage" @click="openPage('Calculator')" src="../../public/img/Calculator.svg"/>
+        <img class="vulnerabilitySort" @click="openPage('VulnerabilitySort')" src="../../public/img/Vuln.svg"/>
+        <img class="decoderPage"    @click="openPage('Decoder')" src="../../public/img/Decoder.svg"/>
+        <img class="priceQuotePage" @click="openPage('PriceEstimator')" src="../../public/img/Price.svg"/>
+        <img class="cafeteriaPage" @click="openPage('Cafeteria')" src="../../public/img/Pizza.svg"/>
+
+        <img class="passcodePage"   @click="passcode=!passcode" src="../../public/img/Arrows.svg"/>
+        <!-- <img class="clueFinderPage" @click="openPage('ClueFinder')" src="../../public/img/map.jpeg"/> -->
+        <!-- <img class="vrExplorerPage" @click="openPage('VRExplorer')" src="../../public/img/vrheadset.png"/> -->
+        <!-- <img class="hangManPage"    @click="openPage('HangMan')" src="../../public/img/hangman.png"/> -->
+        <!-- <img class="familyFeudPage" @click="openPage('FamilyFeud')" src="../../public/img/familyfeud.png"/> -->
       </div>
 
     <Passcode v-if="passcode" @closePasscode="passcode = !passcode"/>
-    
+    <!-- <Background /> -->
   </div>
 </template>
 
@@ -30,18 +33,23 @@
 
 import Passcode from '@/components/Passcode.vue'
 import Settings from '@/components/Settings.vue'
+import HelloMyNameIs from '@/components/HelloMyNameIs.vue'
+
+// import Background from '@/components/Background.vue'
 
 export default {
   name: 'Home',
   components: {
     Passcode,
-    Settings
+    Settings,
+    HelloMyNameIs
+    // Background
   },
   data(){
     return{
       welcome:true,
       passcode:false,
-      settings: false
+      settings: false,
     }
   },
   methods:{
@@ -75,7 +83,7 @@ export default {
   height:800px;
   width: 1500px ;
   margin-bottom:-200px;
-  background-image:url('../../public/img/background.png'); 
+  background-image:url('../../public/img/background.svg'); 
   background-repeat: no-repeat;
   background-size: 1500px;
   margin:5px auto;
@@ -87,22 +95,22 @@ export default {
 }
 
 .passcodePage{
-  top:435px;
-  left: 445px;
-  width: 200px;
+  top:518px;
+  left: -54px;
+  width: 292px;
 }
 
 .mazePage{
-  top:394px;
-  left: -98px;
-  width: 85px;
+  top:520px;
+  left: 940px;
+  width: 120px;
 }
 
 .calculatorPage{
-  top:600px;
-  left: 0px;
-  width: 60px;
-  transform: rotate(-70deg);
+  top:520px;
+  left: 965px;
+  width: 110px;
+  /* transform: rotate(-70deg); */
 }
 
 .clueFinderPage{
@@ -112,26 +120,26 @@ export default {
   transform: rotate(-5deg);
 }
 
-.vrExplorerPage{
-  top:320px;
-  left: 538px;
-  width: 70px;
+.vulnerabilitySort{
+  top:518px;
+  left: 211px;
+  width: 121px;
 }
 
 .decoderPage{
-  top:490px;
-  left: 190px;
-  width: 70px;
-  transform: rotate(8deg);
-  opacity: .9;
+  top:518px;
+  left: -44px;
+  width: 120px;
+  /* transform: rotate(8deg); */
+  /* opacity: .9; */
 }
 
 .priceQuotePage{
-  top: 180px;
-  left: 110px;
-  width: 100px;
-  transform: rotate(18deg);
-  opacity: .95;
+  top: 394px;
+  left: -64px;
+  width: 66px;
+  /* transform: rotate(18deg); */
+  /* opacity: .95; */
 }
 
 .hangManPage{
@@ -149,17 +157,33 @@ export default {
 }
 
 .cafeteriaPage{
-  top: 520px;
-  left: 40px;
-  width: 220px;
+  top: 704px;
+  left: 294px;
+  width: 120px;
 }
 
+
+@media (max-width: 1300px) {
+  .main{
+    transform: scale(0.9);
+    margin-left: -4vw;
+  }
+}
+
+@media (max-width: 1300px) {
+  .main{
+    transform: scale(0.8);
+    margin-left: -10vw;
+  }
+}
 
 @media (max-width: 1200px) {
   .main{
-    transform: scale(0.8);
+    transform: scale(0.7);
+    margin-left: -14vw;
   }
 }
+
 
 
 </style>

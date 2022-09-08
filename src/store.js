@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
 
 Vue.use(Vuex);
 
@@ -8,22 +9,46 @@ export default new Vuex.Store({
         progress: {
             Cafeteria: false,
             Calculator: false,
-            ClueFinder: false,
+            // ClueFinder: false,
             Decoder: false,
-            FamilyFeud: false,
-            HangMan: false,
-            PriceQuotes: false,
+            // FamilyFeud: false,
+            // HangMan: false,
+            // PriceQuotes: false,
+            PriceEstimator: false,
             RememberThePath: false,
-            VRExplorer: false
+            // VRExplorer: false
+            VulnerabilitySort:false
         },  
-        passcode:[]
+        passcode:[],
+        storyMode: "Freeplay",
+        player:"Player1",
+        axiosURL:"http://localhost:3000/"
     },
 
     mutations:{
         updateProgress(state, data){
             state.progress[data.route] = true;
-            localStorage.setItem("progress", JSON.stringify(state.progress));
+            if(state.storyMode == "Story"){
+                localStorage.setItem("progress", JSON.stringify(state.progress));
+            }
 
+            //Send score to dashboard
+            let dateTime = new Date();
+
+            axios.post(state.axiosURL+'SubmitScore', {
+                id: state.player, 
+                score:data.score, 
+                time: dateTime, 
+                game:data.route
+            }).then((res) => {
+                console.log(res.data);
+                // alert(res.data)
+            }, (err) => {
+                console.log(err);
+            });
+
+
+            //Check if all games are complete
             let complete = true;
             for(let i in state.progress){
                 if(state.progress[i] != true && i != "Complete"){
@@ -45,6 +70,25 @@ export default new Vuex.Store({
             state.passcode = data;
         },
 
+        setStoryMode(state, data){
+            //Story / Freeplay
+            state.storyMode = data;
+        },
+
+        setPlayer(state, data){
+            state.player = data;
+
+            // axios.post(state.axiosURL+'SubmitScore', {
+            //     id:"Player7", 
+            //     score:232280, 
+            //     time:"1/2/7", 
+            //     game:"Escape the Maze"
+            // }).then((res) => {
+            //     console.log(res.data);
+            // }, (err) => {
+            //     console.log(err);
+            // });
+        },
     
     },
 
@@ -57,6 +101,9 @@ export default new Vuex.Store({
             return state.passcode;
         },
 
+        getPlayer: state =>{
+            return state.player;
+        },
 
     },
 
