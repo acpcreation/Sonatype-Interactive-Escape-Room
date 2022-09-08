@@ -146,14 +146,16 @@ export default {
 
 
     checkAllPricesCorrect: function(){
-      let correct = 0;
+      let complete = 0;
       for(let i in this.prices){
         if(this.prices[i].complete == true){
-          correct++;
+          complete++;
+        }else{
+          break;
         }
       }
 
-      if(correct == this.prices.length && this.successMessage.length<1){
+      if(complete == this.prices.length && this.successMessage.length<1){
         this.successMessage = "Complete!"
         window.scroll({
           top: 0, 
@@ -179,7 +181,7 @@ export default {
       }
 
       rawScore = rawScore/this.prices[i].step;
-      rawScore = 200 - rawScore*15;
+      rawScore = Math.floor(200 - rawScore*15);
       this.score += rawScore;
       this.prices[i].finalScore = rawScore;
 
@@ -281,6 +283,11 @@ a{
   color:goldenrod;
 }
 
+.h1Score{
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  padding: 4px 7px;
+}
 
 
 

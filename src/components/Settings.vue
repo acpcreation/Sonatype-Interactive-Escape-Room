@@ -7,6 +7,8 @@
     <b-button variant="primary" @click="setStoryMode('Freeplay')">Story / Freeplay</b-button>
     <b-button variant="danger" @click="fullReset()">Reset Game</b-button>
     <b-button variant="success" @click="reloadPage()">Reset Username</b-button>
+    <!-- <b-button variant="warning" @click="testScoreUpdates()">Generate Score</b-button> -->
+
     <!-- <b-button variant="success" @click="openPage('ScoreBoard')">Score Board</b-button> -->
     <!-- <b-button variant="dark" @click="setAllComplete()">Complete All</b-button> -->
 
@@ -54,7 +56,7 @@ export default {
       let complete ={
         Cafeteria: true,
         Calculator: true,
-        ClueFinder: true,
+        // ClueFinder: true,
         Complete: false,
         Decoder: true,
         // FamilyFeud: true,
@@ -85,6 +87,21 @@ export default {
     openPage: function(e) {
       this.$router.push("/"+e);
     },
+
+    testScoreUpdates: function(){
+      let randomScore = Math.floor(Math.random() * 1200)
+      let games = [
+        "Cafeteria",
+        "Calculator",
+        "Decoder",
+        "PriceEstimator",
+        "RememberThePath",
+        "VulnerabilitySort"
+      ]
+      let randomGame = games[Math.floor(Math.random() * games.length)]
+      this.$store.commit('updateProgress', {route:randomGame, context:this, score:randomScore});
+
+    }
   
 
 

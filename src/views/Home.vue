@@ -3,6 +3,8 @@
     <img class="logo" src="../../public/img/sonatype_logo.png"/>
     <b-icon class="settingsButton" icon="gear-fill" font-scale="2" variant="dark" @click="settings = !settings"></b-icon>
     <Settings v-if="settings" @closeSettings="settings = !settings"/>
+    <HelloMyNameIs/>
+
 
       <!-- https://www.vecteezy.com/vector-art/420220-modern-office-setup-background-vector-flat-illustration -->
       <!-- <img class="backgroundImage" src="../../public/img/background.png"/> -->
@@ -31,6 +33,8 @@
 
 import Passcode from '@/components/Passcode.vue'
 import Settings from '@/components/Settings.vue'
+import HelloMyNameIs from '@/components/HelloMyNameIs.vue'
+
 // import Background from '@/components/Background.vue'
 
 export default {
@@ -38,6 +42,7 @@ export default {
   components: {
     Passcode,
     Settings,
+    HelloMyNameIs
     // Background
   },
   data(){

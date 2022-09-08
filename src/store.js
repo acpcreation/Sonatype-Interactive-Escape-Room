@@ -9,11 +9,12 @@ export default new Vuex.Store({
         progress: {
             Cafeteria: false,
             Calculator: false,
-            ClueFinder: false,
+            // ClueFinder: false,
             Decoder: false,
             // FamilyFeud: false,
             // HangMan: false,
-            PriceQuotes: false,
+            // PriceQuotes: false,
+            PriceEstimator: false,
             RememberThePath: false,
             // VRExplorer: false
             VulnerabilitySort:false
@@ -77,16 +78,16 @@ export default new Vuex.Store({
         setPlayer(state, data){
             state.player = data;
 
-            axios.post(state.axiosURL+'SubmitScore', {
-                id:"Player7", 
-                score:232280, 
-                time:"1/2/7", 
-                game:"Escape the Maze"
-            }).then((res) => {
-                console.log(res.data);
-            }, (err) => {
-                console.log(err);
-            });
+            // axios.post(state.axiosURL+'SubmitScore', {
+            //     id:"Player7", 
+            //     score:232280, 
+            //     time:"1/2/7", 
+            //     game:"Escape the Maze"
+            // }).then((res) => {
+            //     console.log(res.data);
+            // }, (err) => {
+            //     console.log(err);
+            // });
         },
     
     },

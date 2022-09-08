@@ -77,7 +77,13 @@ export default {
         "ghostly",
         "brainiac",
         "geriatric", 
-        "bionic"
+        "bionic",
+        "derpy",
+        "simulated",
+        "metaphorical",
+        "redundant",
+        "emperor",
+        "technical"
       ];
 
       let lastNames = [
@@ -99,7 +105,16 @@ export default {
         "nazgûl",
         "platypus",
         "sumo wrestler",
-        "jared"
+        "jared",
+        "bulldozer",
+        "lego",
+        "wizard",
+        "specter",
+        "orc",
+        "elf",
+        "special edition G.I. joe",
+        "transformer",
+        "yoda"
       ];
 
       this.username = firstNames[Math.floor(Math.random() * firstNames.length)] +" ";

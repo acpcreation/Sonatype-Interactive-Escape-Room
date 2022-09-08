@@ -182,6 +182,7 @@ hr{
 
 .challengeDescription{
   padding:0px 15vw;
+  color:white !important;
 }
 
 #allCompleteModal h2, #allCompleteModal p{

@@ -61,25 +61,23 @@ export default {
   },
   data(){
     return{
-      path:[
-        ["done",0,0,0,0,0,0 ],
-        [0,1 ,0 ,5 ,0 ,0 ,0 ],
-        [2,3 ,4 ,0 ,6 ,7 ,0 ],
-        [0,0 ,0 ,0 ,0 ,8 ,9 ],
-        [0,0 ,0 ,13,12,11,10],
-        [0,0 ,14,0 ,0 ,17,0 ],
-        [0,0 ,0 ,15,16,0 ,18],
-      ],
       // path:[
-      //   ["done",0,0,0,0,0,0,0],
-      //   [0,1,0,5,0,0,0,0],
-      //   [2,3,4,0,6,7,0,0],
-      //   [0,0,0,0,0,8,9,0],
-      //   [0,0,0,13,12,11,10,0],
-      //   [0,0,15,14,0,0,0,0],
-      //   [0,16,0,18,0,20,21,0],
-      //   [0,0,17,0,19,0,22,23],
+      //   ["done",0,0,0,0,0,0 ],
+      //   [0,1 ,0 ,5 ,0 ,0 ,0 ],
+      //   [2,3 ,4 ,0 ,6 ,7 ,0 ],
+      //   [0,0 ,0 ,0 ,0 ,8 ,9 ],
+      //   [0,0 ,0 ,13,12,11,10],
+      //   [0,0 ,14,0 ,0 ,17,0 ],
+      //   [0,0 ,0 ,15,16,0 ,18],
       // ],
+      path:[],
+      orginalPath:[
+        ["done",0,0,3,0],
+        [0,1,2,0,4],
+        [0,0,0,0,5],
+        [0,0,0,6,0],
+        [0,0,0,0,7]
+      ],
       nextStep: 1,
       tableLoad: true,
       successMessage:"",
@@ -125,7 +123,7 @@ export default {
         }
       }
     }
-    
+    this.path = JSON.parse(JSON.stringify(this.orginalPath));
     this.addCharacterListeners();
   },
 
@@ -144,7 +142,7 @@ export default {
 
           this.tableLoad = false;
           this.tableLoad = true;
-          if(this.path[6][6] == "done"){
+          if(this.path[4][4] == "done"){
             this.successMessage = "Complete!";
             document.getElementById("pathTable").setAttribute("style", "pointer-events:none");
             this.$store.commit('updateProgress', {route:this.$route.name, context:this, score:this.score});
@@ -203,15 +201,7 @@ export default {
       document.getElementById("pathTable").setAttribute("style", "background-color: red;");
       this.displayHint = false;
       this.nextStep = 1;
-      this.path = [
-        ["done",0,0,0,0,0,0 ],
-        [0,1 ,0 ,5 ,0 ,0 ,0 ],
-        [2,3 ,4 ,0 ,6 ,7 ,0 ],
-        [0,0 ,0 ,0 ,0 ,8 ,9 ],
-        [0,0 ,0 ,13,12,11,10],
-        [0,0 ,14,0 ,0 ,17,0 ],
-        [0,0 ,0 ,15,16,0 ,18],
-      ];
+      this.path = JSON.parse(JSON.stringify(this.orginalPath))
       this.tableLoad = false;
       this.tableLoad = true;
       this.score -=10;
@@ -275,7 +265,7 @@ td{
 
 .finish{
   text-align: right;
-  margin-right: 4px;
+  margin-right: 20px;
 }
 
 .tableContainer{
