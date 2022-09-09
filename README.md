@@ -49,6 +49,10 @@ npm run serve
 ```
 The console output will indicate what port it's running on (it will smart select an available port).
 
+### You may need to install Vue dependency for this to work
+```
+ npm install @vue/cli-service --save-dev
+```
 
 ### Compiles and minifies for production
 ```
